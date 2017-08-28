@@ -16,7 +16,7 @@ This library divides the calls into
  - MultiChainClient.Stream
 
 *example usage:*
-```
+```csharp
 MultiChainConnection connection = new MultiChainConnection()
             {
                 Hostname = "IP",
