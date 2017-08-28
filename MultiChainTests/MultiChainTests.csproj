@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{262FF8E0-A728-4C14-8B62-3DE0A0421816}</ProjectGuid>
+    <ProjectGuid>{268E29F5-2C58-4CA9-9DC6-8B2551541C70}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MultiChain.Tests</RootNamespace>
-    <AssemblyName>MultiChain.Tests</AssemblyName>
+    <RootNamespace>MultiChainTests</RootNamespace>
+    <AssemblyName>MultiChainTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -28,7 +28,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,7 +51,7 @@
     <Compile Include="AddressTests.cs" />
     <Compile Include="AssetTests.cs" />
     <Compile Include="BlockTests.cs" />
-    <Compile Include="Mocks\Property.cs" />
+    <Compile Include="Mocks\Asset.cs" />
     <Compile Include="PeerTests.cs" />
     <Compile Include="PermissionTests.cs" />
     <Compile Include="ProcessCalls.cs" />

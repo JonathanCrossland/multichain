@@ -1,7 +1,116 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AA780CE4-3B29-4998-AAAB-D66FC1BC77D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LucidOcean.MultiChain</RootNamespace>
+    <AssemblyName>LucidOcean.MultiChain</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddNodeParam.cs" />
+    <Compile Include="API\Address.cs" />
+    <Compile Include="API\Asset.cs" />
+    <Compile Include="API\Block.cs" />
+    <Compile Include="API\NotDefined.cs" />
+    <Compile Include="API\Peer.cs" />
+    <Compile Include="API\Permission.cs" />
+    <Compile Include="API\Stream.cs" />
+    <Compile Include="API\Transaction.cs" />
+    <Compile Include="API\Utility.cs" />
+    <Compile Include="API\Wallet.cs" />
+    <Compile Include="BlockChainPermissions.cs" />
+    <Compile Include="CheckBlockType.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="Exceptions\JsonRpcErrorResponse.cs" />
+    <Compile Include="IJsonRpcRequest.cs" />
+    <Compile Include="IJsonRpcResponse.cs" />
+    <Compile Include="JsonRpcClient.cs" />
+    <Compile Include="JsonRpcRequest.cs" />
+    <Compile Include="JsonRpcResponse.cs" />
+    <Compile Include="MultiChainClient.cs" />
+    <Compile Include="MultiChainConnection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Response\AddressGroupingResponse.cs" />
+    <Compile Include="Response\AddressResponse.cs" />
+    <Compile Include="Response\AddressTransactionResponse.cs" />
+    <Compile Include="Response\AssetBalanceResponse.cs" />
+    <Compile Include="Response\AssetResponse.cs" />
+    <Compile Include="Response\BlockChainInfoResponse.cs" />
+    <Compile Include="Response\BlockHashResponse.cs" />
+    <Compile Include="Response\BlockResponse.cs" />
+    <Compile Include="Response\ChainTipResponse.cs" />
+    <Compile Include="Response\GetInfoResponse.cs" />
+    <Compile Include="Response\GetServerInfoResponse.cs" />
+    <Compile Include="Response\GetTransactionResponse.cs" />
+    <Compile Include="Response\ListAssetTransactionsResponse.cs" />
+    <Compile Include="Response\ListPermissionsResponse.cs" />
+    <Compile Include="Response\ListSinceLastBlockResponse.cs" />
+    <Compile Include="Response\ListStreamItemsResponse.cs" />
+    <Compile Include="Response\ListStreamResponse.cs" />
+    <Compile Include="Response\MempoolInfoResponse.cs" />
+    <Compile Include="Response\MempoolResponse.cs" />
+    <Compile Include="Response\MiningInfoResponse.cs" />
+    <Compile Include="Response\MultiSigResponse.cs" />
+    <Compile Include="Response\NetTotalsResponse.cs" />
+    <Compile Include="Response\NetworkInfoResponse.cs" />
+    <Compile Include="Response\NetworkResponse.cs" />
+    <Compile Include="Response\PeerResponse.cs" />
+    <Compile Include="Response\PermissionsResponse.cs" />
+    <Compile Include="Response\RawTransactionResponse.cs" />
+    <Compile Include="Response\ReceivedResponse.cs" />
+    <Compile Include="Response\ScriptPubKeyResponse.cs" />
+    <Compile Include="Response\ScriptResponse.cs" />
+    <Compile Include="Response\ScriptSigResponse.cs" />
+    <Compile Include="Response\TransactionData.cs" />
+    <Compile Include="Response\TransactionResponse.cs" />
+    <Compile Include="Response\TransactionVin.cs" />
+    <Compile Include="Response\TransactionVout.cs" />
+    <Compile Include="Response\TxAssetResponse.cs" />
+    <Compile Include="Response\TxOutResponse.cs" />
+    <Compile Include="Response\TxOutSetInfoResponse.cs" />
+    <Compile Include="Response\UnspentAssetResponse.cs" />
+    <Compile Include="Response\UnspentResponse.cs" />
+    <Compile Include="Response\WalletInfoResponse.cs" />
+    <Compile Include="Util\Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
