@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MultiChain.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class ConnectionTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Connection()
         {
         }
     }
