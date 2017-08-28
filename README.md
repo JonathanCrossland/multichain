@@ -14,7 +14,7 @@ The API divides the calls into
  - MultiChainClient.Stream
 
 *example usage:*
-
+```
 MultiChainConnection connection = new MultiChainConnection()
             {
                 Hostname = "IP",
@@ -28,5 +28,5 @@ MultiChainConnection connection = new MultiChainConnection()
             
 MultiChainClient _Client = new MultiChainClient(connection);
 response = _Client.Wallet.GetNewAddress();
-
+```
 There are sync and async versions.
