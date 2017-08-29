@@ -1,6 +1,6 @@
 # LucidOcean.MultiChain Assembly
 
-The library is a wrapper for multichain_cli JSON RPC. 
+The library is an unofficial wrapper for multichain_cli JSON RPC. 
 Follow these instructions to create your own chain. https://www.multichain.com/developers/creating-connecting/
 
 
