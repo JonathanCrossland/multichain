@@ -13,7 +13,6 @@ namespace LucidOcean.MultiChain.Response
 {
     public class ListStreamItemsResponse
     {
-
         [JsonProperty("publishers")]
         public List<string> Publishers { get; set; }
 
@@ -43,7 +42,6 @@ namespace LucidOcean.MultiChain.Response
 
         [JsonProperty("valid")]
         public bool Valid { get; set; }
-
 
         [JsonProperty("time")]
         public long Time { get; set; }

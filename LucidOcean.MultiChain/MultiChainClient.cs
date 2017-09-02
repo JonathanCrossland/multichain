@@ -10,7 +10,6 @@ using LucidOcean.MultiChain.API;
 
 namespace LucidOcean.MultiChain
 {
-
     public class MultiChainClient : JsonRpcClient {
 
         public MultiChainClient(MultiChainConnection connection) : base(connection) { Init(); }

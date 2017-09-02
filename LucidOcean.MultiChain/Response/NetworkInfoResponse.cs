@@ -39,6 +39,5 @@ namespace LucidOcean.MultiChain.Response
 
         [JsonProperty("localaddresses")]
         public List<string> LocalAddresses { get; set; } = new List<string>();
-
     }
 }

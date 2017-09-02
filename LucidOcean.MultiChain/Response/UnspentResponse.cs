@@ -13,8 +13,6 @@ namespace LucidOcean.MultiChain.Response
 {
     public class UnspentResponse
     {
-
-
         [JsonProperty("txid")]
         public string TxId { get; set; }
 

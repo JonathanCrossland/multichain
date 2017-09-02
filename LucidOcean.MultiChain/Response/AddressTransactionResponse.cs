@@ -57,15 +57,11 @@ namespace LucidOcean.MultiChain.Response
         [JsonProperty("timereceived")]
         public long TimeReceived { get; set; }
 
-
         [JsonProperty("vin")]
         public List<TransactionVin> Vin { get; set; } = new List<TransactionVin>();
 
         [JsonProperty("vout")]
         public List<TransactionVout> Vout { get; set; } = new List<TransactionVout>();
-
-
-
-
+        
     }
 }

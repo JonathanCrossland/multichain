@@ -47,7 +47,6 @@
     <Compile Include="API\Address.cs" />
     <Compile Include="API\Asset.cs" />
     <Compile Include="API\Block.cs" />
-    <Compile Include="API\NotDefined.cs" />
     <Compile Include="API\Peer.cs" />
     <Compile Include="API\Permission.cs" />
     <Compile Include="API\Stream.cs" />

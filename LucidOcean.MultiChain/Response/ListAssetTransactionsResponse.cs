@@ -11,10 +11,8 @@ using System.Collections.Generic;
 
 namespace LucidOcean.MultiChain.Response
 {
-
     public class ListAssetTransactionsResponse
     {
-
         [JsonProperty("addresses")]
         public Dictionary<string, decimal> Addresses { get; set; }
 

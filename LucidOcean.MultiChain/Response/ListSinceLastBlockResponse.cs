@@ -15,6 +15,5 @@ namespace LucidOcean.MultiChain.Response
     {
         [JsonProperty("transactions")]
         public List<TransactionResponse> Transactions { get; set; } = new List<TransactionResponse>();
-
     }
 }

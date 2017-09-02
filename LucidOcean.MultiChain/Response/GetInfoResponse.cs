@@ -10,9 +10,6 @@ using Newtonsoft.Json;
 
 namespace LucidOcean.MultiChain.Response
 {
-    /// <summary>
-    /// GetInfoResponse
-    /// </summary>
     public class GetInfoResponse
     {
         [JsonProperty("version")]

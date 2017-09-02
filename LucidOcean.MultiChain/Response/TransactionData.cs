@@ -12,7 +12,6 @@ namespace LucidOcean.MultiChain.Response
 {
     public class TransactionData
     {
-
         [JsonProperty("txid")]
         public string TxId { get; set; }
 

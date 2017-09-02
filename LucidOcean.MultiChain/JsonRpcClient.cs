@@ -85,7 +85,6 @@ namespace LucidOcean.MultiChain
 
                 try
                 {
-                    //dynamic d = JObject.Parse(jsonRet);
                     ret = JsonConvert.DeserializeObject<JsonRpcResponse<T>>(jsonRet);
                 }
                 catch (Exception jsonEx)
@@ -124,7 +123,6 @@ namespace LucidOcean.MultiChain
                     nEXt = nEXt.InnerException;
                 }
 
-                //throw new InvalidOperationException(string.Format("Failed to issue RPC request.\r\nData: {0}\r\nURL: {1}\r\nJSON: {2}", errorData, url, jsonOut), ex);
                 JsonRpcErrorResponse errorobj = JsonConvert.DeserializeObject<JsonRpcErrorResponse>(errormsg);
                 throw new JsonRpcException("Deserialize failed. ", errorobj.Error, ex);
             }
@@ -162,6 +160,5 @@ namespace LucidOcean.MultiChain
                 return !(string.IsNullOrEmpty(_Connection.Username));
             }
         }
-
     }
 }

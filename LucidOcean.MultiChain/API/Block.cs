@@ -14,7 +14,6 @@ namespace LucidOcean.MultiChain.API
 {
     public class Block
     {
-
         JsonRpcClient _Client = null;
 
         internal Block(JsonRpcClient client)
@@ -57,7 +56,6 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<BlockResponse>("getblock", 0, height.ToString(), verbose);
         }
 
-
         public JsonRpcResponse<string> GetBlockRaw(string hash)
         {
             return _Client.Execute<string>("getblock", 0, hash, false);
@@ -67,9 +65,6 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<string>("getblock", 0, hash, false);
         }
         
-        
-
-
         public Task<JsonRpcResponse<BlockChainInfoResponse>> GetBlockChainInfoAsync()
         {
             return _Client.ExecuteAsync<BlockChainInfoResponse>("getblockchaininfo", 0);
@@ -84,7 +79,6 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<MempoolInfoResponse>("getmempoolinfo", 0);
         }
-
 
         public Task<JsonRpcResponse<List<object>>> GetRawMempoolAsync()
         {
@@ -106,9 +100,6 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<List<BlockResponse>>("listblocks", 0, $"{startheight.ToString()}-{endHeight.ToString()}", verbose);
         }
 
-
-        #region  Querying the blockchain
-
         public Task<JsonRpcResponse<TxOutResponse>> GetTxOutAsync(string txId, int vout = 0, bool unconfirmed = false)
         {
             return _Client.ExecuteAsync<TxOutResponse>("gettxout", 0, txId, vout, unconfirmed);
@@ -118,8 +109,6 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<TxOutSetInfoResponse>("gettxoutsetinfo", 0);
         }
-
-        #endregion
 
         public Task<JsonRpcResponse<ListSinceLastBlockResponse>> ListSinceBlockAsync(string hash, int confirmations = 1, bool watchOnly = false)
         {
@@ -140,31 +129,22 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.Execute<int>("getblockcount", 0);
         }
-
-
-
-
-
+        
         public Task<JsonRpcResponse<NetTotalsResponse>> GetNetTotalsAsync()
         {
             return _Client.ExecuteAsync<NetTotalsResponse>("getnettotals", 0);
         }
 
-
         public Task<JsonRpcResponse<decimal>> GetUnconfirmedBalanceAsync()
         {
             return _Client.ExecuteAsync<decimal>("getunconfirmedbalance", 0);
         }
-
-
+        
         public Task<JsonRpcResponse<decimal>> EstimatePriorityAsync(int numBlocks)
         {
             return _Client.ExecuteAsync<decimal>("estimatepriority", 0, numBlocks);
         }
-
-
-
-
+        
         public Task<JsonRpcResponse<decimal>> GetBalanceAsync(string account = null, int confirmations = 1, bool watchOnly = false)
         {
             return _Client.ExecuteAsync<decimal>("getbalance", 0, account ?? "*", confirmations, watchOnly);
@@ -183,15 +163,11 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<bool>("settxfee", 0, fee);
         }
-
-
-
-
+        
         public Task<JsonRpcResponse<object>> GetBlockTemplateAsync()
         {
             return _Client.ExecuteAsync<object>("getblocktemplate", 0);
         }
-
 
         public Task<JsonRpcResponse<string>> SubmitBlockAsync(byte[] bs, object args = null)
         {

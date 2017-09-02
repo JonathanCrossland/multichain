@@ -42,7 +42,5 @@ namespace LucidOcean.MultiChain.Response
 
         [JsonProperty("amount")]
         public decimal Amount { get; set; }
-      
-        
     }
 }

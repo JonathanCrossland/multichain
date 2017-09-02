@@ -109,9 +109,6 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<List<AssetResponse>>("listassets", 0, assetFilter, verbose);
         }
 
-       
-
-
         public Task<JsonRpcResponse<string>> SubscribeAsync(string assetName, bool rescan)
         {
             return _Client.ExecuteAsync<string>("subscribe", 0, assetName, rescan);
@@ -147,11 +144,7 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<ListAssetTransactionsResponse>("getassettransaction", 0, assetName, txId, verbose);
         }
 
-        //public Task<JsonRpcResponse<List<AssetResponse>>> ListAssetsAsync(object reference, bool v)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
+        //ListAssetsAsync
         //getassettransaction
         //listassettransactions
 
@@ -218,7 +211,6 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<string>("sendwithdatafrom", 0, fromAddress, toAddress, amount, Util.Utility.FormatHex(dataHex));
         }
-
 
     }
 }

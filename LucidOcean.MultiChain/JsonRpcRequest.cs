@@ -19,6 +19,7 @@ namespace LucidOcean.MultiChain
         {
             this.Values = new Dictionary<string, object>();
         }
+
         [JsonProperty("method")]
         public string Method
         {

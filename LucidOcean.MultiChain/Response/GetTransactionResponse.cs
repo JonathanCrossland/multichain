@@ -45,7 +45,6 @@ namespace LucidOcean.MultiChain.Response
 
         [JsonProperty("details")]
         public List<RawTransactionResponse> Details { get; set; } = new List<RawTransactionResponse>();
-
        
     }
 }

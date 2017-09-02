@@ -34,7 +34,5 @@ namespace LucidOcean.MultiChain.Response
 
         [JsonProperty("permissions")]
         public List<object> Permissions { get; set; } = new List<object>();
-
-
     }
 }

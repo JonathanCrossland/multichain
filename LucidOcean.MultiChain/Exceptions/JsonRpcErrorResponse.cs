@@ -16,9 +16,9 @@ namespace LucidOcean.MultiChain.Exceptions
         public JsonRpcException(string message, JsonRpcError response) : base(message) { Error = response; }
         public JsonRpcException(string message, JsonRpcError response, Exception inner) : base(message, inner) { Error = response; }
         public JsonRpcException(string message, Exception inner) : base(message, inner) { }
-        protected JsonRpcException(
-          System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+
+        protected JsonRpcException(System.Runtime.Serialization.SerializationInfo info,
+            System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
 
         public JsonRpcError Error { get; set; }
     }
@@ -33,7 +33,6 @@ namespace LucidOcean.MultiChain.Exceptions
 
     public class JsonRpcErrorResponse
     {
-        //"{\"result\":null,\"error\":{\"code\":-705,\"message\":\"Stream or asset with this name already exists\"},\"id\":null}\n"
         [JsonProperty("error")]
         public JsonRpcError Error { get; set; }
     }

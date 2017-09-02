@@ -53,8 +53,6 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<AddressResponse>("validateaddress", 0, address);
         }
-
-
-
+        
     }
 }

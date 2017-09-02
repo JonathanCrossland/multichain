@@ -7,9 +7,9 @@ Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions an
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
 using LucidOcean.MultiChain;
+using LucidOcean.MultiChain.Exceptions;
 using LucidOcean.MultiChain.Response;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Threading.Tasks;
 
 namespace MultiChainTests
@@ -17,9 +17,7 @@ namespace MultiChainTests
     [TestClass]
     public class Block
     {
-        
         private MultiChainClient _Client = null;
-
 
         [TestInitialize]
         public void Init()
@@ -52,9 +50,8 @@ namespace MultiChainTests
             return _Client.ExecuteAsync<decimal>("estimatefee", 0, numBlocks);
         }
 
-
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [ExpectedException(typeof(JsonRpcException))]
         public void GetBlockTemplateAsync()
         {
             JsonRpcResponse<object> response = null;
@@ -78,12 +75,6 @@ namespace MultiChainTests
 
             ResponseLogger<string>.Log(response);
         }
-
-       
-
-      
-      
-        
 
         [TestMethod]
         public void GetBlockCountAsync()
@@ -130,16 +121,6 @@ namespace MultiChainTests
             }).GetAwaiter().GetResult();
 
             ResponseLogger<BlockResponse>.Log(blockresponse);
-
-            
-
-            //Task.Run(async () =>
-            //{
-            //    blockresponse = await _Client.Block.GetBlockAsync(hash);
-            //}).GetAwaiter().GetResult();
-
-
-         
         }
     }
 }

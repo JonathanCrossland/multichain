@@ -29,34 +29,37 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<Dictionary<string, object>>("getblockchainparams", 0);
         }
+
         public Task<JsonRpcResponse<Dictionary<string, object>>> GetBlockChainParamsAsync(bool displayNames)
         {
             return _Client.ExecuteAsync<Dictionary<string, object>>("getblockchainparams", 0, displayNames);
         }
+
         public JsonRpcResponse<Dictionary<string, object>> GetBlockChainParams()
         {
             return _Client.Execute<Dictionary<string, object>>("getblockchainparams", 0);
         }
+
         public JsonRpcResponse<Dictionary<string, object>> GetBlockChainParams(bool displayNames)
         {
             return _Client.Execute<Dictionary<string, object>>("getblockchainparams", 0, displayNames);
         }
-
         
         public JsonRpcResponse<Dictionary<string, object>> GetRuntimeParams()
         {
             return _Client.Execute<Dictionary<string, object>>("getruntimeparams", 0);
         }
+
         public Task<JsonRpcResponse<Dictionary<string, object>>> GetRuntimeParamsAsync()
         {
             return _Client.ExecuteAsync<Dictionary<string, object>>("getruntimeparams", 0);
         }
 
-
         public Task<JsonRpcResponse<Dictionary<string, object>>> SetRuntimeParamsAsync(string param, string value)
         {
             return _Client.ExecuteAsync<Dictionary<string, object>>("setruntimeparam", 0, param, value);
         }
+
         public JsonRpcResponse<Dictionary<string, object>> SetRuntimeParams(string param, string value)
         {
             return _Client.Execute<Dictionary<string, object>>("setruntimeparam", 0, param, value);
@@ -66,24 +69,27 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.Execute<GetInfoResponse>("getinfo", 0);
         }
+
         public Task<JsonRpcResponse<GetInfoResponse>> GetInfoAsync()
         {
             return _Client.ExecuteAsync<GetInfoResponse>("getinfo", 0);
         }
 
-
         public Task<JsonRpcResponse<string>> HelpAsync()
         {
             return _Client.ExecuteAsync<string>("help", 0);
         }
+
         public Task<JsonRpcResponse<string>> HelpAsync(string command)
         {
             return _Client.ExecuteAsync<string>("help", 0, command);
         }
+
         public JsonRpcResponse<string> Help()
         {
             return _Client.Execute<string>("help", 0);
         }
+
         public JsonRpcResponse<string> Help(string command)
         {
             return _Client.Execute<string>("help", 0, command);
@@ -93,11 +99,11 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.Execute<object>("stop", 0);
         }
+
         public Task<JsonRpcResponse<object>> StopAsync()
         {
             return _Client.ExecuteAsync<object>("stop", 0);
         }
-
 
     }
 }

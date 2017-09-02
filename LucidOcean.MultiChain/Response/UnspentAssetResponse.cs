@@ -8,7 +8,6 @@ The full license will also be found on the root of the main source-code director
 =====================================================================*/
 using Newtonsoft.Json;
 
-
 namespace LucidOcean.MultiChain.Response
 {
     public class UnspentAssetResponse

@@ -49,7 +49,6 @@ namespace MultiChainTests
         public void GetRawTransactionAsync()
         {
 
-
             JsonRpcResponse<BlockResponse>  blockresponse = _Client.Block.GetBlock(60,true);
 
             if (blockresponse.Result.Tx.Count < 2) throw new Exception("There is no transaction to test");
@@ -62,16 +61,10 @@ namespace MultiChainTests
                 rawresponse = await _Client.Transaction.GetRawTransactionAsync(txId, true);
             }).GetAwaiter().GetResult();
 
-            //var d = rawresponse.Result.DataAsTransactionData;
-            //var ascii = rawresponse.Result.Vout[0].Items[0].DataAsAscii;
-            //var s = rawresponse.Result.Data[0];
             ResponseLogger<RawTransactionResponse>.Log(rawresponse);
-
 
         }
 
-
-        //[TestMethod]
         public JsonRpcResponse<List<RawTransactionResponse>> ListTransactionsAsync()
         {
             JsonRpcResponse<List<RawTransactionResponse>> response = null;
@@ -84,103 +77,5 @@ namespace MultiChainTests
 
             return response;
         }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        //[TestMethod]
-        //public void GetTransactionAsync()
-        //{
-
-        //    JsonRpcResponse<List<TransactionResponse>> response = ListTransactionsAsync();
-        //    string transactionId = response.Result.Last().TxId;
-        //    JsonRpcResponse<GetTransactionResponse> gettransactionresponse = null;
-
-        //    Task.Run(async () =>
-        //    {
-        //        gettransactionresponse = await _Client.Transaction.GetTransactionAsync(transactionId);
-        //    }).GetAwaiter().GetResult();
-
-        //    ResponseLogger<GetTransactionResponse>.Log(gettransactionresponse);
-        //}
-
-
-        //[TestMethod]
-        //public void SetTxFeeAsync()
-        //{
-        //    JsonRpcResponse<bool> response = null;
-        //    Task.Run(async () =>
-        //    {
-        //        response = await _Client.Transaction.SetTxFeeAsync(0);
-        //    }).GetAwaiter().GetResult();
-
-        //    ResponseLogger<bool>.Log(response);
-        //}
-
-        //[TestMethod]
-        //public void GetTxOutAsync()
-        //{
-        //    JsonRpcResponse<List<TransactionResponse>> response = ListTransactionsAsync();
-        //    string transactionId = response.Result.Last().TxId;
-
-        //    JsonRpcResponse<TxOutResponse> txresponse = null;
-        //    Task.Run(async () =>
-        //    {
-        //        txresponse = await _Client.Transaction.GetTxOutAsync(transactionId);
-        //    }).GetAwaiter().GetResult();
-
-        //    ResponseLogger<TxOutResponse>.Log(txresponse);
-        //}
-
-
-
-        //[TestMethod]
-        //public void DecodeRawTransactionAsync()
-        //{
-        //    JsonRpcResponse<List<RawTransactionResponse>> rawresponse = GetRawTransactionAsync();
-
-        //    JsonRpcResponse<RawTransactionResponse> response = null;
-        //    Task.Run(async () =>
-        //    {
-        //        response = await _Client.Transaction.DecodeRawTransactionAsync(rawresponse.Result);
-        //    }).GetAwaiter().GetResult();
-
-        //    ResponseLogger<RawTransactionResponse>.Log(response);
-        //}
-
-
-
-        //[TestMethod]
-        //public void GetRawTransactionAsync()
-        //{
-        //    JsonRpcResponse<List<RawTransactionResponse>> response = ListTransactionsAsync();
-        //    string transactionId = response.Result.Last().TxId;
-
-        //    //transactionId = "719940d8b26bb0dd89cf8b17c72c4170108e86415e3c5d7fb019788afed40210";
-
-        //    JsonRpcResponse<RawTransactionResponse> rawresponse = null;
-        //    Task.Run(async () =>
-        //    {
-        //        rawresponse = await _Client.Transaction.GetRawTransactionAsync(transactionId);
-        //    }).GetAwaiter().GetResult();
-
-        //    ResponseLogger<RawTransactionResponse>.Log(rawresponse);
-        //}
-
-
-
-        //[TestMethod]
-        //public void EstimateFeeAsync()
-        //{
-        //    JsonRpcResponse<decimal> response = null;
-        //    Task.Run(async () =>
-        //    {
-        //        response = await _Client.Transaction.EstimateFeeAsync(10);
-        //    }).GetAwaiter().GetResult();
-
-        //    ResponseLogger<decimal>.Log(response);
-        //}
-
     }
 }

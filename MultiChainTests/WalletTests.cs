@@ -134,9 +134,6 @@ namespace MultiChainTests
             ResponseLogger<List<UnspentResponse>>.Log(response);
         }
 
-        //lockunspent
-
-
         [TestMethod]
         public void BackupWalletAsync()
         {
@@ -149,9 +146,6 @@ namespace MultiChainTests
 
             ResponseLogger<string>.Log(response);
         }
-
-
-        //DumpPrivKeyAsync
 
         [TestMethod]
         public void DumpWalletAsync()
@@ -166,8 +160,6 @@ namespace MultiChainTests
             ResponseLogger<string>.Log(response);
         }
 
-        //EncryptWalletAsync
-
         [TestMethod]
         public void GetWalletInfoAsync()
         {
@@ -180,22 +172,6 @@ namespace MultiChainTests
             ResponseLogger<WalletInfoResponse>.Log(response);
         }
 
-        //importprivkey
-
-        //importwallet
-
-        //not implemented
-        //walletlock
-
-        //not implemented
-        //walletpassphrase
-
-        //not implemented
-        //walletpassphrasechange
-
-        /// <summary>
-        /// this test requires the  GetAccountAddressAsync result and wont work until that test is resolved.
-        /// </summary>
         [TestMethod]
         public void GetAddressBalancesAsync()
         {
@@ -207,11 +183,8 @@ namespace MultiChainTests
             }).GetAwaiter().GetResult();
 
             ResponseLogger<List<AssetBalanceResponse>>.Log(response);
-
-            
         }
         
-
         [TestMethod]
         public void GetTotalBalancesAsync()
         {
@@ -223,8 +196,6 @@ namespace MultiChainTests
 
             ResponseLogger<List<AssetBalanceResponse>>.Log(response);
         }
-
-        //getwallettransaction
 
         [TestMethod]
         public void ListAddressTransactionsAsync()
@@ -238,11 +209,5 @@ namespace MultiChainTests
 
             ResponseLogger<List<AddressTransactionResponse>>.Log(response);
         }
-
-
-       
-        //listaddresstransactions
-        //listwallettransactions
-
     }
 }

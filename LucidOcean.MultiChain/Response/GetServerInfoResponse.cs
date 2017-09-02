@@ -18,7 +18,6 @@ namespace LucidOcean.MultiChain.Response
 
         [JsonProperty("availableMethods")]
         public List<string> AvailableMethods { get; set; } = new List<string>();
-
        
     }
 }

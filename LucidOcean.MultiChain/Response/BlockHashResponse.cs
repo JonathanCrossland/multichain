@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 
 namespace LucidOcean.MultiChain.Response
 {
-
     public class BlockHashResponse
     {
         [JsonProperty("blockhash")]

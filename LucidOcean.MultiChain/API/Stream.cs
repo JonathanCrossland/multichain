@@ -21,7 +21,6 @@ namespace LucidOcean.MultiChain.API
             _Client = client;
         }
 
-
         public JsonRpcResponse<string> Create(string streamName, object metadata)
         {
             return _Client.Execute<string>("create", 0, "stream", streamName, false, metadata);
@@ -71,7 +70,6 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<string>("publishfrom", 0, address, streamName, key, Util.Utility.FormatHex(dataHex));
         }
 
-
         public JsonRpcResponse<List<ListStreamResponse>> ListStreams(string streamName = "*", bool verbose = true, int count = 0, int start = -1)
         {
             return _Client.Execute<List<ListStreamResponse>>("liststreams", 0, streamName, verbose, count, start);
@@ -111,18 +109,13 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<List<ListStreamItemsResponse>>("liststreamkeyitems", 0, streamName, key, verbose, count, start, localordering);
         }
-
-    
-
-
+        
         //create
         //createfrom
-
         //publish
         //publishfrom
         //subscribe
         //unsubscribe
-
         //getstreamitem
         //gettxoutdata
         //liststreamblockitems

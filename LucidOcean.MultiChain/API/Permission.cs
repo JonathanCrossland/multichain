@@ -27,7 +27,7 @@ namespace LucidOcean.MultiChain.API
             _Client = client;
         }
 
-        #region grant async
+        
         public Task<JsonRpcResponse<string>> GrantAsync(string address, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             List<string> addresses = new List<string>() { address };
@@ -57,9 +57,7 @@ namespace LucidOcean.MultiChain.API
             var permissionsAsString = this.FormatPermissionsString(permissions);
             return _Client.ExecuteAsync<string>("grantfrom", 0, fromAddress, stringifiedAddresses, permissionsAsString);
         }
-        #endregion
-
-        #region grant
+      
         public JsonRpcResponse<string> Grant(string address, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             List<string> addresses = new List<string>() { address };
@@ -82,8 +80,6 @@ namespace LucidOcean.MultiChain.API
             var stringifiedAddresses = Util.Utility.StringifyValues(addresses);
             return _Client.Execute<string>("grant", 0, stringifiedAddresses, permissions);
         }
-
-        #endregion
 
         public JsonRpcResponse<string> GrantFrom(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
@@ -126,7 +122,6 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<List<ListPermissionsResponse>>("listpermissions", 0, permissionsAsString, address);
         }
 
-
         public JsonRpcResponse<string> Revoke(IEnumerable<string> addresses, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             var stringifiedAddresses = Util.Utility.StringifyValues(addresses);
@@ -156,51 +151,39 @@ namespace LucidOcean.MultiChain.API
             var permissionsAsString = this.FormatPermissionsString(permissions);
             return _Client.ExecuteAsync<string>("revokefrom", 0, fromAddress, stringifiedAddresses, permissionsAsString);
         }
-
-      
-      
-
+        
         private string FormatPermissionsString(BlockChainPermission permissions)
         {
             StringBuilder builder = new StringBuilder();
-            if ((int)(permissions & BlockChainPermission.Connect) != 0)
-                builder.Append("connect");
+            if ((int)(permissions & BlockChainPermission.Connect) != 0) builder.Append("connect");
+
             if ((int)(permissions & BlockChainPermission.Send) != 0)
             {
-                if (builder.Length > 0)
-                    builder.Append(",");
+                if (builder.Length > 0) builder.Append(",");
                 builder.Append("send");
             }
             if ((int)(permissions & BlockChainPermission.Receive) != 0)
             {
-                if (builder.Length > 0)
-                    builder.Append(",");
+                if (builder.Length > 0) builder.Append(",");
                 builder.Append("receive");
             }
             if ((int)(permissions & BlockChainPermission.Issue) != 0)
             {
-                if (builder.Length > 0)
-                    builder.Append(",");
+                if (builder.Length > 0) builder.Append(",");
                 builder.Append("issue");
             }
             if ((int)(permissions & BlockChainPermission.Mine) != 0)
             {
-                if (builder.Length > 0)
-                    builder.Append(",");
+                if (builder.Length > 0) builder.Append(",");
                 builder.Append("mine");
             }
             if ((int)(permissions & BlockChainPermission.Admin) != 0)
             {
-                if (builder.Length > 0)
-                    builder.Append(",");
+                if (builder.Length > 0) builder.Append(",");
                 builder.Append("admin");
             }
 
             return builder.ToString();
         }
-
-
-
     }
-
 }

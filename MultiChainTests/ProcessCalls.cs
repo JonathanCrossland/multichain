@@ -30,14 +30,13 @@ namespace MultiChainTests
         [TestMethod]
         public void CreateTransaction()
         {
-            // get root address or node that is going to do the work
-
             Random rng = new Random();
-            //string assetName = "ProcessCallsAssetTest" + rng.Next(0, 100);
+            
             Mocks.Asset asset = new Mocks.Asset();
             asset.Title = "ProcessCallsAssetTest" + rng.Next(0, 100);
             Debug.WriteLine("Issue asset: " + asset.Title);
             JsonRpcResponse<string> response = null;
+
             Task.Run(async () =>
             {
                 response = await _Client.Asset.IssueAsync(TestSettings.Connection.RootNodeAddress, new { name = asset.Title, open = true } , 1,1);

@@ -6,11 +6,11 @@ License: Dual MIT / Lucid Ocean Wave Business License v1.0
 Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LucidOcean.MultiChain;
 using LucidOcean.MultiChain.Response;
-using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MultiChainTests
 {
@@ -18,7 +18,6 @@ namespace MultiChainTests
     public class AddressTests
     {
         private MultiChainClient _Client = null;
-
 
         [TestInitialize]
         public void Init()
@@ -56,7 +55,6 @@ namespace MultiChainTests
             }).GetAwaiter().GetResult();
 
             ResponseLogger<List<MultiSignatureResponse>>.Log(response);
-
         }
-      }
+    }
 }

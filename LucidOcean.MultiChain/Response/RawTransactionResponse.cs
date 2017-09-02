@@ -8,11 +8,8 @@ The full license will also be found on the root of the main source-code director
 =====================================================================*/
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-
 using System.Collections.Generic;
 using System.Linq;
-
 
 namespace LucidOcean.MultiChain.Response
 {
@@ -39,7 +36,6 @@ namespace LucidOcean.MultiChain.Response
         [JsonProperty("data")]
         public List<object> Data { get; set; } = new List<object>();
 
-        
         private List<TransactionData> _DataTransaction;
         [JsonIgnore]
         public List<TransactionData> DataAsTransactionData
@@ -75,18 +71,5 @@ namespace LucidOcean.MultiChain.Response
 
         [JsonProperty("blocktime")]
         public long BlockTime { get; set; }
-        //[JsonIgnore]
-        //public byte[] DataAsBytes
-        //{
-        //    get
-        //    {
-        //        throw new NotImplementedException("This operation has not been implemented.");
-        //    }
-        //}
-
-        //public byte[] GetDataAsBytes(int index)
-        //{
-        //    return Util.Utility.ParseHexString(this.Data[index]);
-        //}
     }
 }

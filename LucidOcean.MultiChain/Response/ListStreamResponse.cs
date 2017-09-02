@@ -13,7 +13,6 @@ namespace LucidOcean.MultiChain.Response
 {
     public class ListStreamResponse
     {
-
         [JsonProperty("type")]
         public string Type { get; set; }
 
@@ -36,7 +35,6 @@ namespace LucidOcean.MultiChain.Response
         public dynamic Data { get; set; }
 
         private string _DataAsAscii;
-
         public string DataAsAscii
         {
             get
@@ -54,7 +52,6 @@ namespace LucidOcean.MultiChain.Response
             set { _DataAsAscii = value; }
         }
 
-
         [JsonProperty("open")]
         public bool Open { get; set; }
 
@@ -64,11 +61,7 @@ namespace LucidOcean.MultiChain.Response
         [JsonProperty("subscribed")]
         public string Subscribed { get; set; }
 
-       
-
         [JsonProperty("items")]
         public int Items { get; set; }
-
-       
     }
 }

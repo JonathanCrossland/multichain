@@ -49,12 +49,7 @@ namespace MultiChainTests
             }).GetAwaiter().GetResult();
 
         }
-
-
-
-        /// <summary>
-        /// Connect a node to another node
-        /// </summary>
+        
         [TestMethod]
         public void GrantAsync()
         {
@@ -94,8 +89,6 @@ namespace MultiChainTests
 
             ResponseLogger<string>.Log(response);
         }
-
-
-
+        
     }
 }

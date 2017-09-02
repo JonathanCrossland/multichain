@@ -16,7 +16,6 @@ namespace MultiChainTests
     [TestClass]
     public class PeerTests
     {
-
         private MultiChainClient _Client = null;
 
         [TestInitialize]
@@ -25,13 +24,12 @@ namespace MultiChainTests
             _Client = new MultiChainClient(TestSettings.Connection);
         }
 
-        //[TestMethod]
         public void AddNodeAsync()
         {
             JsonRpcResponse<string> response = null;
             Task.Run(async () =>
             {
-                response = await _Client.Peer.AddNodeAsync("169.0.108.55", AddNodeParam.Add);
+                response = await _Client.Peer.AddNodeAsync("IPAddress", AddNodeParam.Add);
             }).GetAwaiter().GetResult();
 
             ResponseLogger<string>.Log(response);
@@ -45,7 +43,7 @@ namespace MultiChainTests
             JsonRpcResponse<string> response = null;
             Task.Run(async () =>
             {
-                response = await _Client.Peer.AddNodeAsync("169.0.108.55", AddNodeParam.Remove);
+                response = await _Client.Peer.AddNodeAsync("IPAddress", AddNodeParam.Remove);
             }).GetAwaiter().GetResult();
 
             ResponseLogger<string>.Log(response);

@@ -36,19 +36,12 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<string>("sendfrom", 0, fromAccount ?? string.Empty, toAddress, amount, confirmations, comment ?? string.Empty, commentTo ?? string.Empty);
         }
-
         
-
-     
-       
-
         public Task<JsonRpcResponse<List<RawTransactionResponse>>> ListTransactionsAsync(string account = null, int count = 10, int skip = 0, bool watchOnly = false)
         {
             return _Client.ExecuteAsync<List<RawTransactionResponse>>("listtransactions", 0, account ?? string.Empty, count, skip, watchOnly);
         }
         
-
-
         public JsonRpcResponse<RawTransactionResponse> GetRawTransaction(string txId, bool verbose)
         {
             return _Client.Execute<RawTransactionResponse>("getrawtransaction", 0, txId, verbose ? 1 : 0);
@@ -63,8 +56,7 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<RawTransactionResponse>("decoderawtransaction", 0, data);
         }
-
-
+        
         // not implemented
         public Task<JsonRpcResponse<string>> CreateRawTransactionAync()
         {
@@ -83,42 +75,19 @@ namespace LucidOcean.MultiChain.API
             throw new NotImplementedException("This operation has not been implemented.");
         }
 
-        /// <summary>
-        /// Not Implemented in MultiChain
-        /// </summary>
-        /// <param name="txId"></param>
-        /// <param name="priority"></param>
-        /// <param name="feeSatoshis"></param>
-        /// <returns></returns>
         public JsonRpcResponse<bool> PrioritiseTransaction(string txId, decimal priority, int feeSatoshis)
         {
             return _Client.Execute<bool>("prioritisetransaction", 0, txId, priority, feeSatoshis);
         }
-        /// <summary>
-        /// Not Implemented in MultiChain
-        /// </summary>
-        /// <param name="txId"></param>
-        /// <param name="priority"></param>
-        /// <param name="feeSatoshis"></param>
-        /// <returns></returns>
         public Task<JsonRpcResponse<bool>> PrioritiseTransactionAsync(string txId, decimal priority, int feeSatoshis)
         {
             return _Client.ExecuteAsync<bool>("prioritisetransaction", 0, txId, priority, feeSatoshis);
         }
-        
-
-        #region Raw Transactions
 
         //appendrawchange
         //appendrawdata  appendrawmetadata
         //appendrawtransaction
         //createrawsendfrom
-
-        #endregion
-
-
-
-        #region Atomic exchange transactions
         //appendrawexchange
         //completerawexchange
         //createrawexchange
@@ -126,9 +95,6 @@ namespace LucidOcean.MultiChain.API
         //disablerawtransaction
         //preparelockunspent
         //preparelockunspentfrom
-
-        #endregion
-
-
+        
     }
 }
