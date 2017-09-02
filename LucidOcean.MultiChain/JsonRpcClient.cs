@@ -102,6 +102,10 @@ namespace LucidOcean.MultiChain
 
                 return ret;
             }
+            //catch (HttpWebResponse webEx)
+            //{
+            //    throw new JsonRpcException("Call failed", null, webEx);
+            //}
             catch (Exception ex)
             {
                 var nEXt = ex;
@@ -116,7 +120,7 @@ namespace LucidOcean.MultiChain
                             using (var stream = webEx.Response.GetResponseStream())
                                 errormsg = new StreamReader(stream).ReadToEnd();
                         }
-
+                        if (errormsg == "Forbidden") throw ex;
                         break;
                     }
 
