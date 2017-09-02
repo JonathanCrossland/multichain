@@ -61,7 +61,6 @@ namespace MultiChainTests
             return response;
         }
 
-
         [TestMethod]
         public void GetAddressesVerboseAsync()
         {
@@ -73,10 +72,6 @@ namespace MultiChainTests
 
             ResponseLogger<List<AddressResponse>>.Log(response);
         }
-
-
-        
-
 
         [TestMethod]
         public void ImportAddressAsync()
@@ -91,24 +86,8 @@ namespace MultiChainTests
 
             ResponseLogger<string>.Log(response);
         }
-
-
-        //[TestMethod]
-        //public void ListAddressGroupingsAsync()
-        //{
-        //    JsonRpcResponse<List<List<List<object>>>> response = null;
-        //    Task.Run(async () =>
-        //    {
-        //        response = await _Client.Wallet.ListAddressGroupingsAsync();
-        //    }).GetAwaiter().GetResult();
-
-        //    ResponseLogger<List<List<List<object>>>>.Log(response);
-
-        //}
-
-
-        //CombineUnspent
-
+        
+        
         [TestMethod]
         public void ListLockUnspentAsync()
         {
