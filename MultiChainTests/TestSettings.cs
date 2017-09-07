@@ -21,7 +21,7 @@ namespace MultiChainTests
             ///Ensure this points to your instance. 
             Connection = new MultiChainConnection()
             {
-                Hostname = "41.76.211.179",
+                Hostname = "41.76.211.17",
                 Port = 8338,
                 Username = "multichainrpc",
                 Password = "CKKyHtiV8tbgDzHedJrWTfXrNrZEHKCX5Joozdwsy73Z",

@@ -109,6 +109,7 @@
     <Compile Include="Util\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="LucidOcean.MultiChain.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

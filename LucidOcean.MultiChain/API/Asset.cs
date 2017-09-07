@@ -16,7 +16,7 @@ namespace LucidOcean.MultiChain.API
     public class Asset
     {
         MultiChainClient _Client = null;
-       
+
         internal Asset(MultiChainClient client)
         {
             _Client = client;
@@ -29,11 +29,11 @@ namespace LucidOcean.MultiChain.API
             else
                 return _Client.Execute<string>("issue", 0, issueAddress, assetName, quantity, units, nativeAmount, metaData);
         }
-        public Task<JsonRpcResponse<string>> IssueAsync(string issueAddress, object assetName, int quantity, decimal units, object metaData = null, decimal nativeAmount = 0,  string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public Task<JsonRpcResponse<string>> IssueAsync(string issueAddress, object assetName, int quantity, decimal units, object metaData = null, decimal nativeAmount = 0, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
-            if (metaData == null) 
+            if (metaData == null)
                 return _Client.ExecuteAsync<string>("issue", 0, issueAddress, assetName, quantity, units, nativeAmount);
-            else 
+            else
                 return _Client.ExecuteAsync<string>("issue", 0, issueAddress, assetName, quantity, units, nativeAmount, metaData);
         }
 
@@ -61,7 +61,7 @@ namespace LucidOcean.MultiChain.API
                 return _Client.Execute<string>("issuemore", 0, fromAddress, assetName, quantity, metaData);
         }
 
-        public Task<JsonRpcResponse<string>> IssueMoreAsync(string fromAddress, object assetName, int quantity,  [Optional]object metaData )
+        public Task<JsonRpcResponse<string>> IssueMoreAsync(string fromAddress, object assetName, int quantity, [Optional]object metaData)
         {
             if (metaData == null)
                 return _Client.ExecuteAsync<string>("issuemore", 0, fromAddress, assetName, quantity, metaData);
@@ -131,7 +131,7 @@ namespace LucidOcean.MultiChain.API
 
         public Task<JsonRpcResponse<List<ListAssetTransactionsResponse>>> ListAssetTransactions(string assetName, bool verbose)
         {
-            return _Client.ExecuteAsync<List<ListAssetTransactionsResponse>>("listassettransactions", 0, assetName, verbose );
+            return _Client.ExecuteAsync<List<ListAssetTransactionsResponse>>("listassettransactions", 0, assetName, verbose);
         }
 
         public Task<JsonRpcResponse<List<ListAssetTransactionsResponse>>> ListAssetTransactions(string assetName, bool verbose, int count, int start, bool localOrdering)
@@ -139,7 +139,7 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<List<ListAssetTransactionsResponse>>("listassettransactions", 0, assetName, verbose, count, start, localOrdering);
         }
 
-        public Task<JsonRpcResponse<ListAssetTransactionsResponse>> GetAssetTransactionAsync(string assetName, string txId, bool verbose=true)
+        public Task<JsonRpcResponse<ListAssetTransactionsResponse>> GetAssetTransactionAsync(string assetName, string txId, bool verbose = true)
         {
             return _Client.ExecuteAsync<ListAssetTransactionsResponse>("getassettransaction", 0, assetName, txId, verbose);
         }
@@ -210,6 +210,24 @@ namespace LucidOcean.MultiChain.API
         public Task<JsonRpcResponse<string>> SendWithDataFromAsync(string fromAddress, string toAddress, decimal amount, byte[] dataHex)
         {
             return _Client.ExecuteAsync<string>("sendwithdatafrom", 0, fromAddress, toAddress, amount, Util.Utility.FormatHex(dataHex));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fromAddress"></param>
+        /// <param name="toAddress"></param>
+        /// <param name="assetmovement"> { assetidentifier: "", quantity : 1}</param>
+        /// <param name="dataHex"></param>
+        /// <returns></returns>
+        public JsonRpcResponse<string> SendWithDataFrom(string fromAddress, string toAddress, object assetmovement, byte[] dataHex)
+        {
+            return _Client.Execute<string>("sendwithdatafrom", 0, fromAddress, toAddress, assetmovement, Util.Utility.FormatHex(dataHex));
+        }
+
+        public Task<JsonRpcResponse<string>> SendWithDataFromAsync(string fromAddress, string toAddress, object assetmovement, byte[] dataHex)
+        {
+            return _Client.ExecuteAsync<string>("sendwithdatafrom", 0, fromAddress, toAddress, assetmovement, Util.Utility.FormatHex(dataHex));
         }
 
     }

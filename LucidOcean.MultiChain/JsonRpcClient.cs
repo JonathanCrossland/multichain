@@ -115,12 +115,15 @@ namespace LucidOcean.MultiChain
                     if (nEXt is WebException)
                     {
                         var webEx = (WebException)nEXt;
+                        //if (webEx.Status == WebExceptionStatus)
                         if (webEx.Response != null)
                         {
                             using (var stream = webEx.Response.GetResponseStream())
                                 errormsg = new StreamReader(stream).ReadToEnd();
                         }
+                        if (errormsg == null) throw ex;
                         if (errormsg == "Forbidden") throw ex;
+
                         break;
                     }
 
