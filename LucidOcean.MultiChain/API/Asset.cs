@@ -220,12 +220,12 @@ namespace LucidOcean.MultiChain.API
         /// <param name="assetmovement"> { assetidentifier: "", quantity : 1}</param>
         /// <param name="dataHex"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> SendWithDataFrom(string fromAddress, string toAddress, object assetmovement, byte[] dataHex)
+        public JsonRpcResponse<string> SendWithDataFrom(string fromAddress, string toAddress, Dictionary<string, int> assetmovement, byte[] dataHex)
         {
             return _Client.Execute<string>("sendwithdatafrom", 0, fromAddress, toAddress, assetmovement, Util.Utility.FormatHex(dataHex));
         }
 
-        public Task<JsonRpcResponse<string>> SendWithDataFromAsync(string fromAddress, string toAddress, object assetmovement, byte[] dataHex)
+        public Task<JsonRpcResponse<string>> SendWithDataFromAsync(string fromAddress, string toAddress, Dictionary<string,int> assetmovement, byte[] dataHex)
         {
             return _Client.ExecuteAsync<string>("sendwithdatafrom", 0, fromAddress, toAddress, assetmovement, Util.Utility.FormatHex(dataHex));
         }
