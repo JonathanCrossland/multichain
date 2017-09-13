@@ -118,6 +118,12 @@ namespace LucidOcean.MultiChain
                         //if (webEx.Status == WebExceptionStatus)
                         if (webEx.Response != null)
                         {
+                            HttpWebResponse resp = (HttpWebResponse)webEx.Response;
+                            if (resp.StatusCode !=  HttpStatusCode.OK)
+                            {
+                                throw ex;
+                            }
+
                             using (var stream = webEx.Response.GetResponseStream())
                                 errormsg = new StreamReader(stream).ReadToEnd();
                         }

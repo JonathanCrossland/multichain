@@ -32,6 +32,7 @@ namespace MultiChainTests
             response = _Client.Utility.GetBlockChainParams();
             ResponseLogger<Dictionary<string, object>>.Log(response);
         }
+
         [TestMethod]
         public void GetBlockChainParamsTrue()
         {
