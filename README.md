@@ -5,6 +5,9 @@ Refer to https://www.multichain.com/developers/json-rpc-api/ for more informatio
 
 Follow these instructions to create your own chain. https://www.multichain.com/developers/creating-connecting/
 
+The Source is in Visual Studio 2017. 
+The compiled Assembly is targeting 4.6.1
+NUGET: https://www.nuget.org/packages/LucidOcean.MultiChain/0.0.0.3
 
 This library divides the calls into 
  - MultiChainClient.Address
