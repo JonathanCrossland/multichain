@@ -34,3 +34,28 @@ MultiChainClient _Client = new MultiChainClient(connection);
 response = _Client.Wallet.GetNewAddress();
 ```
 There are sync and async versions.
+
+
+##Issue and Send an Asset
+
+```csharp
+MultiChainConnection connection = new MultiChainConnection()
+            {
+                Hostname = "IP",
+                Port = 100,
+                Username = "multichainrpc",
+                Password = "password",
+                ChainName = "chain1",
+                BurnAddress = "address",
+                RootNodeAddress = "address"
+            };
+            
+MultiChainClient _Client = new MultiChainClient(connection);
+JsonRpcResponse<string> response = _Client.Asset.Issue(issueAddress, assetName, quantity, units);
+_Client.Asset.Send(toAddress, assetName, amount);
+
+//Use SendAssetFrom to specify an address FROM and and address To
+
+
+```
+
