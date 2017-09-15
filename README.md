@@ -59,3 +59,13 @@ _Client.Asset.Send(toAddress, assetName, amount);
 
 ```
 
+##Using List
+```csharp
+    _Client.Asset.ListAssetsAsync(assetName,true);
+```
+
+##Issue and Subscribe
+```csharp
+    var response = _Client.Asset.Issue(fromAddress, new { name = assetName, open = true }, 10, 1, asset);
+    _Client.Asset.Subscribe(response.Result, true);
+```
