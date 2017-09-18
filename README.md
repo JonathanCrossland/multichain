@@ -39,7 +39,7 @@ response = _Client.Wallet.GetNewAddress();
 There are sync and async versions.
 
 
-##Issue and Send an Asset
+## Issue and Send an Asset
 
 ```csharp
 MultiChainConnection connection = new MultiChainConnection()
@@ -62,12 +62,12 @@ _Client.Asset.Send(toAddress, assetName, amount);
 
 ```
 
-##Using List
+## Using List
 ```csharp
     _Client.Asset.ListAssetsAsync(assetName,true);
 ```
 
-##Issue and Subscribe
+## Issue and Subscribe
 ```csharp
     var response = _Client.Asset.Issue(fromAddress, new { name = assetName, open = true }, 10, 1, asset);
     _Client.Asset.Subscribe(response.Result, true);
