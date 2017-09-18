@@ -95,10 +95,6 @@ namespace LucidOcean.MultiChain.API
             return _Client.Execute<List<AssetResponse>>("listassets", 0, assetFilter, verbose);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public Task<JsonRpcResponse<List<AssetResponse>>> ListAssetsAsync()
         {
             return _Client.ExecuteAsync<List<AssetResponse>>("listassets", 0, "*", false);
@@ -143,11 +139,7 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<ListAssetTransactionsResponse>("getassettransaction", 0, assetName, txId, verbose);
         }
-
-        //ListAssetsAsync
-        //getassettransaction
-        //listassettransactions
-
+        
         public JsonRpcResponse<string> Send(string toAddress, string assetName, int amount, string comment = null, string commentTo = null)
         {
             var asset = new Dictionary<string, object>();

@@ -91,6 +91,7 @@
     <Compile Include="Response\NetworkResponse.cs" />
     <Compile Include="Response\PeerResponse.cs" />
     <Compile Include="Response\PermissionsResponse.cs" />
+    <Compile Include="Response\PrepareLockUnspentResponse.cs" />
     <Compile Include="Response\RawTransactionResponse.cs" />
     <Compile Include="Response\ReceivedResponse.cs" />
     <Compile Include="Response\ScriptPubKeyResponse.cs" />

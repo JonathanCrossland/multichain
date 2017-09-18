@@ -45,7 +45,7 @@ namespace LucidOcean.MultiChain.API
             return _Client.Execute<string>("create", 0, "stream", fromAddress, streamName, open, metadata);
         }
 
-        public Task<JsonRpcResponse<string>> CreateFromAsync(string fromAddress,string streamName, bool open, object metadata)
+        public Task<JsonRpcResponse<string>> CreateFromAsync(string fromAddress, string streamName, bool open, object metadata)
         {
             return _Client.ExecuteAsync<string>("create", 0, "stream", fromAddress, streamName, open, metadata);
         }
@@ -109,8 +109,37 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<List<ListStreamItemsResponse>>("liststreamkeyitems", 0, streamName, key, verbose, count, start, localordering);
         }
-        
-        //create
+
+        public JsonRpcResponse<List<string>> ListStreamKeys(string streamName, List<string> keys, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        {
+            return _Client.Execute<List<string>>("liststreamkeys", 0, streamName, keys, verbose, count, start, localOrdering);
+        }
+
+        public Task<JsonRpcResponse<List<string>>> ListStreamKeysAsync(string streamName, List<string> keys, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        {
+            return _Client.ExecuteAsync<List<string>>("liststreamkeys", 0, streamName, keys, verbose, count, start, localOrdering);
+        }
+
+        public JsonRpcResponse<List<string>> ListStreamPublisherItems(string streamName, string address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        {
+            return _Client.Execute<List<string>>("liststreampublisheritems", 0, streamName, address, verbose, count, start, localOrdering);
+        }
+
+        public Task<JsonRpcResponse<List<string>>> ListStreamPublisherItemsAsync(string streamName, string address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        {
+            return _Client.ExecuteAsync<List<string>>("liststreampublisheritems", 0, streamName, address, verbose, count, start, localOrdering);
+        }
+
+        public JsonRpcResponse<List<string>> ListStreamPublishers(string streamName, List<string> address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        {
+            return _Client.Execute<List<string>>("liststreampublishers", 0, streamName, address, verbose, count, start, localOrdering);
+        }
+
+        public Task<JsonRpcResponse<List<string>>> ListStreamPublishersAsync(string streamName, List<string> address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        {
+            return _Client.ExecuteAsync<List<string>>("liststreampublishers", 0, streamName, address, verbose, count, start, localOrdering);
+        }
+
         //createfrom
         //publish
         //publishfrom
@@ -124,6 +153,5 @@ namespace LucidOcean.MultiChain.API
         //liststreamitems
         //liststreampublisheritems
         //liststreampublishers
-
     }
 }

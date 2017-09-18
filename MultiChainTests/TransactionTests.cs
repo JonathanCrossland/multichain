@@ -49,7 +49,7 @@ namespace MultiChainTests
         public void GetRawTransactionAsync()
         {
 
-            JsonRpcResponse<BlockResponse>  blockresponse = _Client.Block.GetBlock(60,true);
+            JsonRpcResponse<BlockResponse> blockresponse = _Client.Block.GetBlock(60, true);
 
             if (blockresponse.Result.Tx.Count < 2) throw new Exception("There is no transaction to test");
 
@@ -76,6 +76,26 @@ namespace MultiChainTests
             ResponseLogger<List<RawTransactionResponse>>.Log(response);
 
             return response;
+        }
+
+        [TestMethod]
+        public void PrepareLockUnspentAsync()
+        {
+            MultiChainTests.Mocks.Asset asset = new MultiChainTests.Mocks.Asset();
+            asset.Title = "Asset2";
+            asset.Description = "An Asset added by a unit test";
+            _Client.Asset.IssueAsync(TestSettings.FromAddress, new { name = asset.Title, open = true }, 10, 1, asset);
+
+            Dictionary<string, int> assetQuantities = new Dictionary<string, int>();
+            assetQuantities.Add(asset.Title, 1);
+
+            JsonRpcResponse<PrepareLockUnspentResponse> response = null;
+            Task.Run(async () =>
+            {
+                response = await _Client.Transaction.PrepareLockUnspent(assetQuantities, true);
+            }).GetAwaiter().GetResult();
+
+            ResponseLogger<PrepareLockUnspentResponse>.Log(response);
         }
     }
 }
