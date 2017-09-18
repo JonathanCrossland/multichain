@@ -201,8 +201,11 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<string>("importwallet", 0, path);
         }
 
+        // Node must be encrypted for these calls to work
+        #region EncryptedWallet Calls
         //walletlock
         //walletpassphrase
         //walletpassphrasechange
+        #endregion
     }
 }

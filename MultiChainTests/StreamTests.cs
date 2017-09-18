@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace MultiChainTests
 {
     [TestClass]
-    public class StreamTests    
+    public class StreamTests
     {
 
         private MultiChainClient _Client = null;
@@ -45,7 +45,7 @@ namespace MultiChainTests
 
                 ResponseLogger<string>.Log(response);
             }
-            catch(JsonRpcException ex)
+            catch (JsonRpcException ex)
             {
                 // we expect to hit this after the first run
                 if (ex.Error.Code != -705)
@@ -86,11 +86,11 @@ namespace MultiChainTests
         [TestMethod]
         public void ListStreamItems()
         {
-            
+
             JsonRpcResponse<List<ListStreamItemsResponse>> response = null;
             Task.Run(async () =>
             {
-                response = await _Client.Stream.ListStreamItemsAsync("Lucid Ocean",false);
+                response = await _Client.Stream.ListStreamItemsAsync("Lucid Ocean", false);
             }).GetAwaiter().GetResult();
 
             ResponseLogger<List<ListStreamItemsResponse>>.Log(response);
@@ -136,5 +136,102 @@ namespace MultiChainTests
             ResponseLogger<TxOutSetInfoResponse>.Log(response);
         }
 
+        [TestMethod]
+        public void CreateFromAsync()
+        {
+            JsonRpcResponse<string> response = null;
+            Task.Run(async () =>
+            {
+                response = await _Client.Stream.CreateFromAsync(TestSettings.Connection.RootNodeAddress, "TestStream", false, new { data = "custom data" });
+            }).GetAwaiter().GetResult();
+
+            ResponseLogger<string>.Log(response);
+        }
+
+        [TestMethod]
+        public void CreateFrom()
+        {
+            JsonRpcResponse<string> response = null;
+
+            response = _Client.Stream.CreateFrom(TestSettings.Connection.RootNodeAddress, "TestStream", false, new { data = "custom data" });
+
+            ResponseLogger<string>.Log(response);
+        }
+
+        [TestMethod]
+        public void ListStreamKeys()
+        {
+            JsonRpcResponse<List<string>> response = null;
+
+            List<string> list = new List<string>();
+            list.Add("Item");
+
+            response = _Client.Stream.ListStreamKeys("Lucid Ocean", list, true, 10, 1, true);
+
+            ResponseLogger<List<string>>.Log(response);
+        }
+
+        [TestMethod]
+        public void ListStreamKeysAsync()
+        {
+            JsonRpcResponse<List<string>> response = null;
+            Task.Run(async () =>
+            {
+                List<string> list = new List<string>();
+                list.Add("Item");
+
+                response = await _Client.Stream.ListStreamKeysAsync("Lucid Ocean", list, true, 10, 1, true);
+            }).GetAwaiter().GetResult();
+
+            ResponseLogger<List<string>>.Log(response);
+        }
+
+        [TestMethod]
+        public void ListStreamPublisherItems()
+        {
+            JsonRpcResponse<List<string>> response = null;
+
+            response = _Client.Stream.ListStreamPublisherItems("Lucid Ocean", TestSettings.Connection.RootNodeAddress, true, 10, 1, true);
+
+            ResponseLogger<List<string>>.Log(response);
+        }
+
+        [TestMethod]
+        public void ListStreamPublisherItemsAsync()
+        {
+            JsonRpcResponse<List<string>> response = null;
+            Task.Run(async () =>
+            {
+                response = await _Client.Stream.ListStreamPublisherItemsAsync("Lucid Ocean", TestSettings.Connection.RootNodeAddress, true, 10, 1, true);
+            }).GetAwaiter().GetResult();
+
+            ResponseLogger<List<string>>.Log(response);
+        }
+
+        [TestMethod]
+        public void ListStreamPublishers()
+        {
+            JsonRpcResponse<List<string>> response = null;
+            List<string> addresses = new List<string>();
+            addresses.Add(TestSettings.Connection.RootNodeAddress);
+            response = _Client.Stream.ListStreamPublishers("Lucid Ocean", addresses, true, 10, 1, true);
+
+            ResponseLogger<List<string>>.Log(response);
+        }
+
+        [TestMethod]
+        public void ListStreamPublishersAsync()
+        {
+            JsonRpcResponse<List<string>> response = null;
+            Task.Run(async () =>
+            {
+                List<string> addresses = new List<string>();
+                addresses.Add(TestSettings.Connection.RootNodeAddress);
+
+                response = await _Client.Stream.ListStreamPublishersAsync("Lucid Ocean", addresses, true, 10, 1, true);
+            }).GetAwaiter().GetResult();
+
+            ResponseLogger<List<string>>.Log(response);
+        }
     }
 }
