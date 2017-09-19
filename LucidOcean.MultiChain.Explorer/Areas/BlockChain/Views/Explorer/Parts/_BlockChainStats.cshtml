@@ -1,0 +1,10 @@
+﻿@using LucidOcean.MultiChain.Explorer.Data.Statistics;
+@{
+    Layout = null;
+    BlockChainStatistics stats = new BlockChainStatistics();
+    stats = stats.Get();
+}
+
+<div>
+    <p>Blocks: <span class="span">@stats.Blocks</span> | Transactions: <span class="badge">@stats.Transactions</span> | Assets: <span class="badge">@stats.Assets</span></p>
+</div>

@@ -77,7 +77,7 @@ namespace MultiChainTests
             {
                 string address = TestSettings.FromAddress;
                 await _Client.Permission.GrantAsync(address, "Lucid Ocean.write");
-                response = await _Client.Stream.PublishAsyncFrom(address, "Lucid Ocean", "Item", value);
+                response = await _Client.Stream.PublishFromAsync(address, "Lucid Ocean", "Item", value);
             }).GetAwaiter().GetResult();
 
             ResponseLogger<string>.Log(response);

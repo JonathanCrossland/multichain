@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LucidOcean.MultiChain", "LucidOcean.MultiChain\LucidOcean.MultiChain.csproj", "{AA780CE4-3B29-4998-AAAB-D66FC1BC77D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiChainTests", "MultiChainTests\MultiChainTests.csproj", "{268E29F5-2C58-4CA9-9DC6-8B2551541C70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LucidOcean.MultiChain.Explorer", "LucidOcean.MultiChain.Explorer\LucidOcean.MultiChain.Explorer.csproj", "{6F1DD2EC-2275-4C4E-AF41-8DCAEC36490D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LucidOcean.MultiChain.Explorer.Data", "LucidOcean.MultiChain.Explorer.Data\LucidOcean.MultiChain.Explorer.Data.csproj", "{A8918C0A-C465-4D01-B653-51006D64A974}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{268E29F5-2C58-4CA9-9DC6-8B2551541C70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{268E29F5-2C58-4CA9-9DC6-8B2551541C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{268E29F5-2C58-4CA9-9DC6-8B2551541C70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F1DD2EC-2275-4C4E-AF41-8DCAEC36490D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F1DD2EC-2275-4C4E-AF41-8DCAEC36490D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F1DD2EC-2275-4C4E-AF41-8DCAEC36490D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F1DD2EC-2275-4C4E-AF41-8DCAEC36490D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8918C0A-C465-4D01-B653-51006D64A974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8918C0A-C465-4D01-B653-51006D64A974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8918C0A-C465-4D01-B653-51006D64A974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8918C0A-C465-4D01-B653-51006D64A974}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

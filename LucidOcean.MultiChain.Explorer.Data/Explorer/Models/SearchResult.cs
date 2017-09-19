@@ -1,0 +1,27 @@
+﻿/*=====================================================================
+Authors: Lucid Ocean PTY (LTD)
+Copyright © 2017 Lucid Ocean PTY (LTD). All Rights Reserved.
+
+License: Dual MIT / Lucid Ocean Wave Business License v1.0
+Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
+The full license will also be found on the root of the main source-code directory.
+=====================================================================*/
+using System.Web.Routing;
+
+namespace LucidOcean.MultiChain.Explorer
+{
+    /// <summary>
+    /// Redirection model used when searching for a hash/address/block
+    /// This will return to where the user must be redirected to
+    /// </summary>
+    public class SearchResult
+    {
+        public SearchResult() { }
+       
+        public string Action{ get; set; }
+
+        public string Controller { get; set; }
+
+        public RouteValueDictionary RouteValue { get; set; } = new RouteValueDictionary();
+    }
+}

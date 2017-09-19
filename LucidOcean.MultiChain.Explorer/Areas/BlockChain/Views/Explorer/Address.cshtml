@@ -1,0 +1,69 @@
+﻿@model LucidOcean.MultiChain.Explorer.AddressDetail
+
+
+@{
+
+    ViewBag.Title = "Lucid Ocean MultiChain Explorer : " + Model.Address;
+    string backUrl = "~/BlockChain/Explorer/";
+    if (Request.UrlReferrer != null)
+    {
+        backUrl = Request.UrlReferrer.ToString();
+    }
+}
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-12">
+                <ol class="breadcrumb margin-top-1x">
+                    <li class="breadcrumb-item"><a href="@Href("~/BlockChain/Explorer/")">Home</a></li>
+                    <li class="breadcrumb-item hashLabel active">@Model.Address</li>                    
+                </ol>
+                @Html.Partial("Parts/_ExplorerMenu")
+                <h3>Address</h3>
+                <div class="row">
+                    <div class="col col-md-6">
+                        <div class="table table-responsive">
+                            <table class="table table-condensed table-striped">
+                                <tr>
+                                    <th colspan="2">Summary</th>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>@Model.Address</td>
+                                </tr>                                
+                                <tr>
+                                    <td>Transactions</td>
+                                    <td>@Model.Transactions.Count()</td>
+                                </tr>                                
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col col-md-6">
+                        <div class="table table-responsive">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-12">
+                <h3>Transactions</h3>
+                <div class="row">
+                    <div class="col col-md-12">
+                        <div class="table table-responsive">
+                            <table class="table table-hover table-condensed table-striped">
+                                @foreach (var item in Model.Transactions)
+                                {                                    
+                                    Html.RenderAction("RenderTransaction", "Explorer", new { id = item.TxId });
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
