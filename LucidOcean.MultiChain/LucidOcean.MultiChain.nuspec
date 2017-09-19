@@ -16,6 +16,6 @@
     <tags>MultiChain, BlockChain, API, Wrapper</tags>
   </metadata>
   <files>
-    <!--<file src="Lib\**" target="lib" />-->
+    <file src="lib\**" target="lib" />
   </files>
 </package>

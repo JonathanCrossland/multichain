@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("LucidOcean.MultiChain")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This library attempt to wrap the JSON-RPC calls provided by MultiChain.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Lucid Ocean")]
 [assembly: AssemblyProduct("Lucid Ocean MultiChain Client")]
@@ -28,6 +28,6 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyFileVersion("0.0.0.3")]
-[assembly: AssemblyInformationalVersion("0.0.0.3")]
-[assembly: AssemblyVersion("0.0.0.3")]
+[assembly: AssemblyFileVersion("0.0.0.4")]
+[assembly: AssemblyInformationalVersion("0.0.0.4")]
+[assembly: AssemblyVersion("0.0.0.4")]
