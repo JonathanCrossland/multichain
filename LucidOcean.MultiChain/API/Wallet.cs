@@ -340,7 +340,7 @@ namespace LucidOcean.MultiChain.API
         /// Returns a list of locked unspent transaction outputs in the wallet. These will not be used when automatically selecting the outputs to spend in a new transaction.
         /// </summary>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<string>>> ListLockUnspent()
+        public Task<JsonRpcResponse<List<string>>> ListLockUnspentAsync()
         {
             return _Client.ExecuteAsync<List<string>>("listlockunspent", 0);
         }
@@ -348,7 +348,7 @@ namespace LucidOcean.MultiChain.API
         /// Returns a list of locked unspent transaction outputs in the wallet. These will not be used when automatically selecting the outputs to spend in a new transaction. 
         /// </summary>
         /// <returns></returns>
-        public JsonRpcResponse<List<string>> ListLockUnspentAsync()
+        public JsonRpcResponse<List<string>> ListLockUnspent()
         {
             return _Client.Execute<List<string>>("listlockunspent", 0);
         }
