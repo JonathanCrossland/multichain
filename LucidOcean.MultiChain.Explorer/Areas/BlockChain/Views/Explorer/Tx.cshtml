@@ -1,0 +1,85 @@
+﻿@model LucidOcean.MultiChain.Response.RawTransactionResponse
+
+
+@{
+    ViewBag.Title = "Lucid Ocean MultiChain BlockChain Explorer - " + Model.TxId;
+    string backUrl = "~/BlockChain/Explorer/";
+    if (Request.UrlReferrer != null)
+    {
+        backUrl = Request.UrlReferrer.ToString();
+    }
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-12">
+                <ol class="breadcrumb margin-top-1x">
+                    <li class="breadcrumb-item"><a href="@Href("~/BlockChain/Explorer/")">Home</a></li>
+                    @if (!string.IsNullOrEmpty(Model.BlockHash))
+                    {
+                        int blockHeight = 0;
+                        LucidOcean.MultiChain.Explorer.Blocks b = new Blocks();
+                        blockHeight = b.GetHeight(Model.BlockHash);
+
+                        <li class="breadcrumb-item"><a href="@Href("~/BlockChain/Explorer/Block/" + Model.BlockHash)">Block #@blockHeight</a></li>
+                    }
+                    <li class="breadcrumb-item active hashLabel">@Model.TxId</li>
+                </ol>
+
+                @Html.Partial("Parts/_ExplorerMenu")
+                <h3>Transaction <small>View information about a BlockChain transaction</small></h3>
+                <div class="row">
+                    <div class="col col-md-12">
+                        <div class="table table-responsive">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <th colspan="2">Summary</th>
+                                </tr>
+                                <tr>
+                                    <td>Transaction</td>
+                                    <td>@Model.TxId</td>
+                                </tr>
+                                <tr>
+                                    <td>Version</td>
+                                    <td>@Model.Version</td>
+                                </tr>
+                                @if (!string.IsNullOrEmpty(Model.BlockHash))
+                                {
+                                    <tr>
+                                        <td>BlockHash</td>
+                                        <td>@Html.ActionLink(Model.BlockHash, "Block", new { id = Model.BlockHash })</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td>Blocktime</td>
+                                    <td>@BlockChainHelper.UnixTimeStampToDateTime(Model.BlockTime).ToString("ddd, dd MMMM yyyy, HH:mm:ss") GMT</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2"></th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-12">
+                <h3>More information</h3>
+                <div class="row">
+                    <div class="col col-md-12">
+                        <div class="table table-responsive">
+                            <table class="table table-hover table-condensed">
+                                @{
+                                    Html.RenderAction("RenderTransaction", "Explorer", new { id = Model.TxId });
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

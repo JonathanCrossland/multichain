@@ -1,0 +1,111 @@
+﻿@model List<TransactionDetail>
+
+@{
+    Layout = null;
+    bool show = true;
+}
+
+@if (show)
+{
+    foreach (var item in Model)
+    {
+        bool thisIsYouTo = false;
+        bool thisIsYouFrom = false;
+
+        if (LucidOcean.MultiChain.Explorer.BlockChainHelper.IsOwner(item.To))
+        {
+            thisIsYouTo = true;
+        }
+
+        if (LucidOcean.MultiChain.Explorer.BlockChainHelper.IsOwner(item.From))
+        {
+            thisIsYouFrom = true;
+        }
+
+        <tr style="border-top: 2px solid #5cb85c">
+            <th colspan="4">@Html.ActionLink(item.TxId, "Tx", new { id = item.TxId }) <span>(@item.Confirmations)</span> <span class="pull-right">@item.BlockTime.ToString("ddd, dd MMMM yyyy, HH:mm:ss")</span></th>
+        </tr>
+        <tr>
+            <td>
+                @if (string.IsNullOrEmpty(item.From))
+                {
+                    item.From = "asd";
+                }
+                @if (item.From.Contains("<br/>") || item.From.Contains("-"))
+                {
+                    @Html.Raw(item.From)
+                }
+                else if (item.From.StartsWith("1") || item.From.StartsWith("3"))
+                {
+                    @Html.ActionLink(item.From, "Address", new { id = item.From })
+                }
+                else
+                {
+                    <span>@Html.Raw(item.From) </span>
+                }
+
+                @{
+                    string hashFrom = item.HashFrom;
+                    if (!string.IsNullOrEmpty(hashFrom))
+                    {
+                        if (hashFrom.Length > 40)
+                        {
+                            hashFrom = item.HashFrom.Substring(0, 40) + "..";
+                            <br /><span title="@Html.Raw(item.HashFrom)">@Html.Raw(hashFrom)</span>
+                        }
+                        else
+                        {
+                            <br /><span>@Html.Raw(hashFrom)</span>
+                        }
+                    }
+                }
+            </td>
+            <td><span class="@item.EventType"></span></td>
+            <td>
+                @if (item.To.Contains("<br/>") || item.To.Contains("-"))
+                {
+                    <span>@Html.Raw(item.To) </span>
+                }
+                else if (item.To.StartsWith("1") || item.To.StartsWith("3"))
+                {
+                    @Html.ActionLink(item.To, "Address", new { id = item.To })
+                }
+                else
+                {
+                    <span>@item.To </span>
+                }
+                @{
+                    string hashTo = item.HashTo;
+                    if (!string.IsNullOrEmpty(hashTo))
+                    {
+                        if (hashTo.Length > 40)
+                        {
+                            hashTo = item.HashTo.Substring(0, 40) + "..";
+                            <br /><span title="@Html.Raw(item.HashTo)">@Html.Raw(hashTo)</span>
+                        }
+                        else
+                        {
+                            <br /><span>@Html.Raw(hashTo)</span>
+                        }
+                    }
+                }
+            </td>
+            <td class="text-right">
+                @if (!string.IsNullOrEmpty(item.EventTypeLabel))
+                {
+                    <span>@item.EventTypeLabel</span><br />
+                }
+                @if (!string.IsNullOrEmpty(item.Action))
+                {
+                    <span class="badge badge-success">@item.Action</span>
+                }
+            </td>
+        </tr>
+        <tr>
+            <th colspan="4">
+                &nbsp;
+            </th>
+        </tr>
+                        }
+
+                    }

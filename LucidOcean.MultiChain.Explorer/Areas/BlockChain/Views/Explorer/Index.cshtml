@@ -1,0 +1,61 @@
+﻿@model IEnumerable<LucidOcean.MultiChain.Response.BlockResponse>
+@using LucidOcean.MultiChain.Explorer.Data.Statistics;
+
+@{
+    ViewBag.Title = "Lucid Ocean MultiChain BlockChain Explorer";
+}
+
+<section>
+    <h3>Showing Blocks between @Model.First().Height and @Model.Last().Height</h3>
+    <ol class="breadcrumb margin-top-1x">
+        <li class="breadcrumb-item active">Explorer</li>
+    </ol>
+
+    @Html.Partial("Parts/_BlockChainStats")
+
+    <div class="row">
+        <div class="col col-md-12">
+            @Html.Partial("Parts/_ExplorerError")
+        </div>
+    </div>
+
+    @Html.Partial("Parts/_blockpaging")
+
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="table table-responsive">
+                <table class="table table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>
+                                Height
+                            </th>
+                            <th>
+                                Hash
+                            </th>
+                            <th>
+                                Created
+                            </th>
+                            <th>
+                                Transactions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderByDescending(e => e.Height))
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(item.Height.ToString(), "Block", new { id = item.Hash.ToString() })</td>
+                                <td>@Html.ActionLink(item.Hash.ToString(), "Block", new { id = item.Hash.ToString() })</td>
+                                <td>@BlockChainHelper.UnixTimeStampToDateTime(item.Time).ToString("ddd, dd MMMM yyyy, HH:mm:ss") GMT</td>
+                                <td>@item.TxCount</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    @Html.Partial("Parts/_blockpaging")
+</section>

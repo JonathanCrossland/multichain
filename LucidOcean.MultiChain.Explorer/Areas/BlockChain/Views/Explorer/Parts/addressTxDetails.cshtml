@@ -1,0 +1,81 @@
+﻿@model List<LucidOcean.MultiChain.Response.AddressTransactionResponse>
+
+@{
+    Layout = null;
+    bool show = true;
+}
+
+@if (show)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <th colspan="4">
+                &nbsp;
+            </th>
+        </tr>
+        <tr style="border-top: 2px solid #00d70b;">
+            <th colspan="4">@Html.ActionLink(item.TxId, "Tx", new { id = item.TxId }) <span class="pull-right">@item.BlockTime.ToString("ddd, dd MMMM yyyy, HH:mm:ss")</span></th>
+        </tr>
+        <tr>
+            <td>
+                @if (item.From.Contains("<br/>") || item.From.Contains("-"))
+                {
+                    @Html.Raw(item.From)
+                }
+                else if (item.From.StartsWith("1") || item.From.StartsWith("3"))
+                {
+                    @Html.ActionLink(item.From, "Address", new { id = item.From })
+                }
+                else
+                {
+                    <span>@item.From</span>
+                }
+            </td>
+            <td><span class="@item.EventType"></span></td>
+            <td>
+                @if (item.To.Contains("<br/>") || item.To.Contains("-"))
+                {
+                    <span>@Html.Raw(item.To)</span>
+                }
+                else if (item.To.StartsWith("1") || item.To.StartsWith("3"))
+                {
+                    @Html.ActionLink(item.To, "Address", new { id = item.To })
+                }
+                else
+                {
+                    <span>@item.To</span>
+                }
+
+
+                @{
+                    string hash = item.Hash;
+                    if (!string.IsNullOrEmpty(hash))
+                    {
+                        if (hash.Length > 40)
+                        {
+                            hash = item.Hash.Substring(0, 40) + "..";
+                            <br /><span title="@Html.Raw(item.Hash)">@Html.Raw(hash)</span>
+                        }
+                        else
+                        {
+                            <br /><span>@Html.Raw(hash)</span>
+                        }
+                    }
+                }
+
+            </td>
+            @if (!string.IsNullOrEmpty(item.Action))
+            {
+                <td class="text-right">
+                    @if (!string.IsNullOrEmpty(item.Confirmations))
+                        {
+                        <span>@item.Confirmations</span><br />
+                    }
+                    <span class="badge badge-success">@item.Action</span>
+                </td>
+            }
+        </tr>
+                        }
+
+                    }

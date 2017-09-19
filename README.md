@@ -72,3 +72,8 @@ _Client.Asset.Send(toAddress, assetName, amount);
     var response = _Client.Asset.Issue(fromAddress, new { name = assetName, open = true }, 10, 1, asset);
     _Client.Asset.Subscribe(response.Result, true);
 ```
+
+## MultiChain Explorer
+    - MultiChain explorer running on C# ASP.NET MVC 5.2.3
+    - Change connection details in LucidOcean.MultiChain.Explorer.Data.ExplorerSettings to connect the explorer to your node.  
+        * This works the same as seen in example of issue and sending of an asset.    

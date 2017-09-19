@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+
+    LucidOcean.MultiChain.Explorer.Data.UI.ExplorerError error = null;
+    if (TempData["Errors"] != null)
+    {
+        error = TempData["Errors"] as LucidOcean.MultiChain.Explorer.Data.UI.ExplorerError;
+    }
+}
+
+@if (error != null)
+{
+    if (error.Success.Count > 0)
+    {
+        foreach (string successMsg in error.Success)
+        {
+            <div class="alert alert-success">
+                <strong>Success!</strong> @successMsg
+            </div>
+        }
+        error.Success.Clear();
+    }
+
+    if (error.Info.Count > 0)
+    {
+        foreach (string infoMsg in error.Info)
+        {
+            <div class="alert alert-info">
+                <strong>Info!</strong> @infoMsg
+            </div>
+        }
+        error.Info.Clear();
+    }
+
+    if (error.Warnings.Count > 0)
+    {
+        foreach (string warningMsg in error.Warnings)
+        {
+            <div class="alert alert-warning">
+                <strong>Warning!</strong> @warningMsg
+            </div>
+        }
+        error.Warnings.Clear();
+    }
+
+    if (error.Errors.Count > 0)
+    {
+        foreach (string errorMsg in error.Errors)
+        {
+            <div class="alert alert-danger">
+                <strong>Error!</strong> @errorMsg
+            </div>
+        }
+        error.Errors.Clear();
+    }
+    TempData["Errors"] = null;
+}
+

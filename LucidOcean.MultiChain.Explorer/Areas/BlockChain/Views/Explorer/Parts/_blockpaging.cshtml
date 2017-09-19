@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col col-md-12">
+        <div aria-label="block-paging">
+            <div class="btn-group pull-left">
+
+                @if (ViewBag.IndexPrev > 0)
+                {
+
+                    <a class="btn btn-default" href="@Href("~/BlockChain/Explorer/Index/" + @ViewBag.IndexPrev)"><span aria-hidden="true">&larr;</span> Older</a>
+
+                }
+                @if (ViewBag.IndexNext > 0 && ViewBag.IndexPrev >= 0)
+                {
+
+                    <a class="btn btn-default" href="@Href("~/BlockChain/Explorer/Index/0")">Show latest blocks</a>
+
+                }
+                @if (ViewBag.IndexNext > 0)
+                {
+
+                    <a class="btn btn-default" href="@Href("~/BlockChain/Explorer/Index/" + @ViewBag.IndexNext)">Newer <span aria-hidden="true">&rarr;</span></a>
+
+                }
+
+            </div>
+        </div>
+
+    </div>
+</div>

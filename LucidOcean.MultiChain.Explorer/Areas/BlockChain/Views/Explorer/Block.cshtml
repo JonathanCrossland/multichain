@@ -1,0 +1,118 @@
+﻿@model LucidOcean.MultiChain.Response.BlockResponse
+
+
+@{
+    ViewBag.Title = "Lucid Ocean MultiChain Explorer - Block #" + Model.Height;
+    string backUrl = "~/BlockChain/Explorer/";
+    if (Request.UrlReferrer != null)
+    {
+        backUrl = Request.UrlReferrer.ToString();
+    }
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-12">
+                <ol class="breadcrumb margin-top-1x">
+                    <li class="breadcrumb-item"><a href="@Href("~/BlockChain/Explorer/")">Home</a></li>
+                    <li class="breadcrumb-item active">Block #@Model.Height</li>
+                </ol>
+                @Html.Partial("Parts/_ExplorerMenu")
+                <h3>Block #@Model.Height</h3>
+                <div class="row">
+                    <div class="col col-md-5">
+                        <div class="table table-responsive">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <th colspan="2">Summary</th>
+                                </tr>
+                                <tr>
+                                    <td>Transactions</td>
+                                    <td>@Model.Tx.Count()</td>
+                                </tr>
+                                <tr>
+                                    <td>Height</td>
+                                    <td>@Model.Height</td>
+                                </tr>
+                                <tr>
+                                    <td>Timestamp</td>
+                                    <td>@BlockChainHelper.UnixTimeStampToDateTime(Model.Time).ToString("ddd, dd MMMM yyyy, HH:mm:ss") GMT</td>
+                                </tr>
+                                <tr>
+                                    <td>Difficulty</td>
+                                    <td>@Model.Difficulty</td>
+                                </tr>
+                                <tr>
+                                    <td>Bits</td>
+                                    <td>@Model.Bits</td>
+                                </tr>
+                                <tr>
+                                    <td>Size</td>
+                                    <td>@Model.Size</td>
+                                </tr>
+                                <tr>
+                                    <td>Nonse</td>
+                                    <td>@Model.Nonce</td>
+                                </tr>
+                                <tr>
+                                    <td>Miner</td>
+                                    <td>@Model.Miner</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col col-md-7">
+                        <div class="table table-responsive">
+                            <table class="table table-condensed ">
+                                <tr>
+                                    <th colspan="2">Hashes</th>
+                                </tr>
+                                <tr>
+                                    <td>Hash</td>
+                                    <td>@Model.Hash</td>
+                                </tr>
+                                @if (!string.IsNullOrEmpty(Model.PreviousBlockHash))
+                                {
+                                    <tr>
+                                        <td>Previous Block</td>
+                                        <td>@Html.ActionLink(Model.PreviousBlockHash, "Block", new { id = Model.PreviousBlockHash })</td>
+                                    </tr>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.NextBlockHash))
+                                {
+                                    <tr>
+                                        <td>Next Block</td>
+                                        <td>@Html.ActionLink(Model.NextBlockHash, "Block", new { id = Model.NextBlockHash })</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td>Merkle Root</td>
+                                    <td>@Model.MerkleRoot</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-12">
+                <h3>Transactions</h3>
+                <div class="row">
+                    <div class="col col-md-12">
+                        <div class="table table-responsive">
+                            <table class="table table-hover table-condensed table-fixed">
+                                @foreach (var item in Model.Tx)
+                                {                                 
+                                    Html.RenderAction("RenderTransaction", "Explorer", new { id = item });
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
