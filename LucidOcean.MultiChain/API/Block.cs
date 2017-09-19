@@ -21,100 +21,192 @@ namespace LucidOcean.MultiChain.API
             _Client = client;
         }
 
+        /// <summary>
+        /// Returns information about the block with hash (retrievable from getblockhash) or at the given height in the active chain. Set verbose to 0 or false for the block in raw hexadecimal form. Set to 1 or true for a block summary including the miner address and a list of txids. Set to 2 to 3 to include more information about each transaction and its raw hexadecimal. Set to 4 to include a full description of each transaction, formatted like the output of decoderawtransaction.
+        /// </summary>
+        /// <param name="height"></param>
+        /// <returns></returns>
         public JsonRpcResponse<BlockResponse> GetBlock(int height)
         {
             return _Client.Execute<BlockResponse>("getblock", 0, height.ToString(), false);
         }
 
+        /// <summary>
+        /// Returns information about the block with hash (retrievable from getblockhash) or at the given height in the active chain. Set verbose to 0 or false for the block in raw hexadecimal form. Set to 1 or true for a block summary including the miner address and a list of txids. Set to 2 to 3 to include more information about each transaction and its raw hexadecimal. Set to 4 to include a full description of each transaction, formatted like the output of decoderawtransaction.
+        /// </summary>
+        /// <param name="hash"></param>
+        /// <returns></returns>
         public JsonRpcResponse<BlockResponse> GetBlock(string hash)
         {
             return _Client.Execute<BlockResponse>("getblock", 0, hash, false);
         }
 
+        /// <summary>
+        /// Returns information about the block with hash (retrievable from getblockhash) or at the given height in the active chain. Set verbose to 0 or false for the block in raw hexadecimal form. Set to 1 or true for a block summary including the miner address and a list of txids. Set to 2 to 3 to include more information about each transaction and its raw hexadecimal. Set to 4 to include a full description of each transaction, formatted like the output of decoderawtransaction.
+        /// </summary>
+        /// <param name="height"></param>
+        /// <param name="verbose"></param>
+        /// <returns></returns>
         public JsonRpcResponse<BlockResponse> GetBlock(int height, bool verbose)
         {
             return _Client.Execute<BlockResponse>("getblock", 0, height.ToString(), verbose);
         }
 
+        /// <summary>
+        /// Returns information about the block with hash (retrievable from getblockhash) or at the given height in the active chain. Set verbose to 0 or false for the block in raw hexadecimal form. Set to 1 or true for a block summary including the miner address and a list of txids. Set to 2 to 3 to include more information about each transaction and its raw hexadecimal. Set to 4 to include a full description of each transaction, formatted like the output of decoderawtransaction.
+        /// </summary>
+        /// <param name="hash"></param>
+        /// <param name="verbose"></param>
+        /// <returns></returns>
         public JsonRpcResponse<BlockResponse> GetBlock(string hash, bool verbose)
         {
             return _Client.Execute<BlockResponse>("getblock", 0, hash, verbose);
         }
 
+        /// <summary>
+        /// Returns information about the block with hash (retrievable from getblockhash) or at the given height in the active chain. Set verbose to 0 or false for the block in raw hexadecimal form. Set to 1 or true for a block summary including the miner address and a list of txids. Set to 2 to 3 to include more information about each transaction and its raw hexadecimal. Set to 4 to include a full description of each transaction, formatted like the output of decoderawtransaction.
+        /// </summary>
+        /// <param name="height"></param>
+        /// <returns></returns>
         public JsonRpcResponse<BlockResponse> GetBlockAsync(int height)
         {
             return _Client.Execute<BlockResponse>("getblock", 0, height.ToString(), false);
         }
 
+        /// <summary>
+        /// Returns information about the block with hash (retrievable from getblockhash) or at the given height in the active chain. Set verbose to 0 or false for the block in raw hexadecimal form. Set to 1 or true for a block summary including the miner address and a list of txids. Set to 2 to 3 to include more information about each transaction and its raw hexadecimal. Set to 4 to include a full description of each transaction, formatted like the output of decoderawtransaction.
+        /// </summary>
+        /// <param name="hash"></param>
+        /// <returns></returns>
         public Task<JsonRpcResponse<BlockResponse>> GetBlockAsync(string hash)
         {
             return _Client.ExecuteAsync<BlockResponse>("getblock", 0, hash, true);
         }
 
+        /// <summary>
+        /// Returns information about the block with hash (retrievable from getblockhash) or at the given height in the active chain. Set verbose to 0 or false for the block in raw hexadecimal form. Set to 1 or true for a block summary including the miner address and a list of txids. Set to 2 to 3 to include more information about each transaction and its raw hexadecimal. Set to 4 to include a full description of each transaction, formatted like the output of decoderawtransaction.
+        /// </summary>
+        /// <param name="height"></param>
+        /// <param name="verbose"></param>
+        /// <returns></returns>
         public Task<JsonRpcResponse<BlockResponse>> GetBlockAsync(int height, bool verbose)
         {
             return _Client.ExecuteAsync<BlockResponse>("getblock", 0, height.ToString(), verbose);
         }
 
+        /// <summary>
+        /// GetBlock. Returns information about the block with hash (retrievable from getblockhash) or at the given height in the active chain. Set verbose to 0 or false for the block in raw hexadecimal form. Set to 1 or true for a block summary including the miner address and a list of txids. Set to 2 to 3 to include more information about each transaction and its raw hexadecimal. Set to 4 to include a full description of each transaction, formatted like the output of decoderawtransaction.
+        /// </summary>
+        /// <param name="hash"></param>
+        /// <returns></returns>
         public JsonRpcResponse<string> GetBlockRaw(string hash)
         {
             return _Client.Execute<string>("getblock", 0, hash, false);
         }
+        /// <summary>
+        /// GetBlock. Returns information about the block with hash (retrievable from getblockhash) or at the given height in the active chain. Set verbose to 0 or false for the block in raw hexadecimal form. Set to 1 or true for a block summary including the miner address and a list of txids. Set to 2 to 3 to include more information about each transaction and its raw hexadecimal. Set to 4 to include a full description of each transaction, formatted like the output of decoderawtransaction.
+        /// </summary>
+        /// <param name="hash"></param>
+        /// <returns></returns>
         public Task<JsonRpcResponse<string>> GetBlockRawAsync(string hash)
         {
             return _Client.ExecuteAsync<string>("getblock", 0, hash, false);
         }
-        
+
+        /// <summary>
+        /// Returns information about the blockchain, including the bestblockhash of the most recent block on the active chain, which can be compared across nodes to check if they are perfectly synchronized.
+        /// </summary>
+        /// <returns></returns>
         public Task<JsonRpcResponse<BlockChainInfoResponse>> GetBlockChainInfoAsync()
         {
             return _Client.ExecuteAsync<BlockChainInfoResponse>("getblockchaininfo", 0);
         }
 
+        /// <summary>
+        /// Returns the hash of the block at the given height. This can be passed to getblock to get information about the block.
+        /// </summary>
+        /// <param name="block"></param>
+        /// <returns></returns>
         public Task<JsonRpcResponse<string>> GetBlockHashAsync(int block)
         {
             return _Client.ExecuteAsync<string>("getblockhash", 0, block);
         }
 
+        /// <summary>
+        /// Returns information about the memory pool, which contains transactions that the node has seen and validated, but which have not yet been confirmed on the active chain. If the memory pool is growing continuously, this suggests that transactions are being generated faster than the network is able to process them.
+        /// </summary>
+        /// <returns></returns>
         public Task<JsonRpcResponse<MempoolInfoResponse>> GetMempoolInfoAsync()
         {
             return _Client.ExecuteAsync<MempoolInfoResponse>("getmempoolinfo", 0);
         }
 
+        /// <summary>
+        /// Returns a list of transaction IDs which are in the node’s memory pool (see getmempoolinfo).
+        /// </summary>
+        /// <returns></returns>
         public Task<JsonRpcResponse<List<object>>> GetRawMempoolAsync()
         {
             return _Client.ExecuteAsync<List<object>>("getrawmempool", 0);
         }
 
+        /// <summary>
+        /// Returns a list of transaction IDs which are in the node’s memory pool (see getmempoolinfo).
+        /// </summary>
+        /// <returns></returns>
         public Task<JsonRpcResponse<List<string>>> GetRawMempoolVerboseAsync()
         {
             return _Client.ExecuteAsync<List<string>>("getrawmempool", 0, true);
         }
 
+        /// <summary>
+        /// Returns information about the blocks specified, on the active chain only. The blocks parameter can contain a comma-delimited list or array of block heights, hashes, height ranges (e.g. 100-200) or -n for the most recent n blocks. Alternatively, pass an object {"starttime":...,"endtime":...} for blocks whose timestamps are in the given range.
+        /// </summary>
+        /// <param name="startheight"></param>
+        /// <param name="endHeight"></param>
+        /// <param name="verbose"></param>
+        /// <returns></returns>
         public JsonRpcResponse<List<BlockResponse>> ListBlocks(int startheight, int endHeight, bool verbose)
         {
             return _Client.Execute<List<BlockResponse>>("listblocks", 0, $"{startheight.ToString()}-{endHeight.ToString()}", verbose);
         }
 
+        /// <summary>
+        /// Returns information about the blocks specified, on the active chain only. The blocks parameter can contain a comma-delimited list or array of block heights, hashes, height ranges (e.g. 100-200) or -n for the most recent n blocks. Alternatively, pass an object {"starttime":...,"endtime":...} for blocks whose timestamps are in the given range.
+        /// </summary>
+        /// <param name="startheight"></param>
+        /// <param name="endHeight"></param>
+        /// <param name="verbose"></param>
+        /// <returns></returns>
         public Task<JsonRpcResponse<List<BlockResponse>>> ListBlocksAsync(int startheight, int endHeight, bool verbose)
         {
             return _Client.ExecuteAsync<List<BlockResponse>>("listblocks", 0, $"{startheight.ToString()}-{endHeight.ToString()}", verbose);
         }
 
+        /// <summary>
+        /// Returns details about an unspent transaction output vout of txid. For a MultiChain blockchain, includes assets and permissions fields listing any assets or permission changes encoded within the output. Set unconfirmed to true to include unconfirmed transaction outputs.
+        /// </summary>
+        /// <param name="txId"></param>
+        /// <param name="vout"></param>
+        /// <param name="unconfirmed"></param>
+        /// <returns></returns>
         public Task<JsonRpcResponse<TxOutResponse>> GetTxOutAsync(string txId, int vout = 0, bool unconfirmed = false)
         {
             return _Client.ExecuteAsync<TxOutResponse>("gettxout", 0, txId, vout, unconfirmed);
         }
 
+        [System.Obsolete]
         public Task<JsonRpcResponse<TxOutSetInfoResponse>> GetTxOutSetInfoAsync()
         {
             return _Client.ExecuteAsync<TxOutSetInfoResponse>("gettxoutsetinfo", 0);
         }
-
+        [System.Obsolete]
         public Task<JsonRpcResponse<ListSinceLastBlockResponse>> ListSinceBlockAsync(string hash, int confirmations = 1, bool watchOnly = false)
         {
             return _Client.ExecuteAsync<ListSinceLastBlockResponse>("listsinceblock", 0, hash, confirmations, watchOnly);
         }
 
+        [System.Obsolete]
         public Task<JsonRpcResponse<string>> GetBestBlockHashAsync()
         {
             return _Client.ExecuteAsync<string>("getbestblockhash", 0);
