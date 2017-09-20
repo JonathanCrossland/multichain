@@ -74,5 +74,8 @@ namespace LucidOcean.MultiChain.Response
 
         [JsonProperty("errors")]
         public string Errors { get; set; }
+
+        [JsonProperty("burnaddress")]
+        public string BurnAddress { get; set; }
     }
 }
