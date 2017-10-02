@@ -117,7 +117,7 @@ namespace MultiChainTests
         public void BackupWalletAsync()
         {
             JsonRpcResponse<string> response = null;
-            var path = @"c:\multichain\backup\walletbackup";
+            var path = @"walletbackup";
             Task.Run(async () =>
             {
                 response = await _Client.Wallet.BackupWalletAsync(path);
@@ -130,7 +130,7 @@ namespace MultiChainTests
         public void DumpWalletAsync()
         {
             JsonRpcResponse<string> response = null;
-            var path = @"c:\multichain\backup\walletbackup";
+            var path = @"walletbackup";
             Task.Run(async () =>
             {
                 response = await _Client.Wallet.DumpWalletAsync(path);

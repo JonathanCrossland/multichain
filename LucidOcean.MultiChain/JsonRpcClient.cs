@@ -21,11 +21,23 @@ namespace LucidOcean.MultiChain
         private MultiChainConnection _Connection = new MultiChainConnection();
         public event EventHandler<EventArgs<JsonRpcRequest>> Executing;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connection"></param>
         public JsonRpcClient(MultiChainConnection connection)
         {
             _Connection = connection;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hostname"></param>
+        /// <param name="port"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="chainName"></param>
         public JsonRpcClient(string hostname, int port, string username, string password, string chainName)
         {
             _Connection.Hostname = hostname;
@@ -35,6 +47,14 @@ namespace LucidOcean.MultiChain
             _Connection.ChainName = chainName;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="method"></param>
+        /// <param name="id"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public JsonRpcResponse<T> Execute<T>(string method, int id, params object[] args)
         {
             JsonRpcResponse<T> response = new JsonRpcResponse<T>();
@@ -46,6 +66,14 @@ namespace LucidOcean.MultiChain
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="method"></param>
+        /// <param name="id"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public async Task<JsonRpcResponse<T>> ExecuteAsync<T>(string method, int id, params object[] args)
         {
             var ps = new JsonRpcRequest()
@@ -68,7 +96,7 @@ namespace LucidOcean.MultiChain
                 request.ContentType = "application/json-rpc";
                 request.Credentials = this.GetCredentials();
                 request.Method = "POST";
-                request.UserAgent = "LucidOcean.MultiChain version 0";
+                //request.UserAgent = "LucidOcean.MultiChain {version 0}";
                 var bs = Encoding.UTF8.GetBytes(jsonOut);
 
                 using (var stream = await request.GetRequestStreamAsync())
@@ -90,7 +118,7 @@ namespace LucidOcean.MultiChain
                 catch (Exception jsonEx)
                 {
                     JsonRpcErrorResponse errorobj = JsonConvert.DeserializeObject<JsonRpcErrorResponse>(jsonRet);
-                    throw new JsonRpcException("Deserialize failed. ", errorobj.Error, jsonEx);
+                    throw new JsonRpcException($"({errorobj.Error.Code}) {errorobj.Error.Message}" );
                 }
 
                 ret.Raw = jsonRet;
@@ -102,10 +130,6 @@ namespace LucidOcean.MultiChain
 
                 return ret;
             }
-            //catch (HttpWebResponse webEx)
-            //{
-            //    throw new JsonRpcException("Call failed", null, webEx);
-            //}
             catch (Exception ex)
             {
                 var nEXt = ex;
@@ -115,13 +139,12 @@ namespace LucidOcean.MultiChain
                     if (nEXt is WebException)
                     {
                         var webEx = (WebException)nEXt;
-                        //if (webEx.Status == WebExceptionStatus)
                         if (webEx.Response != null)
                         {
                             HttpWebResponse resp = (HttpWebResponse)webEx.Response;
                             if (resp.StatusCode !=  HttpStatusCode.OK)
                             {
-                                throw ex;
+                                if (resp.ContentType != "application/json")  throw ex;
                             }
 
                             using (var stream = webEx.Response.GetResponseStream())
@@ -137,16 +160,23 @@ namespace LucidOcean.MultiChain
                 }
 
                 JsonRpcErrorResponse errorobj = JsonConvert.DeserializeObject<JsonRpcErrorResponse>(errormsg);
-                throw new JsonRpcException("Deserialize failed. ", errorobj.Error, ex);
+                throw new JsonRpcException($"({errorobj.Error.Code}) {errorobj.Error.Message}");
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnExecuting(EventArgs<JsonRpcRequest> e)
         {
             if (this.Executing != null)
                 this.Executing(this, e);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private string ServiceUrl
         {
             get
@@ -166,6 +196,9 @@ namespace LucidOcean.MultiChain
                 return null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool HasCredentials
         {
             get

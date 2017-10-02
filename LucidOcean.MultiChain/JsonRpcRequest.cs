@@ -13,13 +13,22 @@ namespace LucidOcean.MultiChain
 {
     public class JsonRpcRequest : IJsonRpcRequest
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public Dictionary<string, object> Values { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public JsonRpcRequest()
         {
             this.Values = new Dictionary<string, object>();
         }
 
+        /// <summary>
+        /// RPC Method
+        /// </summary>
         [JsonProperty("method")]
         public string Method
         {
@@ -33,6 +42,9 @@ namespace LucidOcean.MultiChain
             }
         }
 
+        /// <summary>
+        /// RPC params
+        /// </summary>
         [JsonProperty("params")]
         public object[] Params
         {
@@ -46,6 +58,9 @@ namespace LucidOcean.MultiChain
             }
         }
 
+        /// <summary>
+        /// RPC Id 
+        /// </summary>
         [JsonProperty("id")]
         public int Id
         {
@@ -58,11 +73,19 @@ namespace LucidOcean.MultiChain
                 this.SetValue("int", value);
             }
         }
+
+
         private void SetValue(string name, object value)
         {
             this.Values[name] = value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public T GetValue<T>(string name)
         {
             if (this.Values.ContainsKey(name))
