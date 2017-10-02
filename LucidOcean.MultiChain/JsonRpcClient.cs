@@ -68,7 +68,7 @@ namespace LucidOcean.MultiChain
                 request.ContentType = "application/json-rpc";
                 request.Credentials = this.GetCredentials();
                 request.Method = "POST";
-
+                request.UserAgent = "LucidOcean.MultiChain version 0";
                 var bs = Encoding.UTF8.GetBytes(jsonOut);
 
                 using (var stream = await request.GetRequestStreamAsync())
