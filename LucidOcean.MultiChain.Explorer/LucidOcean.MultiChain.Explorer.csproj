@@ -204,7 +204,7 @@
       <Name>LucidOcean.MultiChain.Explorer.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\LucidOcean.MultiChain\LucidOcean.MultiChain.csproj">
-      <Project>{aa780ce4-3b29-4998-aaab-d66fc1bc77d0}</Project>
+      <Project>{2fcc5c6b-af3c-4bfb-a097-4697d8fdeb1a}</Project>
       <Name>LucidOcean.MultiChain</Name>
     </ProjectReference>
   </ItemGroup>
