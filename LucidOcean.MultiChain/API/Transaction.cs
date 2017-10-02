@@ -101,22 +101,57 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<RawTransactionResponse>("decoderawtransaction", 0, data);
         }
 
+        /// <summary>
+        /// This works like createrawtransaction, except it automatically selects the transaction inputs from those belonging to from-address, to cover the appropriate amounts. One or more change outputs going back to from-address will also be added to the end of the transaction.
+        /// </summary>
+        /// <param name="fromAddress"></param>
+        /// <param name="toAddresses"></param>
+        /// <param name="data"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        public Tuple<Task<JsonRpcResponse<string>>, Task<JsonRpcResponse<SignedTransactionResponse>>> CreateRawSendFromAsync(string fromAddress, IReadOnlyDictionary<string, object> toAddresses, object[] data = null, RawTransactionAction action = RawTransactionAction.Default)
+        {
+            Task<JsonRpcResponse<SignedTransactionResponse>> signedTransactionResponse = null;
+            Task<JsonRpcResponse<string>> txHex = null;
+            var metadata = data ?? Util.Utility.EmptyArray<string>();
+            var txAction = action.ToStr();
+
+            if ((action & RawTransactionAction.Sign) != 0)
+            {
+                signedTransactionResponse = _Client.ExecuteAsync<SignedTransactionResponse>("createrawsendfrom", 0, fromAddress, toAddresses, metadata, txAction);
+            }
+            else
+            {
+                txHex = _Client.ExecuteAsync<string>("createrawsendfrom", 0, fromAddress, toAddresses, metadata, txAction);
+            }
+
+            return Tuple.Create(txHex, signedTransactionResponse);
+        }
+
         // not implemented
-        public Task<JsonRpcResponse<string>> CreateRawTransactionAync()
+        public Task<JsonRpcResponse<string>> CreateRawTransactionAsync()
         {
             throw new NotImplementedException("This operation has not been implemented.");
         }
 
-        // not implemented 
-        public Task<JsonRpcResponse<string>> SendRawTransactionAsync()
+        /// <summary>
+        /// Validates the raw transaction in tx-hex and transmits it to the network, returning the txid. The raw transaction can be created using createrawtransaction, (optionally) appendrawdata and signrawtransaction, or else createrawexchange and appendrawexchange.
+        /// </summary>
+        /// <param name="txHex"></param>
+        /// <returns></returns>
+        public Task<JsonRpcResponse<string>> SendRawTransactionAsync(string txHex)
         {
-            throw new NotImplementedException("This operation has not been implemented.");
+            return _Client.ExecuteAsync<string>("sendrawtransaction", 0, txHex);
         }
 
-        // not implemented 
-        public Task<JsonRpcResponse<string>> SignRawTransactionAsync()
+        /// <summary>
+        /// Signs the raw transaction in tx-hex, often provided by a previous call to createrawtransaction or createrawsendfrom. Returns a raw hexadecimal transaction in the hex field alongside a complete field stating whether it is now completely signed. If complete, the transaction can be broadcast to the network using sendrawtransaction. If not, it can be passed to other parties for additional signing.
+        /// </summary>
+        /// <param name="txHex"></param>
+        /// <returns></returns>
+        public Task<JsonRpcResponse<SignedTransactionResponse>> SignRawTransactionAsync(string txHex)
         {
-            throw new NotImplementedException("This operation has not been implemented.");
+            return _Client.ExecuteAsync<SignedTransactionResponse>("signrawtransaction", 0, txHex);
         }
 
         public JsonRpcResponse<bool> PrioritiseTransaction(string txId, decimal priority, int feeSatoshis)
