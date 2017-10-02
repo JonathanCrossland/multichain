@@ -90,7 +90,7 @@ namespace LucidOcean.MultiChain
                 catch (Exception jsonEx)
                 {
                     JsonRpcErrorResponse errorobj = JsonConvert.DeserializeObject<JsonRpcErrorResponse>(jsonRet);
-                    throw new JsonRpcException("Deserialize failed. ", errorobj.Error, jsonEx);
+                    throw new JsonRpcException("Deserialize failed.", errorobj.Error, jsonEx);
                 }
 
                 ret.Raw = jsonRet;
@@ -106,7 +106,7 @@ namespace LucidOcean.MultiChain
             //{
             //    throw new JsonRpcException("Call failed", null, webEx);
             //}
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is JsonRpcException))
             {
                 var nEXt = ex;
                 string errormsg = null;
