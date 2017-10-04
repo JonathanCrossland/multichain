@@ -65,5 +65,21 @@ namespace LucidOcean.MultiChain.Util
 
             return result;
         }
+
+        internal static T[] EmptyArray<T>()
+        {
+#if NET45
+            return EmptyArrayHolder<T>.Array;
+#else
+            return Array.Empty<T>();
+#endif
+        }
+
+#if NET45
+        private static class EmptyArrayHolder<T>
+        {
+            internal static T[] Array = new T[0];
+        }
+#endif
     }
 }

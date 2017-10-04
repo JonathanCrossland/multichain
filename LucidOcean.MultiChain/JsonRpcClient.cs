@@ -118,7 +118,7 @@ namespace LucidOcean.MultiChain
                 catch (Exception jsonEx)
                 {
                     JsonRpcErrorResponse errorobj = JsonConvert.DeserializeObject<JsonRpcErrorResponse>(jsonRet);
-                    throw new JsonRpcException($"({errorobj.Error.Code}) {errorobj.Error.Message}" );
+                    throw new JsonRpcException($"({errorobj.Error.Code}) {errorobj.Error.Message}");
                 }
 
                 ret.Raw = jsonRet;
@@ -130,7 +130,7 @@ namespace LucidOcean.MultiChain
 
                 return ret;
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is JsonRpcException))
             {
                 var nEXt = ex;
                 string errormsg = null;
