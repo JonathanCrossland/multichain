@@ -130,7 +130,7 @@ namespace LucidOcean.MultiChain
 
                 return ret;
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is JsonRpcException))
             {
                 var nEXt = ex;
                 string errormsg = null;
