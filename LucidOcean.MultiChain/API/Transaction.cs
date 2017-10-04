@@ -70,25 +70,47 @@ namespace LucidOcean.MultiChain.API
         }
 
         /// <summary>
-        /// If verbose is 1, returns a JSON object describing transaction txid. For a MultiChain blockchain, each transaction output includes assets and permissions fields listing any assets or permission changes encoded within that output. There will also be a data field listing the content of any OP_RETURN outputs in the transaction.
+        /// Returns tx-hex of the transaction by txid. For a MultiChain blockchain, each transaction output includes assets and permissions fields listing any assets or permission changes encoded within that output. There will also be a data field listing the content of any OP_RETURN outputs in the transaction.
         /// </summary>
         /// <param name="txId"></param>
-        /// <param name="verbose"></param>
         /// <returns></returns>
-        public JsonRpcResponse<RawTransactionResponse> GetRawTransaction(string txId, bool verbose)
+        public JsonRpcResponse<string> GetRawTransaction(string txId)
         {
-            return _Client.Execute<RawTransactionResponse>("getrawtransaction", 0, txId, verbose ? 1 : 0);
+            const int verbose = 0;
+            return _Client.Execute<string>("getrawtransaction", 0, txId, verbose);
         }
 
         /// <summary>
-        /// If verbose is 1, returns a JSON object describing transaction txid. For a MultiChain blockchain, each transaction output includes assets and permissions fields listing any assets or permission changes encoded within that output. There will also be a data field listing the content of any OP_RETURN outputs in the transaction.
+        /// Returns a JSON object describing transaction txid. For a MultiChain blockchain, each transaction output includes assets and permissions fields listing any assets or permission changes encoded within that output. There will also be a data field listing the content of any OP_RETURN outputs in the transaction.
         /// </summary>
         /// <param name="txId"></param>
-        /// <param name="verbose"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<RawTransactionResponse>> GetRawTransactionAsync(string txId, bool verbose)
+        public JsonRpcResponse<RawTransactionResponse> GetRawTransactionVerbose(string txId)
         {
-            return _Client.ExecuteAsync<RawTransactionResponse>("getrawtransaction", 0, txId, verbose ? 1 : 0);
+            const int verbose = 1;
+            return _Client.Execute<RawTransactionResponse>("getrawtransaction", 0, txId, verbose);
+        }
+
+        /// <summary>
+        /// Returns tx-hex of the transaction by txid. For a MultiChain blockchain, each transaction output includes assets and permissions fields listing any assets or permission changes encoded within that output. There will also be a data field listing the content of any OP_RETURN outputs in the transaction.
+        /// </summary>
+        /// <param name="txId"></param>
+        /// <returns></returns>
+        public Task<JsonRpcResponse<string>> GetRawTransactionAsync(string txId)
+        {
+            const int verbose = 0;
+            return _Client.ExecuteAsync<string>("getrawtransaction", 0, txId, verbose);
+        }
+
+        /// <summary>
+        /// Returns a JSON object describing transaction txid. For a MultiChain blockchain, each transaction output includes assets and permissions fields listing any assets or permission changes encoded within that output. There will also be a data field listing the content of any OP_RETURN outputs in the transaction.
+        /// </summary>
+        /// <param name="txId"></param>
+        /// <returns></returns>
+        public Task<JsonRpcResponse<RawTransactionResponse>> GetRawTransactionVerboseAsync(string txId)
+        {
+            const int verbose = 1;
+            return _Client.ExecuteAsync<RawTransactionResponse>("getrawtransaction", 0, txId, verbose);
         }
 
         /// <summary>

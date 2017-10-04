@@ -46,7 +46,7 @@ namespace MultiChainTests
 
 
         [TestMethod]
-        public void GetRawTransactionAsync()
+        public void GetRawTransactionVerboseAsync()
         {
 
             JsonRpcResponse<BlockResponse> blockresponse = _Client.Block.GetBlock(58, true);
@@ -58,7 +58,7 @@ namespace MultiChainTests
             JsonRpcResponse<RawTransactionResponse> rawresponse = null;
             Task.Run(async () =>
             {
-                rawresponse = await _Client.Transaction.GetRawTransactionAsync(txId, true);
+                rawresponse = await _Client.Transaction.GetRawTransactionVerboseAsync(txId);
             }).GetAwaiter().GetResult();
 
             ResponseLogger<RawTransactionResponse>.Log(rawresponse);
