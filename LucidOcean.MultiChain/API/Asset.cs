@@ -66,6 +66,8 @@ namespace LucidOcean.MultiChain.API
                 return _Client.ExecuteAsync<string>("issue", 0, issueAddress, assetName, quantity, units, nativeAmount, metaData);
         }
 
+      
+
         /// <summary>
         /// This works like issue, but with control over the from-address used to issue the asset. It is useful if the node has multiple addresses with issue permissions.
         /// </summary>

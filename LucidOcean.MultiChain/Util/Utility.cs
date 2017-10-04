@@ -60,7 +60,6 @@ namespace LucidOcean.MultiChain.Util
             {                
                 string temp = File.ReadAllText(path);
                 string mime = @"application/octet-stream";
-                // "\x00".$filename."\x00".$mimetype."\x00".$content;
                 result = $"\x00{Path.GetFileName(path)}\x00{mime}\x00{temp}";
             }
 

@@ -9,9 +9,9 @@
     <PackageIconUrl>http://www.lucidocean.com/content/icon.png</PackageIconUrl>
     <PackageReleaseNotes>None</PackageReleaseNotes>
     <PackageTags>MultiChain BlockChain API Wrapper</PackageTags>
-    <Version>0.0.0.5</Version>
-    <AssemblyVersion>0.0.0.5</AssemblyVersion>
-    <FileVersion>0.0.0.5</FileVersion>
+    <Version>0.0.0.6</Version>
+    <AssemblyVersion>0.0.0.6</AssemblyVersion>
+    <FileVersion>0.0.0.6</FileVersion>
     <Copyright>Copyright © 2017, Lucid Ocean PTY (Ltd)</Copyright>
     <Company>Lucid Ocean</Company>
     <Product>Lucid Ocean MultiChain Client</Product>
@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
-    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+    <DefineConstants>DEBUG;NETCORE;NETSTANDARD;NETSTANDARD2_0;NETSTANDARD2_0;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
