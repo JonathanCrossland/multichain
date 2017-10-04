@@ -16,15 +16,15 @@ namespace LucidOcean.MultiChain.Response
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        /// <summary>
-        /// An asset (or stream) ref contains three pieces of information relating to the transaction which created that asset or stream:
-        //The number of the block containing the transaction.
-        //The byte offset within that block of the transaction.
-        //The first two bytes of the transaction's txid converted to a unsigned integer with no thousands separator. The first byte of the txid is less significant, so the second is multiplied by 256 to create the integer.
-        /// </summary>
+        // <summary>
+        // An asset (or stream) ref contains three pieces of information relating to the transaction which created that asset or stream:
+        // The number of the block containing the transaction.
+        // The byte offset within that block of the transaction.
+        // The first two bytes of the transaction's txid converted to a unsigned integer with no thousands separator. The first byte of the txid is less significant, so the second is multiplied by 256 to create the integer.
+        // </summary>
         [JsonProperty("assetref")]
         public string AssetRef { get; set; }
-
+      
         [JsonProperty("qty")]
         public decimal Qty { get; set; }
 

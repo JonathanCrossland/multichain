@@ -1,8 +1,6 @@
 ﻿@model LucidOcean.MultiChain.Explorer.AddressDetail
 
-
 @{
-
     ViewBag.Title = "Lucid Ocean MultiChain Explorer : " + Model.Address;
     string backUrl = "~/BlockChain/Explorer/";
     if (Request.UrlReferrer != null)
@@ -10,7 +8,6 @@
         backUrl = Request.UrlReferrer.ToString();
     }
 }
-
 
 <section>
     <div class="container">

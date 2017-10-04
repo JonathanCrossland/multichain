@@ -241,9 +241,9 @@ namespace LucidOcean.MultiChain.API
         /// Returns a list of all permissions which have been explicitly granted to addresses. To list information about specific global permissions, set permissions to one of connect, send, receive, issue, mine, activate, admin, or a comma-separated list thereof. Omit or pass * or all to list all global permissions. For per-asset or per-stream permissions, use the form entity.issue, entity.write,admin or entity.* where entity is an asset or stream name, ref or creation txid. Provide a comma-delimited list in addresses to list the permissions for particular addresses or * for all addresses. If verbose is true, the admins output field lists the administrator/s who assigned the corresponding permission, and the pending field lists permission changes which are waiting to reach consensus.
         /// </summary>
         /// <param name="permissions"></param>
-        /// <param name="address"></param>
+        /// <param name="address">default to '*' to get all addresses for a particular permission</param>
         /// <returns></returns>
-        public JsonRpcResponse<List<ListPermissionsResponse>> ListPermissions(BlockChainPermission permissions,string address)
+        public JsonRpcResponse<List<ListPermissionsResponse>> ListPermissions(BlockChainPermission permissions,string address = "*")
         {
             var permissionsAsString = this.FormatPermissionsString(permissions);
             return _Client.Execute<List<ListPermissionsResponse>>("listpermissions", 0, permissionsAsString, address);
