@@ -25,7 +25,7 @@ namespace LucidOcean.MultiChain.Explorer
             if (string.IsNullOrEmpty(txid)) return null;
             try
             {
-                JsonRpcResponse<RawTransactionResponse> obj = _client.Transaction.GetRawTransaction(txid, true);
+                JsonRpcResponse<RawTransactionResponse> obj = _client.Transaction.GetRawTransactionVerbose(txid);
                 return obj.Result;
             }
             catch (Exception)
