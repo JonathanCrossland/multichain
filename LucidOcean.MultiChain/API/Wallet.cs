@@ -200,24 +200,34 @@ namespace LucidOcean.MultiChain.API
         /// Returns the P2SH address.
         /// </summary>
         /// <param name="numRequired"></param>
-        /// <param name="addresses"></param>
+        /// <param name="keys"></param>
         /// <param name="account"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> AddMultiSigAddress(int numRequired, IEnumerable<string> addresses, string account = null)
+        public JsonRpcResponse<string> AddMultiSigAddress(int numRequired, IEnumerable<string> keys, string account = null)
         {
-            return _Client.Execute<string>("addmultisigaddress", 0, numRequired, addresses, account ?? string.Empty);
+            if (account == null)
+            {
+                return _Client.Execute<string>("addmultisigaddress", 0, numRequired, keys);
+            }
+
+            return _Client.Execute<string>("addmultisigaddress", 0, numRequired, keys, account);
         }
         /// <summary>
         /// Creates a pay-to-scripthash (P2SH) multisig address and adds it to the wallet. Funds sent to this address can only be spent by transactions signed by nrequired of the specified keys. Each key can be a full public key, or an address if the corresponding key is in the node’s wallet. (Public keys for a wallet’s addresses can be obtained using the getaddresses call with verbose=true.) 
         /// Returns the P2SH address.
         /// </summary>
         /// <param name="numRequired"></param>
-        /// <param name="addresses"></param>
+        /// <param name="keys"></param>
         /// <param name="account"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<string>> AddMultiSigAddressAsync(int numRequired, IEnumerable<string> addresses, string account = null)
+        public Task<JsonRpcResponse<string>> AddMultiSigAddressAsync(int numRequired, IEnumerable<string> keys, string account = null)
         {
-            return _Client.ExecuteAsync<string>("addmultisigaddress", 0, numRequired, addresses, account ?? string.Empty);
+            if (account == null)
+            {
+                return _Client.ExecuteAsync<string>("addmultisigaddress", 0, numRequired, keys);
+            }
+
+            return _Client.ExecuteAsync<string>("addmultisigaddress", 0, numRequired, keys, account);
         }
 
         /// <summary>
