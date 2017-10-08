@@ -18,6 +18,8 @@ namespace LucidOcean.MultiChain
         Receive = 4,
         Issue = 8,
         Mine = 16,
-        Admin = 32
+        Admin = 32,
+        Activate = 64,
+        Write = 128,
     }
 }

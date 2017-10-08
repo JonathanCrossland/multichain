@@ -380,6 +380,8 @@ namespace LucidOcean.MultiChain.API
             AppendPermission(BlockChainPermission.Issue, "issue");
             AppendPermission(BlockChainPermission.Mine, "mine");
             AppendPermission(BlockChainPermission.Admin, "admin");
+            AppendPermission(BlockChainPermission.Activate, "activate");
+            AppendPermission(BlockChainPermission.Write, "write");
 
             if (entity != null)
             {
