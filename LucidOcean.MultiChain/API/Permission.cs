@@ -18,7 +18,7 @@ namespace LucidOcean.MultiChain.API
     /// <summary>
     /// Permission checked against https://www.multichain.com/developers/json-rpc-api/
     /// </summary>
-    public class Permission 
+    public class Permission
     {
         JsonRpcClient _Client = null;
 
@@ -32,16 +32,17 @@ namespace LucidOcean.MultiChain.API
         /// </summary>
         /// <param name="address"></param>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="comment"></param>
         /// <param name="commentTo"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<string>> GrantAsync(string address, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public Task<JsonRpcResponse<string>> GrantAsync(string address, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             List<string> addresses = new List<string>() { address };
-            return GrantAsync(addresses, permissions, nativeAmount, comment, commentTo, startBlock, endBlock);
+            return GrantAsync(addresses, permissions, entity, nativeAmount, comment, commentTo, startBlock, endBlock);
         }
 
         /// <summary>
@@ -66,15 +67,16 @@ namespace LucidOcean.MultiChain.API
         /// </summary>
         /// <param name="addresses"></param>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="comment"></param>
         /// <param name="commentTo"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<string>> GrantAsync(IEnumerable<string> addresses, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public Task<JsonRpcResponse<string>> GrantAsync(IEnumerable<string> addresses, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return GrantAsync(addresses, permissionsAsString, nativeAmount, comment, commentTo, startBlock, endBlock);
         }
 
@@ -100,16 +102,17 @@ namespace LucidOcean.MultiChain.API
         /// </summary>
         /// <param name="address"></param>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="comment"></param>
         /// <param name="commentTo"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> Grant(string address, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public JsonRpcResponse<string> Grant(string address, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             List<string> addresses = new List<string>() { address };
-            return Grant(addresses, permissions, nativeAmount, comment, commentTo, startBlock, endBlock);
+            return Grant(addresses, permissions, entity, nativeAmount, comment, commentTo, startBlock, endBlock);
         }
 
         /// <summary>
@@ -134,15 +137,16 @@ namespace LucidOcean.MultiChain.API
         /// </summary>
         /// <param name="addresses"></param>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="comment"></param>
         /// <param name="commentTo"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> Grant(IEnumerable<string> addresses, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public JsonRpcResponse<string> Grant(IEnumerable<string> addresses, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return Grant(addresses, permissionsAsString, nativeAmount, comment, commentTo, startBlock, endBlock);
         }
 
@@ -163,23 +167,23 @@ namespace LucidOcean.MultiChain.API
             return _Client.Execute<string>("grant", 0, stringifiedAddresses, permissions);
         }
 
-
         /// <summary>
         /// This works like grant, but with control over the from-address used to grant the permissions. It is useful if the node has multiple addresses with administrator permissions.
         /// </summary>
         /// <param name="fromAddress"></param>
         /// <param name="toAddresses"></param>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="comment"></param>
         /// <param name="commentTo"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<string>> GrantFromAsync(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public Task<JsonRpcResponse<string>> GrantFromAsync(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             var stringifiedAddresses = Util.Utility.StringifyValues(toAddresses);
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return _Client.ExecuteAsync<string>("grantfrom", 0, fromAddress, stringifiedAddresses, permissionsAsString);
         }
 
@@ -189,16 +193,17 @@ namespace LucidOcean.MultiChain.API
         /// <param name="fromAddress"></param>
         /// <param name="toAddresses"></param>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="comment"></param>
         /// <param name="commentTo"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> GrantFrom(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public JsonRpcResponse<string> GrantFrom(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             var stringifiedAddresses = Util.Utility.StringifyValues(toAddresses);
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return _Client.Execute<string>("grantfrom", 0, fromAddress, stringifiedAddresses, permissionsAsString);
         }
 
@@ -208,14 +213,15 @@ namespace LucidOcean.MultiChain.API
         /// <param name="toAddresses"></param>
         /// <param name="permissions"></param>
         /// <param name="metaData"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> GrantWithData(IEnumerable<string> toAddresses, BlockChainPermission  permissions, [Optional]object metaData, decimal nativeAmount = 0M, int startBlock = 0, int endBlock = 0)
+        public JsonRpcResponse<string> GrantWithData(IEnumerable<string> toAddresses, BlockChainPermission permissions, [Optional]object metaData, string entity = null, decimal nativeAmount = 0M, int startBlock = 0, int endBlock = 0)
         {
             var stringifiedAddresses = Util.Utility.StringifyValues(toAddresses);
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return _Client.Execute<string>("grantwithdata", 0, toAddresses, stringifiedAddresses, permissionsAsString);
         }
 
@@ -226,14 +232,15 @@ namespace LucidOcean.MultiChain.API
         /// <param name="toAddresses"></param>
         /// <param name="permissions"></param>
         /// <param name="metaData"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> GrantWithDataFrom(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, [Optional]object metaData, decimal nativeAmount = 0M, int startBlock = 0, int endBlock = 0)
+        public JsonRpcResponse<string> GrantWithDataFrom(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, [Optional]object metaData, string entity = null, decimal nativeAmount = 0M, int startBlock = 0, int endBlock = 0)
         {
             var stringifiedAddresses = Util.Utility.StringifyValues(toAddresses);
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return _Client.Execute<string>("grantwithdatafrom", 0, fromAddress, toAddresses, stringifiedAddresses, permissionsAsString);
         }
 
@@ -241,11 +248,12 @@ namespace LucidOcean.MultiChain.API
         /// Returns a list of all permissions which have been explicitly granted to addresses. To list information about specific global permissions, set permissions to one of connect, send, receive, issue, mine, activate, admin, or a comma-separated list thereof. Omit or pass * or all to list all global permissions. For per-asset or per-stream permissions, use the form entity.issue, entity.write,admin or entity.* where entity is an asset or stream name, ref or creation txid. Provide a comma-delimited list in addresses to list the permissions for particular addresses or * for all addresses. If verbose is true, the admins output field lists the administrator/s who assigned the corresponding permission, and the pending field lists permission changes which are waiting to reach consensus.
         /// </summary>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="address">default to '*' to get all addresses for a particular permission</param>
         /// <returns></returns>
-        public JsonRpcResponse<List<ListPermissionsResponse>> ListPermissions(BlockChainPermission permissions,string address = "*")
+        public JsonRpcResponse<List<ListPermissionsResponse>> ListPermissions(BlockChainPermission permissions, string entity = null, string address = "*")
         {
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return _Client.Execute<List<ListPermissionsResponse>>("listpermissions", 0, permissionsAsString, address);
         }
 
@@ -273,11 +281,12 @@ namespace LucidOcean.MultiChain.API
         /// Returns a list of all permissions which have been explicitly granted to addresses. To list information about specific global permissions, set permissions to one of connect, send, receive, issue, mine, activate, admin, or a comma-separated list thereof. Omit or pass * or all to list all global permissions. For per-asset or per-stream permissions, use the form entity.issue, entity.write,admin or entity.* where entity is an asset or stream name, ref or creation txid. Provide a comma-delimited list in addresses to list the permissions for particular addresses or * for all addresses. If verbose is true, the admins output field lists the administrator/s who assigned the corresponding permission, and the pending field lists permission changes which are waiting to reach consensus.
         /// </summary>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="address"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<ListPermissionsResponse>>> ListPermissionsAsync(BlockChainPermission permissions, string address)
+        public Task<JsonRpcResponse<List<ListPermissionsResponse>>> ListPermissionsAsync(BlockChainPermission permissions, string entity = null, string address = "*")
         {
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return _Client.ExecuteAsync<List<ListPermissionsResponse>>("listpermissions", 0, permissionsAsString, address);
         }
 
@@ -286,16 +295,17 @@ namespace LucidOcean.MultiChain.API
         /// </summary>
         /// <param name="addresses"></param>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="comment"></param>
         /// <param name="commentTo"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> Revoke(IEnumerable<string> addresses, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public JsonRpcResponse<string> Revoke(IEnumerable<string> addresses, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             var stringifiedAddresses = Util.Utility.StringifyValues(addresses);
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return _Client.Execute<string>("revoke", 0, stringifiedAddresses, permissionsAsString);
         }
 
@@ -304,16 +314,17 @@ namespace LucidOcean.MultiChain.API
         /// </summary>
         /// <param name="addresses"></param>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="comment"></param>
         /// <param name="commentTo"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<string>> RevokeAsync(IEnumerable<string> addresses, BlockChainPermission permissions, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public Task<JsonRpcResponse<string>> RevokeAsync(IEnumerable<string> addresses, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             var stringifiedAddresses = Util.Utility.StringifyValues(addresses);
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return _Client.ExecuteAsync<string>("revoke", 0, stringifiedAddresses, permissionsAsString);
         }
 
@@ -323,17 +334,18 @@ namespace LucidOcean.MultiChain.API
         /// <param name="fromAddress"></param>
         /// <param name="toAddresses"></param>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="comment"></param>
         /// <param name="commentTo"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> RevokeFrom(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, decimal nativeAmount = 0M,
+        public JsonRpcResponse<string> RevokeFrom(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M,
            string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             var stringifiedAddresses = Util.Utility.StringifyValues(toAddresses);
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return _Client.Execute<string>("revokefrom", 0, fromAddress, stringifiedAddresses, permissionsAsString);
         }
 
@@ -343,52 +355,53 @@ namespace LucidOcean.MultiChain.API
         /// <param name="fromAddress"></param>
         /// <param name="toAddresses"></param>
         /// <param name="permissions"></param>
+        /// <param name="entity"></param>
         /// <param name="nativeAmount"></param>
         /// <param name="comment"></param>
         /// <param name="commentTo"></param>
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<string>> RevokeFromAsync(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, decimal nativeAmount = 0M,
+        public Task<JsonRpcResponse<string>> RevokeFromAsync(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M,
             string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             var stringifiedAddresses = Util.Utility.StringifyValues(toAddresses);
-            var permissionsAsString = this.FormatPermissionsString(permissions);
+            var permissionsAsString = this.FormatPermissionsString(permissions, entity);
             return _Client.ExecuteAsync<string>("revokefrom", 0, fromAddress, stringifiedAddresses, permissionsAsString);
         }
-        
-        private string FormatPermissionsString(BlockChainPermission permissions)
-        {
-            StringBuilder builder = new StringBuilder();
-            if ((int)(permissions & BlockChainPermission.Connect) != 0) builder.Append("connect");
 
-            if ((int)(permissions & BlockChainPermission.Send) != 0)
+        private string FormatPermissionsString(BlockChainPermission permissions, string entity)
+        {
+            var builder = new StringBuilder();
+
+            AppendPermission(BlockChainPermission.Connect, "connect");
+            AppendPermission(BlockChainPermission.Send, "send");
+            AppendPermission(BlockChainPermission.Receive, "receive");
+            AppendPermission(BlockChainPermission.Issue, "issue");
+            AppendPermission(BlockChainPermission.Mine, "mine");
+            AppendPermission(BlockChainPermission.Admin, "admin");
+            AppendPermission(BlockChainPermission.Activate, "activate");
+            AppendPermission(BlockChainPermission.Write, "write");
+
+            if (entity != null)
             {
-                if (builder.Length > 0) builder.Append(",");
-                builder.Append("send");
-            }
-            if ((int)(permissions & BlockChainPermission.Receive) != 0)
-            {
-                if (builder.Length > 0) builder.Append(",");
-                builder.Append("receive");
-            }
-            if ((int)(permissions & BlockChainPermission.Issue) != 0)
-            {
-                if (builder.Length > 0) builder.Append(",");
-                builder.Append("issue");
-            }
-            if ((int)(permissions & BlockChainPermission.Mine) != 0)
-            {
-                if (builder.Length > 0) builder.Append(",");
-                builder.Append("mine");
-            }
-            if ((int)(permissions & BlockChainPermission.Admin) != 0)
-            {
-                if (builder.Length > 0) builder.Append(",");
-                builder.Append("admin");
+                builder.Insert(0, $"{entity}.");
             }
 
             return builder.ToString();
+
+            void AppendPermission(BlockChainPermission permissionToChek, string permissionToChekStr)
+            {
+                if ((permissions & permissionToChek) != 0)
+                {
+                    if (builder.Length > 0)
+                    {
+                        builder.Append(',');
+                    }
+
+                    builder.Append(permissionToChekStr);
+                }
+            }
         }
     }
 }

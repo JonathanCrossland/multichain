@@ -18,14 +18,7 @@ namespace LucidOcean.MultiChain.Util
     {
         public static string StringifyValues(IEnumerable<string> values)
         {
-            StringBuilder builder = new StringBuilder();
-            foreach (var address in values)
-            {
-                if (builder.Length > 0)
-                    builder.Append(",");
-                builder.Append(address);
-            }
-            return builder.ToString();
+            return string.Join(",", values);
         }
 
         public static string FormatHex(byte[] bs)
