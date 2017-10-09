@@ -7,11 +7,15 @@
     <PackageLicenseUrl>http://www.lucidocean.com/wbl-license.html</PackageLicenseUrl>
     <PackageProjectUrl>http://www.lucidocean.com/wbl-license.html</PackageProjectUrl>
     <PackageIconUrl>http://www.lucidocean.com/content/icon.png</PackageIconUrl>
-    <PackageReleaseNotes>None</PackageReleaseNotes>
+    <PackageReleaseNotes>Note: Breaking Namespace usings. You will need to add various usings to find EventArgs&lt;T&gt;, JsonRpcClient and soem other classes as they have moved to LucidOcean.MultioChain.Util or Enums. in short, Refactored jsonrpcclient and other classes that were on the root namespace to a sub namespace to make the entry point to MultChainClient more developer friendly.
+Support entity name for permissions management.
+Extract verbose version of getrawtransaction command into separate method to avoid deserialization error upon verbose flag is false
+Added sync versions of EstimatePriority GetBalance GetUnconfirmedBalance VerifyChain SetTxFee GetBlockTemplate SubmitBlock DecodeScript.
+Added a few more summary comments to calls.</PackageReleaseNotes>
     <PackageTags>MultiChain BlockChain API Wrapper</PackageTags>
-    <Version>0.0.0.6</Version>
-    <AssemblyVersion>0.0.0.6</AssemblyVersion>
-    <FileVersion>0.0.0.6</FileVersion>
+    <Version>0.0.0.7</Version>
+    <AssemblyVersion>0.0.0.7</AssemblyVersion>
+    <FileVersion>0.0.0.7</FileVersion>
     <Copyright>Copyright © 2017, Lucid Ocean PTY (Ltd)</Copyright>
     <Company>Lucid Ocean</Company>
     <Product>Lucid Ocean MultiChain Client</Product>
