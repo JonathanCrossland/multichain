@@ -6,16 +6,12 @@ License: Dual MIT / Lucid Ocean Wave Business License v1.0
 Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
-using LucidOcean.MultiChain.Util;
-
-namespace LucidOcean.MultiChain.Response
+namespace LucidOcean.MultiChain.API.Enums
 {
-    public class CreateRawTransactionResponse
+    public enum AddNodeParam
     {
-        public JsonRpcResponse<string> TxId { get; internal set; }
-
-        public JsonRpcResponse<string> TxHex { get; internal set; }
-
-        public JsonRpcResponse<SignedTransactionResponse> SignedTransaction { get; internal set; }
+        Add = 0,
+        Remove = 1,
+        OneTry = 2
     }
 }

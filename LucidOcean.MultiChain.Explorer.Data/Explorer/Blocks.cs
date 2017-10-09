@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using LucidOcean.MultiChain.Response;
 using LucidOcean.MultiChain.Explorer.Data;
+using LucidOcean.MultiChain.Util;
 
 namespace LucidOcean.MultiChain.Explorer
 {

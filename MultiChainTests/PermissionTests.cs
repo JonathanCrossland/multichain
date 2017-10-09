@@ -7,7 +7,9 @@ Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions an
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
 using LucidOcean.MultiChain;
+using LucidOcean.MultiChain.API.Enums;
 using LucidOcean.MultiChain.Response;
+using LucidOcean.MultiChain.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Threading.Tasks;

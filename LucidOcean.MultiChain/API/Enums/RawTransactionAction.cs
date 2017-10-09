@@ -8,16 +8,14 @@ The full license will also be found on the root of the main source-code director
 =====================================================================*/
 using System;
 
-namespace LucidOcean.MultiChain
+namespace LucidOcean.MultiChain.API.Enums
 {
-    public class EventArgs<T> : EventArgs
+    [Flags]
+    public enum RawTransactionAction
     {
-        public EventArgs() {}
-        public EventArgs(T item)
-        {
-            this.Item = item;
-        }
-
-        public T Item { get; set; }
+        Default = 0,
+        Lock = 1,
+        Sign = 2,
+        Send = 4,
     }
 }

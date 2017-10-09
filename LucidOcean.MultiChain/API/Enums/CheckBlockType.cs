@@ -6,12 +6,15 @@ License: Dual MIT / Lucid Ocean Wave Business License v1.0
 Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
-namespace LucidOcean.MultiChain
+
+namespace LucidOcean.MultiChain.API.Enums
 {
-    public enum AddNodeParam
+    public enum CheckBlockTypeParam
     {
-        Add = 0,
-        Remove = 1,
-        OneTry = 2
+        ReadFromDisk = 0,
+        EnsureEachBlockIsValid = 1,
+        CheckCanReadUndoFiles = 2,
+        TestEachBlockUndo = 3,
+        ReconnectUndoneBlocks = 4
     }
 }

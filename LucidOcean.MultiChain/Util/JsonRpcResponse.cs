@@ -9,7 +9,7 @@ The full license will also be found on the root of the main source-code director
 using Newtonsoft.Json;
 using System;
 
-namespace LucidOcean.MultiChain
+namespace LucidOcean.MultiChain.Util
 {
     public class JsonRpcResponse<T> : IJsonRpcResponse<T>
     {

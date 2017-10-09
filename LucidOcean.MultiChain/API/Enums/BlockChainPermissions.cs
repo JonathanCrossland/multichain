@@ -6,12 +6,20 @@ License: Dual MIT / Lucid Ocean Wave Business License v1.0
 Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
-namespace LucidOcean.MultiChain
+using System;
+
+namespace LucidOcean.MultiChain.API.Enums
 {
-    public interface IJsonRpcResponse<T>
+    [Flags]
+    public enum BlockChainPermission
     {
-        string Error { get; set; }
-        int? Id { get; set; }
-        T Result { get; set; }
+        Connect = 1,
+        Send = 2,
+        Receive = 4,
+        Issue = 8,
+        Mine = 16,
+        Admin = 32,
+        Activate = 64,
+        Write = 128,
     }
 }

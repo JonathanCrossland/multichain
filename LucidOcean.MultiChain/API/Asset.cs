@@ -7,6 +7,7 @@ Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions an
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
 using LucidOcean.MultiChain.Response;
+using LucidOcean.MultiChain.Util;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -312,7 +313,7 @@ namespace LucidOcean.MultiChain.API
         /// <param name="comment"></param>
         /// <param name="commentTo"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> Send(string toAddress, string assetName, int amount, string comment = null, string commentTo = null)
+        public Util.JsonRpcResponse<string> Send(string toAddress, string assetName, int amount, string comment = null, string commentTo = null)
         {
             var asset = new Dictionary<string, object>();
             asset[assetName] = amount;

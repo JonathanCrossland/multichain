@@ -7,9 +7,14 @@ Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions an
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
 using LucidOcean.MultiChain.API;
+using LucidOcean.MultiChain.Util;
 
 namespace LucidOcean.MultiChain
 {
+
+    /// <summary>
+    /// This is the main client wrapper with API calls.
+    /// </summary>
     public class MultiChainClient : JsonRpcClient {
 
         public MultiChainClient(MultiChainConnection connection) : base(connection) { Init(); }
@@ -55,7 +60,7 @@ namespace LucidOcean.MultiChain
         /// <summary>
         /// Utility calls
         /// </summary>
-        public Utility Utility { get; internal set; }
+        public API.Utility Utility { get; internal set; }
         /// <summary>
         /// Calls relating to Wallet Addresses
         /// </summary>

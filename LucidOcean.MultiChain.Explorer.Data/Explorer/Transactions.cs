@@ -8,6 +8,7 @@ The full license will also be found on the root of the main source-code director
 =====================================================================*/
 using LucidOcean.MultiChain.Explorer.Data;
 using LucidOcean.MultiChain.Response;
+using LucidOcean.MultiChain.Util;
 using System;
 
 namespace LucidOcean.MultiChain.Explorer

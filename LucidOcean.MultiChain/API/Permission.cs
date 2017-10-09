@@ -6,7 +6,9 @@ License: Dual MIT / Lucid Ocean Wave Business License v1.0
 Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
+using LucidOcean.MultiChain.API.Enums;
 using LucidOcean.MultiChain.Response;
+using LucidOcean.MultiChain.Util;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -39,7 +41,7 @@ namespace LucidOcean.MultiChain.API
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<string>> GrantAsync(string address, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public Task<JsonRpcResponse<string>> GrantAsync(string address, Enums.BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             List<string> addresses = new List<string>() { address };
             return GrantAsync(addresses, permissions, entity, nativeAmount, comment, commentTo, startBlock, endBlock);
@@ -109,7 +111,7 @@ namespace LucidOcean.MultiChain.API
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> Grant(string address, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public JsonRpcResponse<string> Grant(string address, Enums.BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             List<string> addresses = new List<string>() { address };
             return Grant(addresses, permissions, entity, nativeAmount, comment, commentTo, startBlock, endBlock);
@@ -180,7 +182,7 @@ namespace LucidOcean.MultiChain.API
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<string>> GrantFromAsync(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
+        public Task<JsonRpcResponse<string>> GrantFromAsync(string fromAddress, IEnumerable<string> toAddresses, Enums.BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M, string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             var stringifiedAddresses = Util.Utility.StringifyValues(toAddresses);
             var permissionsAsString = this.FormatPermissionsString(permissions, entity);
@@ -341,7 +343,7 @@ namespace LucidOcean.MultiChain.API
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> RevokeFrom(string fromAddress, IEnumerable<string> toAddresses, BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M,
+        public JsonRpcResponse<string> RevokeFrom(string fromAddress, IEnumerable<string> toAddresses, Enums.BlockChainPermission permissions, string entity = null, decimal nativeAmount = 0M,
            string comment = null, string commentTo = null, int startBlock = 0, int endBlock = 0)
         {
             var stringifiedAddresses = Util.Utility.StringifyValues(toAddresses);
@@ -390,7 +392,7 @@ namespace LucidOcean.MultiChain.API
 
             return builder.ToString();
 
-            void AppendPermission(BlockChainPermission permissionToChek, string permissionToChekStr)
+            void AppendPermission(Enums.BlockChainPermission permissionToChek, string permissionToChekStr)
             {
                 if ((permissions & permissionToChek) != 0)
                 {

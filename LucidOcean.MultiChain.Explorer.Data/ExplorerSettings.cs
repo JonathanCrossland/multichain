@@ -16,6 +16,7 @@ namespace LucidOcean.MultiChain.Explorer.Data
 
         static ExplorerSettings()
         {
+
             Connection = new MultiChainConnection()
             {
                 Hostname = "54.154.196.239",

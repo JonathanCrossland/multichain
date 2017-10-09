@@ -8,6 +8,7 @@ The full license will also be found on the root of the main source-code director
 =====================================================================*/
 using LucidOcean.MultiChain.Exceptions;
 using LucidOcean.MultiChain.Response;
+using LucidOcean.MultiChain.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MultiChainTests;
 using System.Collections.Generic;

@@ -6,12 +6,18 @@ License: Dual MIT / Lucid Ocean Wave Business License v1.0
 Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
-namespace LucidOcean.MultiChain
+using System;
+
+namespace LucidOcean.MultiChain.Util
 {
-    public interface IJsonRpcRequest
+    public class EventArgs<T> : EventArgs
     {
-        int Id { get; set; }
-        string Method { get; set; }
-        object[] Params { get; set; }
+        public EventArgs() {}
+        public EventArgs(T item)
+        {
+            this.Item = item;
+        }
+
+        public T Item { get; set; }
     }
 }

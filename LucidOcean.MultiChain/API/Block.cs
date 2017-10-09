@@ -6,12 +6,17 @@ License: Dual MIT / Lucid Ocean Wave Business License v1.0
 Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
+using LucidOcean.MultiChain.API.Enums;
 using LucidOcean.MultiChain.Response;
+using LucidOcean.MultiChain.Util;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LucidOcean.MultiChain.API
 {
+    /// <summary>
+    /// API commands relating to Blocks
+    /// </summary>
     public class Block
     {
         JsonRpcClient _Client = null;
@@ -200,6 +205,7 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<TxOutSetInfoResponse>("gettxoutsetinfo", 0);
         }
+
         [System.Obsolete]
         public Task<JsonRpcResponse<ListSinceLastBlockResponse>> ListSinceBlockAsync(string hash, int confirmations = 1, bool watchOnly = false)
         {
@@ -227,40 +233,119 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<NetTotalsResponse>("getnettotals", 0);
         }
 
+        public JsonRpcResponse<NetTotalsResponse> GetNetTotals()
+        {
+            return _Client.Execute<NetTotalsResponse>("getnettotals", 0);
+        }
+
         public Task<JsonRpcResponse<decimal>> GetUnconfirmedBalanceAsync()
         {
             return _Client.ExecuteAsync<decimal>("getunconfirmedbalance", 0);
         }
-        
+
+        public JsonRpcResponse<decimal> GetUnconfirmedBalance()
+        {
+            return _Client.Execute<decimal>("getunconfirmedbalance", 0);
+        }
+
         public Task<JsonRpcResponse<decimal>> EstimatePriorityAsync(int numBlocks)
         {
             return _Client.ExecuteAsync<decimal>("estimatepriority", 0, numBlocks);
         }
-        
+        public JsonRpcResponse<decimal> EstimatePriority(int numBlocks)
+        {
+            return _Client.Execute<decimal>("estimatepriority", 0, numBlocks);
+        }
+
+        /// <summary>
+        /// The getbalance RPC gets the balance in decimal native currency across all accounts or for a particular account.
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="confirmations"></param>
+        /// <param name="watchOnly"></param>
+        /// <returns></returns>
         public Task<JsonRpcResponse<decimal>> GetBalanceAsync(string account = null, int confirmations = 1, bool watchOnly = false)
         {
             return _Client.ExecuteAsync<decimal>("getbalance", 0, account ?? "*", confirmations, watchOnly);
         }
+        /// <summary>
+        /// The getbalance RPC gets the balance in decimal native currency across all accounts or for a particular account.
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="confirmations"></param>
+        /// <param name="watchOnly"></param>
+        /// <returns></returns>
+        public JsonRpcResponse<decimal> GetBalance(string account = null, int confirmations = 1, bool watchOnly = false)
+        {
+            return _Client.Execute<decimal>("getbalance", 0, account ?? "*", confirmations, watchOnly);
+        }
 
+        /// <summary>
+        /// The verifychain RPC verifies each entry in the local block chain database.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="numBlocks"></param>
+        /// <returns></returns>
         public Task<JsonRpcResponse<bool>> VerifyChainAsync(CheckBlockTypeParam type = CheckBlockTypeParam.TestEachBlockUndo, int numBlocks = 0)
         {
             return _Client.ExecuteAsync<bool>("verifychain", 0, (int)type, numBlocks);
         }
 
+        /// <summary>
+        /// The verifychain RPC verifies each entry in the local block chain database.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="numBlocks"></param>
+        /// <returns></returns>
+        public JsonRpcResponse<bool> VerifyChain(CheckBlockTypeParam type = CheckBlockTypeParam.TestEachBlockUndo, int numBlocks = 0)
+        {
+            return _Client.Execute<bool>("verifychain", 0, (int)type, numBlocks);
+        }
 
-
-
-
+        /// <summary>
+        /// The settxfee RPC sets the transaction fee per kilobyte paid by transactions created by this wallet.
+        /// </summary>
+        /// <param name="fee"></param>
+        /// <returns></returns>
         public Task<JsonRpcResponse<bool>> SetTxFeeAsync(decimal fee)
         {
             return _Client.ExecuteAsync<bool>("settxfee", 0, fee);
         }
-        
+
+        /// <summary>
+        /// The settxfee RPC sets the transaction fee per kilobyte paid by transactions created by this wallet.
+        /// </summary>
+        /// <param name="fee"></param>
+        /// <returns></returns>
+        public JsonRpcResponse<bool> SetTxFee(decimal fee)
+        {
+            return _Client.Execute<bool>("settxfee", 0, fee);
+        }
+
+        /// <summary>
+        /// The getblocktemplate RPC gets a block template or proposal for use with mining software.
+        /// </summary>
+        /// <returns></returns>
         public Task<JsonRpcResponse<object>> GetBlockTemplateAsync()
         {
             return _Client.ExecuteAsync<object>("getblocktemplate", 0);
         }
 
+        /// <summary>
+        /// The getblocktemplate RPC gets a block template or proposal for use with mining software.
+        /// </summary>
+        /// <returns></returns>
+        public JsonRpcResponse<object> GetBlockTemplate()
+        {
+            return _Client.Execute<object>("getblocktemplate", 0);
+        }
+
+        /// <summary>
+        /// The submitblock RPC accepts a block, verifies it is a valid addition to the block chain, and broadcasts it to the network. Extra parameters are ignored by Bitcoin Core but may be used by mining pools or other programs.
+        /// </summary>
+        /// <param name="bs"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public Task<JsonRpcResponse<string>> SubmitBlockAsync(byte[] bs, object args = null)
         {
             if (args != null)
@@ -269,9 +354,38 @@ namespace LucidOcean.MultiChain.API
                 return _Client.ExecuteAsync<string>("submitblock", 0, bs);
         }
 
+        /// <summary>
+        /// The submitblock RPC accepts a block, verifies it is a valid addition to the block chain, and broadcasts it to the network. Extra parameters are ignored by Bitcoin Core but may be used by mining pools or other programs.
+        /// </summary>
+        /// <param name="bs"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public JsonRpcResponse<string> SubmitBlock(byte[] bs, object args = null)
+        {
+            if (args != null)
+                return _Client.Execute<string>("submitblock", 0, bs, args);
+            else
+                return _Client.Execute<string>("submitblock", 0, bs);
+        }
+
+        /// <summary>
+        /// The decodescript RPC decodes a hex-encoded P2SH redeem script.
+        /// </summary>
+        /// <param name="decodeScript"></param>
+        /// <returns></returns>
         public Task<JsonRpcResponse<ScriptResponse>> DecodeScriptAsync(string decodeScript)
         {
             return _Client.ExecuteAsync<ScriptResponse>("decodescript", 0, decodeScript);
-        }      
+        }
+
+        /// <summary>
+        /// The decodescript RPC decodes a hex-encoded P2SH redeem script.
+        /// </summary>
+        /// <param name="decodeScript"></param>
+        /// <returns></returns>
+        public JsonRpcResponse<ScriptResponse> DecodeScript(string decodeScript)
+        {
+            return _Client.Execute<ScriptResponse>("decodescript", 0, decodeScript);
+        }
     }
 }

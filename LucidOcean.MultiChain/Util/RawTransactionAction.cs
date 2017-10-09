@@ -6,20 +6,22 @@ License: Dual MIT / Lucid Ocean Wave Business License v1.0
 Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
-using System;
+using LucidOcean.MultiChain.API.Enums;
+
 
 namespace LucidOcean.MultiChain
 {
-    [Flags]
-    public enum BlockChainPermission
+   
+    internal static class RawTransactionActionExtensions
     {
-        Connect = 1,
-        Send = 2,
-        Receive = 4,
-        Issue = 8,
-        Mine = 16,
-        Admin = 32,
-        Activate = 64,
-        Write = 128,
+        public static string ToStr(this RawTransactionAction action)
+        {
+            if (action == RawTransactionAction.Default)
+            {
+                return string.Empty;
+            }
+
+            return action.ToString().ToLowerInvariant();
+        }
     }
 }
