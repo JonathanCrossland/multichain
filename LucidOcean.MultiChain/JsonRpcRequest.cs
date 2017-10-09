@@ -70,7 +70,7 @@ namespace LucidOcean.MultiChain
             }
             set
             {
-                this.SetValue("int", value);
+                this.SetValue("id", value);
             }
         }
 

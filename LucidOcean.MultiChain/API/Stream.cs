@@ -81,7 +81,7 @@ namespace LucidOcean.MultiChain.API
         /// <returns></returns>
         public JsonRpcResponse<string> CreateFrom(string fromAddress, string streamName, bool open, object metadata)
         {
-            return _Client.Execute<string>("create", 0, "stream", fromAddress, streamName, open, metadata);
+            return _Client.Execute<string>("createfrom", 0, fromAddress, "stream", streamName, open, metadata);
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace LucidOcean.MultiChain.API
         /// <returns></returns>
         public Task<JsonRpcResponse<string>> CreateFromAsync(string fromAddress, string streamName, bool open, object metadata)
         {
-            return _Client.ExecuteAsync<string>("create", 0, "stream", fromAddress, streamName, open, metadata);
+            return _Client.ExecuteAsync<string>("createfrom", 0, fromAddress, "stream", streamName, open, metadata);
         }
 
         /// <summary>
