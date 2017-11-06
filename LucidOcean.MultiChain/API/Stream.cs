@@ -208,8 +208,23 @@ namespace LucidOcean.MultiChain.API
         /// <param name="start"></param>
         /// <param name="localOrdering"></param>
         /// <returns></returns>
-        public JsonRpcResponse<List<ListStreamItemsResponse>> ListStreamItems(string streamName, bool verbose = true, int count = 0, int start = -1, bool localOrdering = false)
+        public JsonRpcResponse<List<ListStreamItemsResponse>> ListStreamItems(string streamName, bool verbose = true, int? count = null, int? start = null, bool? localOrdering = null)
         {
+            if (count != null && start != null && localOrdering != null)
+            {
+                return _Client.Execute<List<ListStreamItemsResponse>>("liststreamitems", 0, streamName, verbose, count.Value, start.Value, localOrdering.Value);
+            }
+
+            if (count != null && start != null)
+            {
+                return _Client.Execute<List<ListStreamItemsResponse>>("liststreamitems", 0, streamName, verbose, count.Value, start.Value);
+            }
+
+            if (count != null)
+            {
+                return _Client.Execute<List<ListStreamItemsResponse>>("liststreamitems", 0, streamName, verbose, count.Value);
+            }
+
             return _Client.Execute<List<ListStreamItemsResponse>>("liststreamitems", 0, streamName, verbose);
         }
 
@@ -222,8 +237,23 @@ namespace LucidOcean.MultiChain.API
         /// <param name="start"></param>
         /// <param name="localOrdering"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<ListStreamItemsResponse>>> ListStreamItemsAsync(string streamName, bool verbose = true, int count = 0, int start = -1, bool localOrdering = false)
+        public Task<JsonRpcResponse<List<ListStreamItemsResponse>>> ListStreamItemsAsync(string streamName, bool verbose = true, int? count = null, int? start = null, bool? localOrdering = null)
         {
+            if (count != null && start != null && localOrdering != null)
+            {
+                return _Client.ExecuteAsync<List<ListStreamItemsResponse>>("liststreamitems", 0, streamName, verbose, count.Value, start.Value, localOrdering.Value);
+            }
+
+            if (count != null && start != null)
+            {
+                return _Client.ExecuteAsync<List<ListStreamItemsResponse>>("liststreamitems", 0, streamName, verbose, count.Value, start.Value);
+            }
+
+            if (count != null)
+            {
+                return _Client.ExecuteAsync<List<ListStreamItemsResponse>>("liststreamitems", 0, streamName, verbose, count.Value);
+            }
+
             return _Client.ExecuteAsync<List<ListStreamItemsResponse>>("liststreamitems", 0, streamName, verbose);
         }
 
