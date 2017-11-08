@@ -13,9 +13,9 @@ Extract verbose version of getrawtransaction command into separate method to avo
 Added sync versions of EstimatePriority GetBalance GetUnconfirmedBalance VerifyChain SetTxFee GetBlockTemplate SubmitBlock DecodeScript.
 Added a few more summary comments to calls.</PackageReleaseNotes>
     <PackageTags>MultiChain BlockChain API Wrapper</PackageTags>
-    <Version>0.0.0.7</Version>
-    <AssemblyVersion>0.0.0.7</AssemblyVersion>
-    <FileVersion>0.0.0.7</FileVersion>
+    <Version>0.0.0.8</Version>
+    <AssemblyVersion>0.0.0.8</AssemblyVersion>
+    <FileVersion>0.0.0.8</FileVersion>
     <Copyright>Copyright © 2017, Lucid Ocean PTY (Ltd)</Copyright>
     <Company>Lucid Ocean</Company>
     <Product>Lucid Ocean MultiChain Client</Product>
