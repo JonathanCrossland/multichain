@@ -229,9 +229,20 @@ namespace LucidOcean.MultiChain.API
         /// <param name="assetName"></param>
         /// <param name="rescan"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<string>> SubscribeAsync(string assetName, bool rescan)
+        public Task<JsonRpcResponse<string>> SubscribeAsync(string assetName, bool rescan = true)
         {
             return _Client.ExecuteAsync<string>("subscribe", 0, assetName, rescan);
+        }
+
+        /// <summary>
+        /// Instructs the node to start tracking one or more asset(s) or stream(s). These are specified using a name, ref or creation/issuance txid, or for multiple items, an array thereof. If rescan is true, the node will reindex all items from when the assets and/or streams were created, as well as those in other subscribed entities. Returns null if successful. See also the autosubscribe runtime parameter.
+        /// </summary>
+        /// <param name="assetNames"></param>
+        /// <param name="rescan"></param>
+        /// <returns></returns>
+        public Task<JsonRpcResponse<string>> SubscribeAsync(string[] assetNames, bool rescan = true)
+        {
+            return _Client.ExecuteAsync<string>("subscribe", 0, assetNames, rescan);
         }
 
         /// <summary>
@@ -240,31 +251,60 @@ namespace LucidOcean.MultiChain.API
         /// <param name="assetName"></param>
         /// <param name="rescan"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> Subscribe(string assetName, bool rescan)
+        public JsonRpcResponse<string> Subscribe(string assetName, bool rescan = true)
         {
             return _Client.Execute<string>("subscribe", 0, assetName, rescan);
         }
 
         /// <summary>
-        /// Instructs the node to stop tracking one or more asset(s) or stream(s). Assets or streams are specified using a name, ref or creation/issuance txid, or for multiple items, an array thereof.
+        /// Instructs the node to start tracking one or more asset(s) or stream(s). These are specified using a name, ref or creation/issuance txid, or for multiple items, an array thereof. If rescan is true, the node will reindex all items from when the assets and/or streams were created, as well as those in other subscribed entities. Returns null if successful. See also the autosubscribe runtime parameter.
         /// </summary>
-        /// <param name="assetName"></param>
+        /// <param name="assetNames"></param>
         /// <param name="rescan"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<string>> UnsubscribeAsync(string assetName, bool rescan)
+        public JsonRpcResponse<string> Subscribe(string[] assetNames, bool rescan = true)
         {
-            return _Client.ExecuteAsync<string>("unsubscribe", 0, assetName, rescan);
+            return _Client.Execute<string>("subscribe", 0, assetNames, rescan);
         }
 
         /// <summary>
         /// Instructs the node to stop tracking one or more asset(s) or stream(s). Assets or streams are specified using a name, ref or creation/issuance txid, or for multiple items, an array thereof.
         /// </summary>
         /// <param name="assetName"></param>
-        /// <param name="rescan"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> Unsubscribe(string assetName, bool rescan)
+        public Task<JsonRpcResponse<string>> UnsubscribeAsync(string assetName)
         {
-            return _Client.Execute<string>("unsubscribe", 0, assetName, rescan);
+            return _Client.ExecuteAsync<string>("unsubscribe", 0, assetName);
+        }
+
+        /// <summary>
+        /// Instructs the node to stop tracking one or more asset(s) or stream(s). Assets or streams are specified using a name, ref or creation/issuance txid, or for multiple items, an array thereof.
+        /// </summary>
+        /// <param name="assetNames"></param>
+        /// <returns></returns>
+        public Task<JsonRpcResponse<string>> UnsubscribeAsync(string[] assetNames)
+        {
+            return _Client.ExecuteAsync<string>("unsubscribe", 0, new object[] { assetNames });
+        }
+
+        /// <summary>
+        /// Instructs the node to stop tracking one or more asset(s) or stream(s). Assets or streams are specified using a name, ref or creation/issuance txid, or for multiple items, an array thereof.
+        /// </summary>
+        /// <param name="assetName"></param>
+        /// <returns></returns>
+        public JsonRpcResponse<string> Unsubscribe(string assetName)
+        {
+            return _Client.Execute<string>("unsubscribe", 0, assetName);
+        }
+
+        /// <summary>
+        /// Instructs the node to stop tracking one or more asset(s) or stream(s). Assets or streams are specified using a name, ref or creation/issuance txid, or for multiple items, an array thereof.
+        /// </summary>
+        /// <param name="assetNames"></param>
+        /// <returns></returns>
+        public JsonRpcResponse<string> Unsubscribe(string[] assetNames)
+        {
+            return _Client.Execute<string>("unsubscribe", 0, new object[] { assetNames });
         }
 
         /// <summary>
