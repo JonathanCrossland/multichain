@@ -75,5 +75,35 @@ namespace MultiChainTests
             ResponseLogger<List<string>>.Log(response);
         }
 
+
+        [TestMethod]
+        public void Pause()
+        {
+            JsonRpcResponse<string> response = null;
+            response = _Client.Peer.Pause(NodeTask.Mining);
+            ResponseLogger<string>.Log(response);
+        }
+
+        [TestMethod]
+        public void Resume()
+        {
+            JsonRpcResponse<string> response = null;
+            response = _Client.Peer.Resume(NodeTask.Mining);
+            ResponseLogger<string>.Log(response);
+        }
+
+        [TestMethod]
+        public void ClearMemPool()
+        {
+            _Client.Peer.Pause(NodeTask.Incoming);
+            _Client.Peer.Pause(NodeTask.Mining);
+
+            JsonRpcResponse<string> response = _Client.Peer.ClearMemPool();
+            ResponseLogger<string>.Log(response);
+
+            _Client.Peer.Resume(NodeTask.Incoming);
+            _Client.Peer.Resume(NodeTask.Mining);
+        }
+
     }
 }

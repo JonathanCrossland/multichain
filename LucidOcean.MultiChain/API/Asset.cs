@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace LucidOcean.MultiChain.API
 {
+    /// <summary>
+    /// API for Asset commands
+    /// </summary>
     public class Asset
     {
         MultiChainClient _Client = null;

@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace LucidOcean.MultiChain.API
 {
+    /// <summary>
+    /// API relating to Nodes
+    /// </summary>
     public class Peer
     {
         MultiChainClient _Client = null;
@@ -152,19 +155,19 @@ namespace LucidOcean.MultiChain.API
             return _Client.ExecuteAsync<string>("ping", 0);
         }
 
-        public void ClearMemPool()
+        public JsonRpcResponse<string> ClearMemPool()
         {
-            throw new NotImplementedException();
+            return _Client.Execute<string>("clearmempool", 0);
         }
 
-        public void Pause()
+        public JsonRpcResponse<string> Pause(NodeTask task)
         {
-            throw new NotImplementedException();
+            return _Client.Execute<string>("pause",0, Enum.GetName(typeof(NodeTask),task).ToLower());
         }
 
-        public void Resume()
+        public JsonRpcResponse<string> Resume(NodeTask task)
         {
-            throw new NotImplementedException();
+            return _Client.Execute<string>("resume", 0, Enum.GetName(typeof(NodeTask), task).ToLower());
         }
 
         public void SetLastBlock()
