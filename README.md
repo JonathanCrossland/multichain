@@ -7,7 +7,7 @@ Follow these instructions to create your own chain. https://www.multichain.com/d
 
 The Source is in Visual Studio 2017. 
 The compiled Assemblies is targeting netstandard_2_0 and 4.5.1
-NUGET: https://www.nuget.org/packages/LucidOcean.MultiChain/0.0.0.7
+NUGET: https://www.nuget.org/packages/LucidOcean.MultiChain/0.0.0.9
 
 This library divides the calls into 
  - MultiChainClient.Address
