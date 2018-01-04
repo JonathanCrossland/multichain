@@ -18,9 +18,12 @@ namespace LucidOcean.MultiChain.Response
 
         [JsonProperty("key")]
         public string Key { get; set; }
-        
+
+        [JsonProperty("keys")]
+        public string[] Keys { get; set; }
+
         [JsonProperty("data")]
-        public string Data { get; set; }
+        public object Data { get; set; }
 
         [JsonProperty("confirmations")]
         public int Confirmations { get; set; }
