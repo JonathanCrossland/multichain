@@ -21,7 +21,7 @@ namespace LucidOcean.MultiChain
                 return string.Empty;
             }
 
-            return action.ToString().ToLowerInvariant();
+            return action.ToString().ToLowerInvariant().Replace(" ", "");
         }
     }
 }
