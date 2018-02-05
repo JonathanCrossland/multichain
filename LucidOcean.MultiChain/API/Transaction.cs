@@ -129,11 +129,11 @@ namespace LucidOcean.MultiChain.API
         /// This works like createrawtransaction, except it automatically selects the transaction inputs from those belonging to from-address, to cover the appropriate amounts. One or more change outputs going back to from-address will also be added to the end of the transaction.
         /// </summary>
         /// <param name="fromAddress"></param>
-        /// <param name="toAddresses"></param>
+        /// <param name="outputs"></param>
         /// <param name="data"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        public async Task<CreateRawTransactionResponse> CreateRawSendFromAsync(string fromAddress, IReadOnlyDictionary<string, object> toAddresses, object[] data = null, RawTransactionAction action = RawTransactionAction.Default)
+        public async Task<CreateRawTransactionResponse> CreateRawSendFromAsync(string fromAddress, IReadOnlyDictionary<string, object> outputs, object[] data = null, RawTransactionAction action = RawTransactionAction.Default)
         {
             var result = new CreateRawTransactionResponse();
             var metadata = data ?? Util.Utility.EmptyArray<string>();
@@ -141,24 +141,48 @@ namespace LucidOcean.MultiChain.API
 
             if ((action & RawTransactionAction.Sign) != 0)
             {
-                result.SignedTransaction = await _Client.ExecuteAsync<SignedTransactionResponse>("createrawsendfrom", 0, fromAddress, toAddresses, metadata, txAction);
+                result.SignedTransaction = await _Client.ExecuteAsync<SignedTransactionResponse>("createrawsendfrom", 0, fromAddress, outputs, metadata, txAction);
             }
             else if ((action & RawTransactionAction.Send) != 0)
             {
-                result.TxId = await _Client.ExecuteAsync<string>("createrawsendfrom", 0, fromAddress, toAddresses, metadata, txAction);
+                result.TxId = await _Client.ExecuteAsync<string>("createrawsendfrom", 0, fromAddress, outputs, metadata, txAction);
             }
             else
             {
-                result.TxHex = await _Client.ExecuteAsync<string>("createrawsendfrom", 0, fromAddress, toAddresses, metadata, txAction);
+                result.TxHex = await _Client.ExecuteAsync<string>("createrawsendfrom", 0, fromAddress, outputs, metadata, txAction);
             }
 
             return result;
         }
 
-        // not implemented
-        public Task<JsonRpcResponse<string>> CreateRawTransactionAsync()
+        /// <summary>
+        /// Creates a transaction spending the specified inputs, sending to the given addresses. In Bitcoin Core, each amount field is a quantity of the bitcoin currency. For MultiChain, an {"asset":qty, ...} object can be used for amount, in which each asset is an asset name, ref or issuance txid, and each qty is the quantity of that asset to send (see native assets). Use "" as the asset inside this object to specify a quantity of the native blockchain currency. The optional data array adds one or more metadata outputs to the transaction, where each element is a raw hexadecimal string or object, formatted as passed to appendrawdata. The optional action parameter can be lock (locks the given inputs in the wallet), sign (signs the transaction using wallet keys), lock,sign (does both) or send (signs and sends the transaction). If action is send the txid is returned. If action contains sign, an object with hex and complete fields is returned, as for signrawtransaction. Otherwise, the raw transaction hexadecimal is returned. See raw transactions for more details on building raw transactions.
+        /// </summary>
+        /// <param name="inputs"></param>
+        /// <param name="outputs"></param>
+        /// <param name="data"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        public async Task<CreateRawTransactionResponse> CreateRawTransactionAsync(object[] inputs, IReadOnlyDictionary<string, object> outputs, object[] data = null, RawTransactionAction action = RawTransactionAction.Default)
         {
-            throw new NotImplementedException("This operation has not been implemented.");
+            var result = new CreateRawTransactionResponse();
+            var metadata = data ?? Util.Utility.EmptyArray<string>();
+            var txAction = action.ToStr();
+
+            if ((action & RawTransactionAction.Sign) != 0)
+            {
+                result.SignedTransaction = await _Client.ExecuteAsync<SignedTransactionResponse>("createrawtransaction", 0, inputs, outputs, metadata, txAction);
+            }
+            else if ((action & RawTransactionAction.Send) != 0)
+            {
+                result.TxId = await _Client.ExecuteAsync<string>("createrawtransaction", 0, inputs, outputs, metadata, txAction);
+            }
+            else
+            {
+                result.TxHex = await _Client.ExecuteAsync<string>("createrawtransaction", 0, inputs, outputs, metadata, txAction);
+            }
+
+            return result;
         }
 
         /// <summary>
