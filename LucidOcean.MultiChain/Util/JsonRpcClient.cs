@@ -117,8 +117,8 @@ namespace LucidOcean.MultiChain.Util
                 }
                 catch (Exception jsonEx)
                 {
-                    JsonRpcErrorResponse errorobj = JsonConvert.DeserializeObject<JsonRpcErrorResponse>(jsonRet);
-                    throw new JsonRpcException($"({errorobj.Error.Code}) {errorobj.Error.Message}" );
+                    var errorResponse = JsonConvert.DeserializeObject<JsonRpcErrorResponse>(jsonRet);
+                    throw new JsonRpcException(errorResponse.Error);
                 }
 
                 ret.Raw = jsonRet;
@@ -159,8 +159,8 @@ namespace LucidOcean.MultiChain.Util
                     nEXt = nEXt.InnerException;
                 }
 
-                JsonRpcErrorResponse errorobj = JsonConvert.DeserializeObject<JsonRpcErrorResponse>(errormsg);
-                throw new JsonRpcException($"({errorobj.Error.Code}) {errorobj.Error.Message}");
+                var errorResponse = JsonConvert.DeserializeObject<JsonRpcErrorResponse>(errormsg);
+                throw new JsonRpcException(errorResponse.Error);
             }
         }
 

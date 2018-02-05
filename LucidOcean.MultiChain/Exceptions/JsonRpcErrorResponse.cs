@@ -1,18 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LucidOcean.MultiChain.Exceptions
 {
-
     [Serializable]
     public class JsonRpcException : Exception
     {
         public JsonRpcException() { }
         public JsonRpcException(string message) : base(message) { }
+        public JsonRpcException(JsonRpcError error) : this($"({error.Code}) {error.Message}", error) { }
         public JsonRpcException(string message, JsonRpcError response) : base(message) { Error = response; }
         public JsonRpcException(string message, JsonRpcError response, Exception inner) : base(message, inner) { Error = response; }
         public JsonRpcException(string message, Exception inner) : base(message, inner) { }
