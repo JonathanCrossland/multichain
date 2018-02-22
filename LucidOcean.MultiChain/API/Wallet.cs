@@ -313,18 +313,18 @@ namespace LucidOcean.MultiChain.API
         /// Returns information about the addresses in the wallet. Provide one or more addresses (comma-delimited or as an array) to retrieve information about specific addresses only, or use * for all addresses in the wallet. Use count and start to retrieve part of the list only, with negative start values (like the default) indicating the most recently created addresses.
         /// </summary>
         /// <returns></returns>
-        public JsonRpcResponse<Dictionary<string, decimal>> ListAddresses()
+        public JsonRpcResponse<List<AddressResponse>> ListAddresses(bool verbose)
         {
-            return _Client.Execute<Dictionary<string, decimal>>("listaddresses", 0);
+            return _Client.Execute<List<AddressResponse>>("listaddresses", 0, "*", verbose);
         }
 
         /// <summary>
         /// Returns information about the addresses in the wallet. Provide one or more addresses (comma-delimited or as an array) to retrieve information about specific addresses only, or use * for all addresses in the wallet. Use count and start to retrieve part of the list only, with negative start values (like the default) indicating the most recently created addresses.
         /// </summary>
         /// <returns></returns>
-        public Task<JsonRpcResponse<Dictionary<string, decimal>>> ListAddressesAsync()
+        public Task<JsonRpcResponse<List<AddressResponse>>> ListAddressesAsync(bool verbose)
         {
-            return _Client.ExecuteAsync<Dictionary<string, decimal>>("listaddresses", 0);
+            return _Client.ExecuteAsync<List<AddressResponse>>("listaddresses", 0, "*", verbose);
         }
 
         /// <summary>

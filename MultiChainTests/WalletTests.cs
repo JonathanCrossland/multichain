@@ -177,10 +177,36 @@ namespace MultiChainTests
             ResponseLogger<List<AssetBalanceResponse>>.Log(response);
         }
 
+
+        [TestMethod]
+        public void ListAddressesAsync()
+        {
+
+
+            JsonRpcResponse<List<AddressResponse>> response = null;
+            Task.Run(async () =>
+            {
+                response = await _Client.Wallet.ListAddressesAsync(true);
+            }).GetAwaiter().GetResult();
+
+            ResponseLogger<List<AddressResponse>>.Log(response);
+        }
+
+        [TestMethod]
+        public void ListAddresses()
+        {
+           
+
+            JsonRpcResponse<List<AddressResponse>> response = null;
+            response = _Client.Wallet.ListAddresses(true);
+
+            ResponseLogger<List<AddressResponse>>.Log(response);
+        }
+
         [TestMethod]
         public void ListAddressTransactionsAsync()
         {
-            
+           
             JsonRpcResponse<List<AddressTransactionResponse>> response = null;
             Task.Run(async () =>
             {

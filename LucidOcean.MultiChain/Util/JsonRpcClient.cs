@@ -9,6 +9,7 @@ The full license will also be found on the root of the main source-code director
 using LucidOcean.MultiChain.Exceptions;
 using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -76,6 +77,7 @@ namespace LucidOcean.MultiChain.Util
         /// <returns></returns>
         public async Task<JsonRpcResponse<T>> ExecuteAsync<T>(string method, int id, params object[] args)
         {
+            
             var ps = new JsonRpcRequest()
             {
                 Method = method,

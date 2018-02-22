@@ -32,5 +32,8 @@ namespace LucidOcean.MultiChain.Response
 
         [JsonProperty("account")]
         public string Account { get; set; }
+
+        [JsonProperty("synchronized")]
+        public string Synchronized { get; set; }
     }
 }

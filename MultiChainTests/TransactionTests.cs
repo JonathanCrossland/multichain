@@ -50,7 +50,7 @@ namespace MultiChainTests
         public void GetRawTransactionVerboseAsync()
         {
 
-            JsonRpcResponse<BlockResponse> blockresponse = _Client.Block.GetBlock(58, true);
+            JsonRpcResponse<BlockResponse> blockresponse = _Client.Block.GetBlock(17, true);
 
             if (blockresponse.Result.Tx.Count < 2) throw new Exception("There is no transaction to test");
 

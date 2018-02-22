@@ -6,21 +6,20 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>http://www.lucidocean.com/wbl-license.html</PackageLicenseUrl>
     <PackageProjectUrl>http://www.lucidocean.com/wbl-license.html</PackageProjectUrl>
-    <PackageIconUrl>http://www.lucidocean.com/content/icon.png</PackageIconUrl>
-    <PackageReleaseNotes>Note: Breaking Namespace usings. You will need to add various usings to find EventArgs&lt;T&gt;, JsonRpcClient and soem other classes as they have moved to LucidOcean.MultioChain.Util or Enums. in short, Refactored jsonrpcclient and other classes that were on the root namespace to a sub namespace to make the entry point to MultChainClient more developer friendly.
-Support entity name for permissions management.
-Extract verbose version of getrawtransaction command into separate method to avoid deserialization error upon verbose flag is false
-Added sync versions of EstimatePriority GetBalance GetUnconfirmedBalance VerifyChain SetTxFee GetBlockTemplate SubmitBlock DecodeScript.
-Added a few more summary comments to calls.</PackageReleaseNotes>
+    <PackageIconUrl>http://www.lucidocean.com/icon.png</PackageIconUrl>
+    <PackageReleaseNotes>Fixed ListAddresses, ListAddressesAsync, Added new Unit tests
+thanks to Maxwe11
+Fix serialization of RawTransactionAction and RPC error propagation
+Implemented createrawtransaction method</PackageReleaseNotes>
     <PackageTags>MultiChain BlockChain API Wrapper</PackageTags>
-    <Version>0.0.0.8</Version>
-    <AssemblyVersion>0.0.0.8</AssemblyVersion>
-    <FileVersion>0.0.0.8</FileVersion>
+    <Version>0.0.0.10</Version>
+    <AssemblyVersion>0.0.0.10</AssemblyVersion>
+    <FileVersion>0.0.0.10</FileVersion>
     <Copyright>Copyright © 2017, Lucid Ocean PTY (Ltd)</Copyright>
     <Company>Lucid Ocean</Company>
     <Product>Lucid Ocean MultiChain Client</Product>
     <Authors>Lucid Ocean</Authors>
-    <Description>This library attempt to wrap the JSON-RPC calls provided by MultiChain.</Description>
+    <Description>This library attempts to wrap the JSON-RPC calls provided by MultiChain. Where applicable, some initial design for ease of use and separation of calls has been made.</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
