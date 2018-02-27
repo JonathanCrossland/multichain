@@ -53,9 +53,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="transactionId"></param>
         /// <param name="verbose"></param>
         /// <returns></returns>
-        public JsonRpcResponse<List<AssetBalanceResponse>> GetAddressTransaction(string address, string transactionId, bool verbose)
+        public JsonRpcResponse<AddressTransactionResponse> GetAddressTransaction(string address, string transactionId, bool verbose)
         {
-            return _Client.Execute<List<AssetBalanceResponse>>("getaddresstransaction", 0, address, transactionId, verbose);
+            return _Client.Execute<AddressTransactionResponse>("getaddresstransaction", 0, address, transactionId, verbose);
         }
 
         /// <summary>
@@ -65,9 +65,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="transactionId"></param>
         /// <param name="verbose"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<AssetBalanceResponse>>> GetAddressTransactionAsync(string address, string transactionId, bool verbose)
+        public Task<JsonRpcResponse<AddressTransactionResponse>> GetAddressTransactionAsync(string address, string transactionId, bool verbose)
         {
-            return _Client.ExecuteAsync<List<AssetBalanceResponse>>("getaddresstransaction", 0, address, transactionId, verbose);
+            return _Client.ExecuteAsync<AddressTransactionResponse>("getaddresstransaction", 0, address, transactionId, verbose);
         }
 
         /// <summary>
