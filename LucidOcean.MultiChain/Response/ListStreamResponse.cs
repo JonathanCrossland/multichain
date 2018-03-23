@@ -13,7 +13,7 @@ namespace LucidOcean.MultiChain.Response
 {
     public class ListStreamResponse
     {
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
 
         [JsonProperty("name")]
@@ -26,15 +26,16 @@ namespace LucidOcean.MultiChain.Response
         public string StreamRef { get; set; }
 
         [JsonProperty("publishers")]
-        public List<string> Publishers { get; set; }
+        public dynamic Publishers { get; set; }
 
-        [JsonProperty("key")]
+        [JsonProperty("key", NullValueHandling = NullValueHandling.Ignore)]
         public string Key { get; set; }
         
-        [JsonProperty("data")]
+        [JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
         public dynamic Data { get; set; }
 
         private string _DataAsAscii;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string DataAsAscii
         {
             get
@@ -59,9 +60,18 @@ namespace LucidOcean.MultiChain.Response
         public Dictionary<string,string> Details { get; set; }
 
         [JsonProperty("subscribed")]
-        public string Subscribed { get; set; }
+        public dynamic Subscribed { get; set; }
 
         [JsonProperty("items")]
         public int Items { get; set; }
+
+        [JsonProperty("synchronized")]
+        public bool Synchronized { get; set; }
+
+        [JsonProperty("confirmed")]
+        public int Confirmed { get; set; }
+
+        [JsonProperty("keys")]
+        public int Keys { get; set; }
     }
 }
