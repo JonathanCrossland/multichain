@@ -159,7 +159,7 @@ namespace LucidOcean.MultiChain.API
         /// <param name="count"></param>
         /// <param name="start"></param>
         /// <returns></returns>
-        public JsonRpcResponse<List<ListStreamResponse>> ListStreams(string streamName = "*", bool verbose = true, int count = 0, int start = -1)
+        public JsonRpcResponse<List<ListStreamResponse>> ListStreams(string streamName = "*", bool verbose = true, int count = int.MaxValue, int start = int.MinValue)
         {
             return _Client.Execute<List<ListStreamResponse>>("liststreams", 0, streamName, verbose, count, start);
         }
@@ -172,7 +172,7 @@ namespace LucidOcean.MultiChain.API
         /// <param name="count"></param>
         /// <param name="start"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<ListStreamResponse>>> ListStreamsAsync(string streamName = "*", bool verbose = true, int count = 0, int start = -1)
+        public Task<JsonRpcResponse<List<ListStreamResponse>>> ListStreamsAsync(string streamName = "*", bool verbose = true, int count = int.MaxValue, int start = int.MinValue)
         {
             return _Client.ExecuteAsync<List<ListStreamResponse>>("liststreams", 0, streamName, verbose, count, start);
         }
