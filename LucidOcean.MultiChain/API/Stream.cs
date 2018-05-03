@@ -297,9 +297,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="start"></param>
         /// <param name="localOrdering"></param>
         /// <returns></returns>
-        public JsonRpcResponse<List<string>> ListStreamKeys(string streamName, List<string> keys, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        public JsonRpcResponse<List<ListStreamKeyResponse>> ListStreamKeys(string streamName, List<string> keys, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
         {
-            return _Client.Execute<List<string>>("liststreamkeys", 0, streamName, keys, verbose, count, start, localOrdering);
+            return _Client.Execute<List<ListStreamKeyResponse>>("liststreamkeys", 0, streamName, keys, verbose, count, start, localOrdering);
         }
 
         /// <summary>
@@ -312,9 +312,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="start"></param>
         /// <param name="localOrdering"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<string>>> ListStreamKeysAsync(string streamName, List<string> keys, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        public Task<JsonRpcResponse<List<ListStreamKeyResponse>>> ListStreamKeysAsync(string streamName, List<string> keys, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
         {
-            return _Client.ExecuteAsync<List<string>>("liststreamkeys", 0, streamName, keys, verbose, count, start, localOrdering);
+            return _Client.ExecuteAsync<List<ListStreamKeyResponse>>("liststreamkeys", 0, streamName, keys, verbose, count, start, localOrdering);
         }
 
         /// <summary>
