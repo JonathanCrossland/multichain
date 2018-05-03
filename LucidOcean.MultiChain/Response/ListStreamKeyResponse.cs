@@ -18,8 +18,11 @@ namespace LucidOcean.MultiChain.Response
         public string Key { get; set; }
         [JsonProperty("items")]
         public int Items { get; set; }
-        [JsonProperty("Confirmed")]
+        [JsonProperty("confirmed")]
         public int Confirmed { get; set; }
-
+        [JsonProperty("first")]
+        public ListStreamItemsResponse First { get; set; }
+        [JsonProperty("last")]
+        public ListStreamItemsResponse Last { get; set; }
     }
 }

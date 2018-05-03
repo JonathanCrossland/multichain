@@ -179,7 +179,7 @@ namespace MultiChainTests
             Task.Run(async () =>
             {
                 List<string> list = new List<string>();
-                list.Add("Item");
+                list.Add("*");
 
                 response = await _Client.Stream.ListStreamKeysAsync("Lucid Ocean", list, true, 10, 1, true);
             }).GetAwaiter().GetResult();
