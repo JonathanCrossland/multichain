@@ -181,6 +181,7 @@ namespace LucidOcean.MultiChain.API
         /// Retrieves a specific item with txid from stream, passed as a stream name, ref or creation txid, to which the node must be subscribed. Set verbose to true for additional information about the item’s transaction. If an item’s data is larger than the maxshowndata runtime parameter, it will be returned as an object whose fields can be used with gettxoutdata.
         /// </summary>
         /// <param name="streamName"></param>
+        /// <param name="txid"></param>
         /// <param name="verbose"></param>
         /// <returns></returns>
         public JsonRpcResponse<ListStreamResponse> GetStreamItem(string streamName = "*", string txid = "", bool verbose = true)
@@ -192,6 +193,7 @@ namespace LucidOcean.MultiChain.API
         /// Retrieves a specific item with txid from stream, passed as a stream name, ref or creation txid, to which the node must be subscribed. Set verbose to true for additional information about the item’s transaction. If an item’s data is larger than the maxshowndata runtime parameter, it will be returned as an object whose fields can be used with gettxoutdata.
         /// </summary>
         /// <param name="streamName"></param>
+        /// <param name="txid"></param>
         /// <param name="verbose"></param>
         /// <returns></returns>
         public Task<JsonRpcResponse<ListStreamResponse>> GetStreamItemAsync(string streamName = "*", string txid = "", bool verbose = true)
