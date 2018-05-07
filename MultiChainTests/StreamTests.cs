@@ -173,6 +173,16 @@ namespace MultiChainTests
         }
 
         [TestMethod]
+        public void GetStreamItem()
+        {
+            JsonRpcResponse<ListStreamResponse> response = null;
+
+            response = _Client.Stream.GetStreamItem("Lucid Ocean", "[sometxid]", true);
+
+            ResponseLogger<ListStreamResponse>.Log(response);
+        }
+
+        [TestMethod]
         public void ListStreamKeysAsync()
         {
             JsonRpcResponse<List<ListStreamKeyResponse>> response = null;
