@@ -175,11 +175,11 @@ namespace MultiChainTests
         [TestMethod]
         public void GetStreamItem()
         {
-            JsonRpcResponse<ListStreamResponse> response = null;
+            JsonRpcResponse<ListStreamItemsResponse> response = null;
 
             response = _Client.Stream.GetStreamItem("Lucid Ocean", "[sometxid]", true);
 
-            ResponseLogger<ListStreamResponse>.Log(response);
+            ResponseLogger<ListStreamItemsResponse>.Log(response);
         }
 
         [TestMethod]

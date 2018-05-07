@@ -184,9 +184,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="txid"></param>
         /// <param name="verbose"></param>
         /// <returns></returns>
-        public JsonRpcResponse<ListStreamResponse> GetStreamItem(string streamName = "*", string txid = "", bool verbose = true)
+        public JsonRpcResponse<ListStreamItemsResponse> GetStreamItem(string streamName = "*", string txid = "", bool verbose = true)
         {
-            return _Client.Execute<ListStreamResponse>("getstreamitem", 0, streamName, txid, verbose);
+            return _Client.Execute<ListStreamItemsResponse>("getstreamitem", 0, streamName, txid, verbose);
         }
 
         /// <summary>
@@ -196,9 +196,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="txid"></param>
         /// <param name="verbose"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<ListStreamResponse>> GetStreamItemAsync(string streamName = "*", string txid = "", bool verbose = true)
+        public Task<JsonRpcResponse<ListStreamItemsResponse>> GetStreamItemAsync(string streamName = "*", string txid = "", bool verbose = true)
         {
-            return _Client.ExecuteAsync<ListStreamResponse>("getstreamitem", 0, streamName, txid, verbose);
+            return _Client.ExecuteAsync<ListStreamItemsResponse>("getstreamitem", 0, streamName, txid, verbose);
         }
 
         /// <summary>
