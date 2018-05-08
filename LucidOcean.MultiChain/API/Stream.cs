@@ -188,7 +188,7 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.Execute<ListStreamItemsResponse>("getstreamitem", 0, streamName, txid, verbose);
         }
-
+      
         /// <summary>
         /// Retrieves a specific item with txid from stream, passed as a stream name, ref or creation txid, to which the node must be subscribed. Set verbose to true for additional information about the item’s transaction. If an item’s data is larger than the maxshowndata runtime parameter, it will be returned as an object whose fields can be used with gettxoutdata.
         /// </summary>
