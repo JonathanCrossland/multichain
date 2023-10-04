@@ -12,6 +12,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -94,23 +95,18 @@ namespace LucidOcean.MultiChain.Util
                 string jsonRet = null;
                 JsonRpcResponse<T> ret = null;
 
-                var request = WebRequest.CreateHttp(url);
-                request.ContentType = "application/json-rpc";
-                request.Credentials = this.GetCredentials();
-                request.Method = "POST";
-                //request.UserAgent = "LucidOcean.MultiChain {version 0}";
-                var bs = Encoding.UTF8.GetBytes(jsonOut);
-
-                using (var stream = await request.GetRequestStreamAsync())
+                using (var client = HttpClientHelper.GetHttpClientWithBasicAuth(url, _Connection.Username, _Connection.Password))
                 {
-                    stream.Write(bs, 0, bs.Length);
-                }
+                    var httpContent = new StringContent(jsonOut, Encoding.UTF8, "application/json-rpc");
+                    var request = new HttpRequestMessage
+                    {
+                        Method = HttpMethod.Post,
+                        RequestUri = new Uri(url),
+                        Content = httpContent,
+                    };
 
-                var response = await request.GetResponseAsync();
-
-                using (var stream = ((HttpWebResponse)response).GetResponseStream())
-                {
-                    jsonRet = await new StreamReader(stream).ReadToEndAsync();
+                    var result = await client.SendAsync(request);
+                    jsonRet = await result.Content.ReadAsStringAsync();
                 }
 
                 try

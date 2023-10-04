@@ -159,7 +159,7 @@ namespace LucidOcean.MultiChain.API
         /// <param name="count"></param>
         /// <param name="start"></param>
         /// <returns></returns>
-        public JsonRpcResponse<List<ListStreamResponse>> ListStreams(string streamName = "*", bool verbose = true, int count = 0, int start = -1)
+        public JsonRpcResponse<List<ListStreamResponse>> ListStreams(string streamName = "*", bool verbose = true, int count = int.MaxValue, int start = int.MinValue)
         {
             return _Client.Execute<List<ListStreamResponse>>("liststreams", 0, streamName, verbose, count, start);
         }
@@ -172,7 +172,7 @@ namespace LucidOcean.MultiChain.API
         /// <param name="count"></param>
         /// <param name="start"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<ListStreamResponse>>> ListStreamsAsync(string streamName = "*", bool verbose = true, int count = 0, int start = -1)
+        public Task<JsonRpcResponse<List<ListStreamResponse>>> ListStreamsAsync(string streamName = "*", bool verbose = true, int count = int.MaxValue, int start = int.MinValue)
         {
             return _Client.ExecuteAsync<List<ListStreamResponse>>("liststreams", 0, streamName, verbose, count, start);
         }
@@ -181,22 +181,24 @@ namespace LucidOcean.MultiChain.API
         /// Retrieves a specific item with txid from stream, passed as a stream name, ref or creation txid, to which the node must be subscribed. Set verbose to true for additional information about the item’s transaction. If an item’s data is larger than the maxshowndata runtime parameter, it will be returned as an object whose fields can be used with gettxoutdata.
         /// </summary>
         /// <param name="streamName"></param>
+        /// <param name="txid"></param>
         /// <param name="verbose"></param>
         /// <returns></returns>
-        public JsonRpcResponse<ListStreamResponse> GetStreamItem(string streamName = "*", bool verbose = true)
+        public JsonRpcResponse<ListStreamItemsResponse> GetStreamItem(string streamName = "*", string txid = "", bool verbose = true)
         {
-            return _Client.Execute<ListStreamResponse>("getstreamitem", 0, streamName, verbose);
+            return _Client.Execute<ListStreamItemsResponse>("getstreamitem", 0, streamName, txid, verbose);
         }
-
+      
         /// <summary>
         /// Retrieves a specific item with txid from stream, passed as a stream name, ref or creation txid, to which the node must be subscribed. Set verbose to true for additional information about the item’s transaction. If an item’s data is larger than the maxshowndata runtime parameter, it will be returned as an object whose fields can be used with gettxoutdata.
         /// </summary>
         /// <param name="streamName"></param>
+        /// <param name="txid"></param>
         /// <param name="verbose"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<ListStreamResponse>> GetStreamItemAsync(string streamName = "*", bool verbose = true)
+        public Task<JsonRpcResponse<ListStreamItemsResponse>> GetStreamItemAsync(string streamName = "*", string txid = "", bool verbose = true)
         {
-            return _Client.ExecuteAsync<ListStreamResponse>("getstreamitem", 0, streamName, verbose);
+            return _Client.ExecuteAsync<ListStreamItemsResponse>("getstreamitem", 0, streamName, txid, verbose);
         }
 
         /// <summary>
@@ -297,9 +299,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="start"></param>
         /// <param name="localOrdering"></param>
         /// <returns></returns>
-        public JsonRpcResponse<List<string>> ListStreamKeys(string streamName, List<string> keys, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        public JsonRpcResponse<List<ListStreamKeyResponse>> ListStreamKeys(string streamName, List<string> keys, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
         {
-            return _Client.Execute<List<string>>("liststreamkeys", 0, streamName, keys, verbose, count, start, localOrdering);
+            return _Client.Execute<List<ListStreamKeyResponse>>("liststreamkeys", 0, streamName, keys, verbose, count, start, localOrdering);
         }
 
         /// <summary>
@@ -312,9 +314,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="start"></param>
         /// <param name="localOrdering"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<string>>> ListStreamKeysAsync(string streamName, List<string> keys, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        public Task<JsonRpcResponse<List<ListStreamKeyResponse>>> ListStreamKeysAsync(string streamName, List<string> keys, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
         {
-            return _Client.ExecuteAsync<List<string>>("liststreamkeys", 0, streamName, keys, verbose, count, start, localOrdering);
+            return _Client.ExecuteAsync<List<ListStreamKeyResponse>>("liststreamkeys", 0, streamName, keys, verbose, count, start, localOrdering);
         }
 
         /// <summary>

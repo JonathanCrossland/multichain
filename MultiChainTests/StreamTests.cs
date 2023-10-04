@@ -162,29 +162,39 @@ namespace MultiChainTests
         [TestMethod]
         public void ListStreamKeys()
         {
-            JsonRpcResponse<List<string>> response = null;
+            JsonRpcResponse<List<ListStreamKeyResponse>> response = null;
 
             List<string> list = new List<string>();
             list.Add("Item");
 
             response = _Client.Stream.ListStreamKeys("Lucid Ocean", list, true, 10, 1, true);
 
-            ResponseLogger<List<string>>.Log(response);
+            ResponseLogger<List<ListStreamKeyResponse>>.Log(response);
+        }
+
+        [TestMethod]
+        public void GetStreamItem()
+        {
+            JsonRpcResponse<ListStreamItemsResponse> response = null;
+
+            response = _Client.Stream.GetStreamItem("Lucid Ocean", "[sometxid]", true);
+
+            ResponseLogger<ListStreamItemsResponse>.Log(response);
         }
 
         [TestMethod]
         public void ListStreamKeysAsync()
         {
-            JsonRpcResponse<List<string>> response = null;
+            JsonRpcResponse<List<ListStreamKeyResponse>> response = null;
             Task.Run(async () =>
             {
                 List<string> list = new List<string>();
-                list.Add("Item");
+                list.Add("*");
 
                 response = await _Client.Stream.ListStreamKeysAsync("Lucid Ocean", list, true, 10, 1, true);
             }).GetAwaiter().GetResult();
 
-            ResponseLogger<List<string>>.Log(response);
+            ResponseLogger<List<ListStreamKeyResponse>>.Log(response);
         }
 
         [TestMethod]
