@@ -5,9 +5,11 @@ Refer to https://www.multichain.com/developers/json-rpc-api/ for more informatio
 
 Follow these instructions to create your own chain. https://www.multichain.com/developers/creating-connecting/
 
-The Source is in Visual Studio 2017. 
-The compiled Assemblies is targeting netstandard_2_0 and 4.5.1
-NUGET: https://www.nuget.org/packages/LucidOcean.MultiChain/0.0.0.9
+The Source is in Visual Studio 2022 Community Edition. 
+
+The compiled Assemblies is targeting 4.8 and Core 6.0
+
+NUGET: https://www.nuget.org/packages/LucidOcean.MultiChain/0.0.0.11
 
 This library divides the calls into 
  - MultiChainClient.Address
@@ -19,6 +21,36 @@ This library divides the calls into
  - MultiChainClient.Utility
  - MultiChainClient.Wallet
  - MultiChainClient.Stream
+
+
+## Create your own chain
+
+
+create 
+[https://www.multichain.com/developers/creating-connecting/](https://www.multichain.com/developers/creating-connecting/)
+
+and run your test chain
+
+NOTE: This library is only available for v1 RPC
+
+## Set up your connection
+
+- edit your multichain.conf
+- add port to your firewall 
+- allow your ip
+
+*example multichain.conf* (use your settings)
+
+rpcuser=multichainrpc
+rpcpassword=1jm2VNf2MdGK8ULQiMGg7Q4C8Jy89BJrzNJ5y9Mj7qaS
+rpcallowip=127.0.0.1
+
+*Get your RPC port*
+
+view in your params.dat file
+
+default-network-port = 9265             # Default TCP/IP port for peer-to-peer connection with other nodes.
+default-rpc-port = 9264                 # USE THIS - Default TCP/IP port for incoming JSON-RPC API requests.
 
 *example usage:*
 ```csharp

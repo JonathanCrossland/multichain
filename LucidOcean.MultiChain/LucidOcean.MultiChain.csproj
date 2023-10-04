@@ -3,25 +3,31 @@
   <PropertyGroup>
     <TargetFrameworks>net48;net6.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>http://www.lucidocean.com/wbl-license.html</PackageLicenseUrl>
+   
     <PackageProjectUrl>http://www.lucidocean.com/wbl-license.html</PackageProjectUrl>
     <PackageIconUrl>http://www.lucidocean.com/icon.png</PackageIconUrl>
-    <PackageReleaseNotes>Fixed ListAddresses, ListAddressesAsync, Added new Unit tests
-thanks to Maxwe11
-Fix serialization of RawTransactionAction and RPC error propagation
-Implemented createrawtransaction method</PackageReleaseNotes>
+    <PackageReleaseNotes>-- removed NetStandard2.0; net45 in favour of net48;dotnet6
+-- Upgraded MVC Explorer project (see git)
+-- Updated nuget packages
+</PackageReleaseNotes>
     <PackageTags>MultiChain BlockChain API Wrapper</PackageTags>
-    <Version>0.0.0.10</Version>
+    <Version>0.0.0.11</Version>
     <AssemblyVersion>0.0.0.11</AssemblyVersion>
     <FileVersion>0.0.0.11</FileVersion>
-    <Copyright>Copyright © 2017, Lucid Ocean PTY (Ltd)</Copyright>
+    <Copyright>Copyright © 2023, Lucid Ocean</Copyright>
     <Company>Lucid Ocean</Company>
     <Product>Lucid Ocean MultiChain Client</Product>
     <Authors>Lucid Ocean</Authors>
     <Description>This library attempts to wrap the JSON-RPC calls provided by MultiChain. Where applicable, some initial design for ease of use and separation of calls has been made.</Description>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 	  <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+	  <Title>Lucid Ocean MultiChain Client</Title>
+	  <PackageIcon>AMMERSE.png</PackageIcon>
+	  <RepositoryUrl>https://github.com/JonathanCrossland/multichain</RepositoryUrl>
+	  <RepositoryType>git</RepositoryType>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
   </PropertyGroup>
 
@@ -38,6 +44,17 @@ Implemented createrawtransaction method</PackageReleaseNotes>
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="C:\Users\Jonathan\Downloads\AMMERSE.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
