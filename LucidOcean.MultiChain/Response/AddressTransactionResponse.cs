@@ -62,6 +62,9 @@ namespace LucidOcean.MultiChain.Response
 
         [JsonProperty("vout")]
         public List<TransactionVout> Vout { get; set; } = new List<TransactionVout>();
-        
+
+        [JsonProperty("data")]
+        public List<string> Data { get; set; }
+
     }
 }
