@@ -35,6 +35,8 @@ namespace LucidOcean.MultiChain.Response
         public dynamic Data { get; set; }
 
         private string _DataAsAscii;
+
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string DataAsAscii
         {

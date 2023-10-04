@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <TargetFrameworks>net48;net6.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>http://www.lucidocean.com/wbl-license.html</PackageLicenseUrl>
@@ -21,6 +21,8 @@ Implemented createrawtransaction method</PackageReleaseNotes>
     <Authors>Lucid Ocean</Authors>
     <Description>This library attempts to wrap the JSON-RPC calls provided by MultiChain. Where applicable, some initial design for ease of use and separation of calls has been made.</Description>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+	  <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
@@ -39,7 +41,13 @@ Implemented createrawtransaction method</PackageReleaseNotes>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Microsoft.NETCore.Platforms" Version="7.0.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45'">
