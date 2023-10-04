@@ -13,17 +13,18 @@ Fix serialization of RawTransactionAction and RPC error propagation
 Implemented createrawtransaction method</PackageReleaseNotes>
     <PackageTags>MultiChain BlockChain API Wrapper</PackageTags>
     <Version>0.0.0.10</Version>
-    <AssemblyVersion>0.0.0.10</AssemblyVersion>
-    <FileVersion>0.0.0.10</FileVersion>
+    <AssemblyVersion>0.0.0.11</AssemblyVersion>
+    <FileVersion>0.0.0.11</FileVersion>
     <Copyright>Copyright © 2017, Lucid Ocean PTY (Ltd)</Copyright>
     <Company>Lucid Ocean</Company>
     <Product>Lucid Ocean MultiChain Client</Product>
     <Authors>Lucid Ocean</Authors>
     <Description>This library attempts to wrap the JSON-RPC calls provided by MultiChain. Where applicable, some initial design for ease of use and separation of calls has been made.</Description>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
-    <DefineConstants>DEBUG;NETCORE;NETSTANDARD;NETSTANDARD2_0;NETSTANDARD2_0;NETSTANDARD2_0</DefineConstants>
+    <DefineConstants>DEBUG;NETCORE;NETSTANDARD;NETSTANDARD2_0;NET47;</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
@@ -47,6 +48,12 @@ Implemented createrawtransaction method</PackageReleaseNotes>
 
   <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\LucidOcean.MultiChain.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
 </Project>

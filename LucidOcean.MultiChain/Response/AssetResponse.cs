@@ -15,6 +15,12 @@ namespace LucidOcean.MultiChain.Response
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("issuetxid")]
+        public string IssueTxId { get; set; }
+
+        [JsonProperty("subscribed")]
+        public bool Subcribed { get; set; }
+
         [JsonProperty("genesistxid")]
         public string GenesisTxId { get; set; }
 

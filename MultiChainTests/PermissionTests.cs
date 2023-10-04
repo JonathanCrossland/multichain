@@ -68,7 +68,9 @@ namespace MultiChainTests
         public void Grant()
         {
             JsonRpcResponse<string> response = null;
-            response = _Client.Permission.Grant(new List<string>() { TestSettings.ToAddress }, BlockChainPermission.Connect);
+            response = _Client.Permission.Grant(new List<string>() { TestSettings.ToAddress }, BlockChainPermission.Receive);
+
+            response = _Client.Permission.Grant(new List<string>() { TestSettings.FromAddress }, BlockChainPermission.Receive);
             ResponseLogger<string>.Log(response);
         }
 
