@@ -100,5 +100,11 @@ namespace LucidOcean.MultiChain.Response
         [JsonProperty("retrieve")]
         public bool Retrieve { get; set; }
 
+        [JsonProperty("indexes")]
+        public ListStreamIndexesResponse Indexes { get; set; }
+
+
+
+
     }
 }
