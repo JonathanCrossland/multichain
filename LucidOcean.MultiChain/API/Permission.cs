@@ -22,7 +22,7 @@ namespace LucidOcean.MultiChain.API
     /// </summary>
     public class Permission
     {
-        JsonRpcClient _Client = null;
+        internal readonly JsonRpcClient _Client = null;
 
         internal Permission(JsonRpcClient client)
         {

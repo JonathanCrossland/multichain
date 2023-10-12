@@ -18,7 +18,7 @@ namespace LucidOcean.MultiChain.API
     /// </summary>
     public class Stream
     {
-        internal MultiChainClient _Client = null;
+        internal readonly MultiChainClient _Client = null;
 
         internal Stream(MultiChainClient client)
         {

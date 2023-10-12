@@ -20,7 +20,7 @@ namespace LucidOcean.MultiChain.API
     /// </summary>
     public class Peer
     {
-        MultiChainClient _Client = null;
+        internal readonly MultiChainClient _Client = null;
 
         internal Peer(MultiChainClient client)
         {

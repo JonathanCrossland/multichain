@@ -13,21 +13,21 @@ namespace MultiChainTests
     public static class TestSettings
     {
         public static MultiChainConnection Connection = null;
-        public const string FromAddress = "14fuECfs6HtbPGDN7Uz63x2ptXkx2m32hcr6Bj";
-        public const string ToAddress = "1NpYhaigsMXj2sA45RkE69YqwVfWCA6HBwdZdZ";
+        public const string FromAddress = "1PosGTrKNy719CpUeNXs7LBJZDo4iJvQx1i3VR";
+        public const string ToAddress = "1PosGTrKNy719CpUeNXs7LBJZDo4iJvQx1i3VR";
 
         static TestSettings()
         {
             ///Ensure this points to your instance. 
             Connection = new MultiChainConnection()
             {
-                Hostname = "54.154.196.239",
-                Port = 8338,
+                Hostname = "192.168.132.72",
+                Port = 9264,
                 Username = "multichainrpc",
-                Password = "CKKyHtiV8tbgDzHedJrWTfXrNrZEHKCX5Joozdwsy73Z",
-                ChainName = "LucidOceanTestChain",
-                BurnAddress = "1XXXXXXXYBXXXXXXd3XXXXXXZ1XXXXXXXeChio",
-                RootNodeAddress = "1JZpnFNYw3zQbyGKqve7rDWben3PuC2g3bhwBP"
+                Password = "Ajm2VNf2MdGK8ULQiMGg7Q4C8Jy2XBJrzNJ5y9Mj7qaS",
+                ChainName = "lLucidOcean_test",
+                BurnAddress = "1XXXXXXWqCXXXXXXW4XXXXXXd2XXXXXXagqdda",
+                RootNodeAddress = "1PosGTrKNy719CpUeNXs7LBJZDo4iJvQx1i3VR"
             };
         }
     }

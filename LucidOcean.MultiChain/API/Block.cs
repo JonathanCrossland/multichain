@@ -19,7 +19,7 @@ namespace LucidOcean.MultiChain.API
     /// </summary>
     public class Block
     {
-        JsonRpcClient _Client = null;
+        internal readonly JsonRpcClient _Client = null;
 
         internal Block(JsonRpcClient client)
         {

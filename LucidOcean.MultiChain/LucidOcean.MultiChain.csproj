@@ -28,6 +28,7 @@
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
 	  <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <Platforms>AnyCPU;x64</Platforms>
 
   </PropertyGroup>
 
@@ -75,7 +76,17 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\LucidOcean.MultiChain.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Platform)'=='x64'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\LucidOcean.MultiChain.xml</DocumentationFile>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|x64'">
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <Optimize>false</Optimize>

@@ -17,7 +17,7 @@ namespace LucidOcean.MultiChain.API
 {
     public class Transaction
     {
-        JsonRpcClient _Client = null;
+        readonly JsonRpcClient _Client = null;
 
         internal Transaction(JsonRpcClient client)
         {

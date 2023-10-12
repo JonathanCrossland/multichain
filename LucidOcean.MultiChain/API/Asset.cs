@@ -19,7 +19,7 @@ namespace LucidOcean.MultiChain.API
     /// </summary>
     public class Asset
     {
-        MultiChainClient _Client = null;
+        internal readonly MultiChainClient _Client = null;
 
         internal Asset(MultiChainClient client)
         {

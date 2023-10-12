@@ -18,7 +18,7 @@ namespace LucidOcean.MultiChain.API
     /// </summary>
     public class Address
     {
-        MultiChainClient _Client = null;
+        internal readonly MultiChainClient _Client = null;
 
         internal Address(MultiChainClient client)
         {

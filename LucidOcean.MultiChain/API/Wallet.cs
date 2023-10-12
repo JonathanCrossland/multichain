@@ -15,7 +15,7 @@ namespace LucidOcean.MultiChain.API
 {
     public class Wallet
     {
-        JsonRpcClient _Client = null;
+        internal readonly JsonRpcClient _Client = null;
 
         internal Wallet(JsonRpcClient client)
         {

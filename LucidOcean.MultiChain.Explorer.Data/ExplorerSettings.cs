@@ -19,7 +19,7 @@ namespace LucidOcean.MultiChain.Explorer.Data
 
             Connection = new MultiChainConnection()
             {
-                Hostname = "192.168.0.5",
+                Hostname = "192.168.192.1",
                 Port = 9264,
                 Username = "multichainrpc",
                 Password = "Ajm2VNf2MdGK8ULQiMGg7Q4C8Jy2XBJrzNJ5y9Mj7qaS",

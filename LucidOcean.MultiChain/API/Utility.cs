@@ -19,7 +19,7 @@ namespace LucidOcean.MultiChain.API
     public class Utility
     {
 
-        JsonRpcClient _Client = null;
+        internal readonly JsonRpcClient _Client = null;
 
         internal Utility(JsonRpcClient client)
         {

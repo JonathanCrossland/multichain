@@ -84,6 +84,19 @@ namespace MultiChainTests
             ResponseLogger<string>.Log(response);
         }
 
+
+        [TestMethod]
+        public void ListStreams()
+        {
+
+            JsonRpcResponse<List<ListStreamResponse>> response = null;
+            Task.Run(async () =>
+            {
+                response = await _Client.Stream.ListStreamsAsync("*", true);
+            }).GetAwaiter().GetResult();
+
+            ResponseLogger<List<ListStreamResponse>>.Log(response);
+        }
         [TestMethod]
         public void ListStreamItems()
         {
@@ -96,6 +109,8 @@ namespace MultiChainTests
 
             ResponseLogger<List<ListStreamItemsResponse>>.Log(response);
         }
+
+       
 
         [TestMethod]
         public void ListStreamItemsVerbose()
@@ -143,7 +158,7 @@ namespace MultiChainTests
             JsonRpcResponse<string> response = null;
             Task.Run(async () =>
             {
-                response = await _Client.Stream.CreateFromAsync(TestSettings.Connection.RootNodeAddress, "TestStream", false, new { data = "custom data" });
+                response = await _Client.Stream.CreateFromAsync(TestSettings.Connection.RootNodeAddress, "Lucid Ocean", false, new { data = "custom data" });
             }).GetAwaiter().GetResult();
 
             ResponseLogger<string>.Log(response);
