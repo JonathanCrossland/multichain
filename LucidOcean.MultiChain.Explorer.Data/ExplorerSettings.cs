@@ -19,13 +19,13 @@ namespace LucidOcean.MultiChain.Explorer.Data
 
             Connection = new MultiChainConnection()
             {
-                Hostname = "192.168.192.1",
+                Hostname = "192.168.132.72",
                 Port = 9264,
                 Username = "multichainrpc",
                 Password = "Ajm2VNf2MdGK8ULQiMGg7Q4C8Jy2XBJrzNJ5y9Mj7qaS",
-                ChainName = "LucidOceanTestChain",
-                BurnAddress = "1XXXXXXXYBXXXXXXd3XXXXXXZ1XXXXXXXeChio",
-                RootNodeAddress = "1JZpnFNYw3zQbyGKqve7rDWben3PuC2g3bhwBP"
+                ChainName = "lLucidOcean_test",
+                BurnAddress = "1XXXXXXWqCXXXXXXW4XXXXXXd2XXXXXXagqdda",
+                RootNodeAddress = "1PosGTrKNy719CpUeNXs7LBJZDo4iJvQx1i3VR"
             };
         }
     }

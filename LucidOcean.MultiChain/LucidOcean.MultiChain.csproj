@@ -11,9 +11,9 @@
 -- Updated nuget packages
 </PackageReleaseNotes>
     <PackageTags>MultiChain BlockChain API Wrapper</PackageTags>
-    <Version>0.0.0.11</Version>
-    <AssemblyVersion>0.0.0.11</AssemblyVersion>
-    <FileVersion>0.0.0.11</FileVersion>
+    <Version>0.0.0.12</Version>
+    <AssemblyVersion>0.0.0.12</AssemblyVersion>
+    <FileVersion>0.0.0.12</FileVersion>
     <Copyright>Copyright © 2023, Lucid Ocean</Copyright>
     <Company>Lucid Ocean</Company>
     <Product>Lucid Ocean MultiChain Client</Product>
@@ -22,7 +22,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 	  <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 	  <Title>Lucid Ocean MultiChain Client</Title>
-	  <PackageIcon>AMMERSE.png</PackageIcon>
+	  <PackageIcon>NET.icon.png</PackageIcon>
 	  <RepositoryUrl>https://github.com/JonathanCrossland/multichain</RepositoryUrl>
 	  <RepositoryType>git</RepositoryType>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -48,11 +48,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\README.md">
+    <None Include="..\packages\Microsoft.Web.Infrastructure.2.0.0\NET.icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="C:\Users\Jonathan\Downloads\AMMERSE.png">
+    <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

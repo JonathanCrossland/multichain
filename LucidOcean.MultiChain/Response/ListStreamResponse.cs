@@ -75,7 +75,7 @@ namespace LucidOcean.MultiChain.Response
         public int Confirmed { get; set; }
 
         [JsonProperty("keys")]
-        public int Keys { get; set; }
+        public string[] Keys { get; set; }
 
         /// <summary>
         /// https://www.multichain.com/developers/json-rpc-api/
@@ -103,7 +103,8 @@ namespace LucidOcean.MultiChain.Response
         [JsonProperty("indexes")]
         public ListStreamIndexesResponse Indexes { get; set; }
 
-
+        [JsonProperty("offchain")]
+        public bool OffChain { get; set; }
 
 
     }

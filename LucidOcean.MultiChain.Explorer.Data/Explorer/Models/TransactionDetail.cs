@@ -91,7 +91,7 @@ namespace LucidOcean.MultiChain.Explorer
                         // if stream
                         if (item.Items.Count > 0)
                         {
-                            td.From = item.Items.First().Publishers?.First();
+                           td.From = item.Items.First().Publishers?.First;
 
                             td.Action = item.Items.First().Key;
                             td.To = item.Items.First().StreamRef;
@@ -181,7 +181,7 @@ namespace LucidOcean.MultiChain.Explorer
             {
                 if (!address.Contains("<br"))
                 {
-                    address = $"<a href ='/BlockChain/Explorer/Address/{address}'>{address}</a>";
+                    address = $"<a href=\"/BlockChain/Explorer/Address/{address}\">{address}</a>";
                 }
             }
             return address;

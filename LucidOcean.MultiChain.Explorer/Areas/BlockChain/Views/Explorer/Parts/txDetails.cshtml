@@ -29,7 +29,7 @@
             <td>
                 @if (string.IsNullOrEmpty(item.From))
                 {
-                    item.From = "asd";
+                    item.From = "--";
                 }
                 @if (item.From.Contains("<br/>") || item.From.Contains("-"))
                 {
@@ -72,7 +72,7 @@
                 }
                 else
                 {
-                    <span>@item.To </span>
+                <span>@Html.Raw(item.To) </span>
                 }
                 @{
                     string hashTo = item.HashTo;
@@ -90,14 +90,14 @@
                     }
                 }
             </td>
-            <td class="text-right">
+            <td class="text-end">
                 @if (!string.IsNullOrEmpty(item.EventTypeLabel))
                 {
                     <span>@item.EventTypeLabel</span><br />
                 }
                 @if (!string.IsNullOrEmpty(item.Action))
                 {
-                    <span class="badge badge-success">@item.Action</span>
+                    <span class="badge bg-info">@item.Action</span>
                 }
             </td>
         </tr>
@@ -105,7 +105,7 @@
             <th colspan="4">
                 &nbsp;
             </th>
-        </tr>
-                        }
+    </tr>
+    }
 
-                    }
+}

@@ -103,7 +103,7 @@ namespace MultiChainTests
             JsonRpcResponse<Dictionary<string, object>> response = null;
             Task.Run(async () =>
             {
-                response = await _Client.Utility.SetRuntimeParamsAsync("autosubscribe", "false");
+                response = await _Client.Utility.SetRuntimeParamsAsync("miningrequirespeers", "false" );
             }).GetAwaiter().GetResult();
 
 

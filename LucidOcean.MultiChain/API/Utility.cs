@@ -111,7 +111,7 @@ namespace LucidOcean.MultiChain.API
         /// <returns></returns>
         public JsonRpcResponse<GetInfoResponse> GetInfo()
         {
-            return _Client.Execute<GetInfoResponse>("getinfo", 0);
+           return _Client.Execute<GetInfoResponse>("getinfo", 0);
         }
 
         /// <summary>
