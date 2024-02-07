@@ -374,7 +374,7 @@ namespace LucidOcean.MultiChain.API
         /// <param name="start"></param>
         /// <param name="localOrdering"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<string>>> ListStreamPublishersAsync(string streamName, List<string> address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        public Task<JsonRpcResponse<List<ListStreamPublishers>>> ListStreamPublishersAsync(string streamName, List<string> address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
         {
             return _Client.ExecuteAsync<List<string>>("liststreampublishers", 0, streamName, address, verbose, count, start, localOrdering);
         }
