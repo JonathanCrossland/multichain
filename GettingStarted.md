@@ -43,7 +43,7 @@ You will find a username and password required for the library to connect as wel
 
 ```
 rpcuser=THIS_IS_YOUR_USER
-rpcpassword=THIS_IS_YOUR_PASSWORS
+rpcpassword=THIS_IS_YOUR_PASSWORD
 rpcallowip=127.0.0.1
 ```
 
@@ -51,9 +51,20 @@ rpcallowip=127.0.0.1
 
 In the source there are two connections to set, if you are using the nuget package, only one.
 
-You need to create a MultichainClient and initialise it.
+Running the Explorer:
+- Open ExplorerSettings.cs in LucidOcean.MultiChain.Explorer.Data
+- Modify the Connection params to match your chain
+
+Running a Test
+- Open TestSettings.cs
+- Modify the Connection params to match your chain
+
+Using the C# Library
+
+You need to create a MultichainClient and initialise it, then make a call.
+
 ```
-Connection = new MultiChainConnection()
+Connection con = new MultiChainConnection()
 {
     Hostname = "your_ip",
     Port = your_port,
@@ -63,6 +74,9 @@ Connection = new MultiChainConnection()
     BurnAddress = "your_burn_address",
     RootNodeAddress = "_your_root_node"
 };
+
+MultichainClient client = new MultichainClient(con);
+JsonRpcResponse<Dictionary<string , object>> response = client.Utility.GetBlockChainParams();
 ```
 
 
