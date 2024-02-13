@@ -5,9 +5,15 @@ We defer you to Multichain in order to do this: follow their guide.
 
 [https://www.multichain.com/developers/creating-connecting/](https://www.multichain.com/developers/creating-connecting/)
 
+```
 multichain-util create [chain-name]
+// highly recommended that you bolt on -datadir=path 
+// eg. c:\multichain\chains otherwise its created in appRoaming or other default location
+
 //Before you run the next step, read AllowRPC and Multichain Configuration below
+
 multichaind [chain-name] -daemon
+```
 
 ## Multichain Configuration (params.dat)
 
