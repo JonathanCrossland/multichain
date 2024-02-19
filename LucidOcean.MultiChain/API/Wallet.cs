@@ -1,9 +1,9 @@
 ﻿/*=====================================================================
-Authors: Lucid Ocean PTY (LTD)
-Copyright © 2017 Lucid Ocean PTY (LTD). All Rights Reserved.
+Authors: Jonathan Crossland et al. See github for contributors
+Copyright © 2024 Jonathan Crossland (trading as Lucid Ocean). All Rights Reserved.
 
 License: Dual MIT / Lucid Ocean Wave Business License v1.0
-Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
+
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
 using LucidOcean.MultiChain.Response;
@@ -268,16 +268,7 @@ namespace LucidOcean.MultiChain.API
         }
 
         /// <summary>
-        /// 	Returns a new address whose private key is added to the wallet.
-        /// </summary>
-        /// <returns></returns>
-        public JsonRpcResponse<string> GetNewAddress()
-        {
-            return _Client.Execute<string>("getnewaddress", 0);
-        }
-
-        /// <summary>
-        /// 	Returns a new address whose private key is added to the wallet.
+        /// Returns a new address whose private key is added to the wallet.
         /// </summary>
         /// <returns></returns>
         public Task<JsonRpcResponse<string>> GetNewAddressAsync()
@@ -286,16 +277,16 @@ namespace LucidOcean.MultiChain.API
         }
 
         /// <summary>
-        /// Adds address (or a full public key, or an array of either) to the wallet, without an associated private key. This creates one or more watch-only addresses, whose activity and balance can be retrieved via various APIs (e.g. with the includeWatchOnly parameter), but whose funds cannot be spent by this node. If rescan is true, the entire blockchain is checked for transactions relating to all addresses in the wallet, including the added ones. Returns null if successful.
+        /// 	Returns a new address whose private key is added to the wallet.
         /// </summary>
-        /// <param name="address"></param>
-        /// <param name="account"></param>
-        /// <param name="rescan"></param>
         /// <returns></returns>
-        public JsonRpcResponse<string> ImportAddress(string address, string account = null, bool rescan = true)
+        public JsonRpcResponse<string> GetNewAddress()
         {
-            return _Client.Execute<string>("importaddress", 0, address, account ?? string.Empty, rescan);
+            var task = GetNewAddressAsync();
+            var result = task.GetAwaiter().GetResult();
+            return result;
         }
+
 
         /// <summary>
         /// Adds address (or a full public key, or an array of either) to the wallet, without an associated private key. This creates one or more watch-only addresses, whose activity and balance can be retrieved via various APIs (e.g. with the includeWatchOnly parameter), but whose funds cannot be spent by this node. If rescan is true, the entire blockchain is checked for transactions relating to all addresses in the wallet, including the added ones. Returns null if successful.
@@ -308,15 +299,22 @@ namespace LucidOcean.MultiChain.API
         {
             return _Client.ExecuteAsync<string>("importaddress", 0, address, account ?? string.Empty, rescan);
         }
-
         /// <summary>
-        /// Returns information about the addresses in the wallet. Provide one or more addresses (comma-delimited or as an array) to retrieve information about specific addresses only, or use * for all addresses in the wallet. Use count and start to retrieve part of the list only, with negative start values (like the default) indicating the most recently created addresses.
+        /// Adds address (or a full public key, or an array of either) to the wallet, without an associated private key. This creates one or more watch-only addresses, whose activity and balance can be retrieved via various APIs (e.g. with the includeWatchOnly parameter), but whose funds cannot be spent by this node. If rescan is true, the entire blockchain is checked for transactions relating to all addresses in the wallet, including the added ones. Returns null if successful.
         /// </summary>
+        /// <param name="address"></param>
+        /// <param name="account"></param>
+        /// <param name="rescan"></param>
         /// <returns></returns>
-        public JsonRpcResponse<List<AddressResponse>> ListAddresses(bool verbose)
+        public JsonRpcResponse<string> ImportAddress(string address, string account = null, bool rescan = true)
         {
-            return _Client.Execute<List<AddressResponse>>("listaddresses", 0, "*", verbose);
+            var task = ImportAddressAsync(address, account, rescan);
+            var result = task.GetAwaiter().GetResult();
+            return result;
+           
         }
+
+        
 
         /// <summary>
         /// Returns information about the addresses in the wallet. Provide one or more addresses (comma-delimited or as an array) to retrieve information about specific addresses only, or use * for all addresses in the wallet. Use count and start to retrieve part of the list only, with negative start values (like the default) indicating the most recently created addresses.
@@ -325,6 +323,16 @@ namespace LucidOcean.MultiChain.API
         public Task<JsonRpcResponse<List<AddressResponse>>> ListAddressesAsync(bool verbose)
         {
             return _Client.ExecuteAsync<List<AddressResponse>>("listaddresses", 0, "*", verbose);
+        }
+        /// <summary>
+        /// Returns information about the addresses in the wallet. Provide one or more addresses (comma-delimited or as an array) to retrieve information about specific addresses only, or use * for all addresses in the wallet. Use count and start to retrieve part of the list only, with negative start values (like the default) indicating the most recently created addresses.
+        /// </summary>
+        /// <returns></returns>
+        public JsonRpcResponse<List<AddressResponse>> ListAddresses(bool verbose)
+        {
+            var task = ListAddressesAsync(verbose);
+            var result = task.GetAwaiter().GetResult();
+            return result;
         }
 
         /// <summary>
@@ -344,24 +352,32 @@ namespace LucidOcean.MultiChain.API
         /// <returns></returns>
         public JsonRpcResponse<string> CombineUnspent(string path)
         {
-            return _Client.Execute<string>("combineunspent", 0, path);
+            var task = CombineUnspentAsync(path);
+            var result = task.GetAwaiter().GetResult();
+            return result;
         }
+
+      
+
+   
 
         /// <summary>
         /// Returns a list of locked unspent transaction outputs in the wallet. These will not be used when automatically selecting the outputs to spend in a new transaction.
         /// </summary>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<string>>> ListLockUnspentAsync()
+        public Task<JsonRpcResponse<List<UnspentResponse>>> ListLockUnspentAsync()
         {
-            return _Client.ExecuteAsync<List<string>>("listlockunspent", 0);
+            return _Client.ExecuteAsync<List<UnspentResponse>>("listlockunspent", 0);
         }
         /// <summary>
         /// Returns a list of locked unspent transaction outputs in the wallet. These will not be used when automatically selecting the outputs to spend in a new transaction. 
         /// </summary>
         /// <returns></returns>
-        public JsonRpcResponse<List<string>> ListLockUnspent()
+        public JsonRpcResponse<List<UnspentResponse>> ListLockUnspent()
         {
-            return _Client.Execute<List<string>>("listlockunspent", 0);
+            var task = ListLockUnspentAsync();
+            var result = task.GetAwaiter().GetResult();
+            return result;
         }
 
         /// <summary>
@@ -373,7 +389,13 @@ namespace LucidOcean.MultiChain.API
         /// <returns></returns>
         public Task<JsonRpcResponse<List<UnspentResponse>>> ListUnspentAsync(int minConf = 1, int maxConf = 999999, IEnumerable<string> addresses = null)
         {
-            return _Client.ExecuteAsync<List<UnspentResponse>>("listunspent", 0, minConf, maxConf);
+            var parametersList = new List<object>();
+
+            parametersList.Add(minConf);
+            parametersList.Add(maxConf);
+            if(addresses != null) parametersList.Add(addresses);
+            object[] parameters = parametersList.ToArray();
+            return _Client.ExecuteAsync<List<UnspentResponse>>("listunspent", 0, parameters);
         }
 
         /// <summary>
@@ -385,7 +407,10 @@ namespace LucidOcean.MultiChain.API
         /// <returns></returns>
         public JsonRpcResponse<List<UnspentResponse>> ListUnspent(int minConf = 1, int maxConf = 999999, IEnumerable<string> addresses = null)
         {
-            return _Client.Execute<List<UnspentResponse>>("listunspent", 0, minConf, maxConf);
+            var task = ListUnspentAsync(minConf, maxConf, addresses);
+            var result = task.GetAwaiter().GetResult();
+            return result;
+           
         }
 
         /// <summary>

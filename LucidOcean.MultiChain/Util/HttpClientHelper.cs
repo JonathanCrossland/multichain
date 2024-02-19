@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -12,6 +13,7 @@ namespace LucidOcean.MultiChain.Util
         // Basic auth
         public static HttpClient GetHttpClientWithBasicAuth(string url, string username, string password)
         {
+            Trace.WriteLine("Creating RPC Connection");
             var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}")));
 
             var baseAddress = new Uri(url);

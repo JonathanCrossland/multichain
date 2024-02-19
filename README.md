@@ -1,15 +1,19 @@
+
 # LucidOcean.MultiChain Assembly
 
 The library is an unofficial wrapper for multichain_cli JSON RPC. 
-Refer to https://www.multichain.com/developers/json-rpc-api/ for more information on each JSON RPC call and how it is used.
 
-Follow these instructions to create your own chain. https://www.multichain.com/developers/creating-connecting/
+***
+[Latest Nuget](https://www.nuget.org/packages/LucidOcean.MultiChain) 
+|
+[MultiChain Starter](https://github.com/JonathanCrossland/multichain/wiki/MultiChain-Starter)
+***
+
 
 The Source is in Visual Studio 2022 Community Edition. 
 
 The compiled Assemblies is targeting 4.8 and Core 6.0
 
-NUGET: https://www.nuget.org/packages/LucidOcean.MultiChain/0.0.0.11
 
 This library divides the calls into 
  - MultiChainClient.Address
@@ -106,6 +110,6 @@ _Client.Asset.Send(toAddress, assetName, amount);
 ```
 
 ## MultiChain Explorer
-    - MultiChain explorer running on C# ASP.NET MVC 5.2.3
+    - MultiChain explorer running on C# ASP.NET MVC 
     - Change connection details in LucidOcean.MultiChain.Explorer.Data.ExplorerSettings to connect the explorer to your node.  
         * This works the same as seen in example of issue and sending of an asset.    

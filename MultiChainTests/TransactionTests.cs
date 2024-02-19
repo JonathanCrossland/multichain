@@ -1,9 +1,9 @@
 ﻿/*=====================================================================
-Authors: Lucid Ocean PTY (LTD)
-Copyright © 2017 Lucid Ocean PTY (LTD). All Rights Reserved.
+Authors: Jonathan Crossland et al. See github for contributors
+Copyright © 2024 Jonathan Crossland (trading as Lucid Ocean). All Rights Reserved.
 
 License: Dual MIT / Lucid Ocean Wave Business License v1.0
-Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
+
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
 using LucidOcean.MultiChain;
@@ -32,7 +32,7 @@ namespace MultiChainTests
         [ExpectedException(typeof(JsonRpcException))]
         public void PrioritiseTransactionAsync()
         {
-            JsonRpcResponse<BlockResponse> blockresponse = _Client.Block.GetBlock(60, true);
+            JsonRpcResponse<BlockResponse> blockresponse = _Client.Block.GetBlock(64, true);
 
             string txId = blockresponse.Result.Tx[2];
 
@@ -50,7 +50,7 @@ namespace MultiChainTests
         public void GetRawTransactionVerboseAsync()
         {
 
-            JsonRpcResponse<BlockResponse> blockresponse = _Client.Block.GetBlock(17, true);
+            JsonRpcResponse<BlockResponse> blockresponse = _Client.Block.GetBlock(64, true);
 
             if (blockresponse.Result.Tx.Count < 2) throw new Exception("There is no transaction to test");
 

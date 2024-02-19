@@ -1,9 +1,9 @@
 ﻿/*=====================================================================
-Authors: Lucid Ocean PTY (LTD)
-Copyright © 2017 Lucid Ocean PTY (LTD). All Rights Reserved.
+Authors: Jonathan Crossland et al. See github for contributors
+Copyright © 2024 Jonathan Crossland (trading as Lucid Ocean). All Rights Reserved.
 
 License: Dual MIT / Lucid Ocean Wave Business License v1.0
-Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
+
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
 using LucidOcean.MultiChain.Response;
@@ -329,9 +329,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="start"></param>
         /// <param name="localOrdering"></param>
         /// <returns></returns>
-        public JsonRpcResponse<List<string>> ListStreamPublisherItems(string streamName, string address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        public JsonRpcResponse<List<ListStreamResponse>> ListStreamPublisherItems(string streamName, string address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
         {
-            return _Client.Execute<List<string>>("liststreampublisheritems", 0, streamName, address, verbose, count, start, localOrdering);
+            return _Client.Execute<List<ListStreamResponse>>("liststreampublisheritems", 0, streamName, address, verbose, count, start, localOrdering);
         }
 
         /// <summary>
@@ -344,9 +344,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="start"></param>
         /// <param name="localOrdering"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<string>>> ListStreamPublisherItemsAsync(string streamName, string address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        public Task<JsonRpcResponse<List<ListStreamResponse>>> ListStreamPublisherItemsAsync(string streamName, string address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
         {
-            return _Client.ExecuteAsync<List<string>>("liststreampublisheritems", 0, streamName, address, verbose, count, start, localOrdering);
+            return _Client.ExecuteAsync<List<ListStreamResponse>>("liststreampublisheritems", 0, streamName, address, verbose, count, start, localOrdering);
         }
 
         /// <summary>
@@ -359,9 +359,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="start"></param>
         /// <param name="localOrdering"></param>
         /// <returns></returns>
-        public JsonRpcResponse<List<string>> ListStreamPublishers(string streamName, List<string> address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        public JsonRpcResponse<List<ListStreamResponse>> ListStreamPublishers(string streamName, List<string> address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
         {
-            return _Client.Execute<List<string>>("liststreampublishers", 0, streamName, address, verbose, count, start, localOrdering);
+            return _Client.Execute<List<ListStreamResponse>>("liststreampublishers", 0, streamName, address, verbose, count, start, localOrdering);
         }
 
         /// <summary>
@@ -374,9 +374,9 @@ namespace LucidOcean.MultiChain.API
         /// <param name="start"></param>
         /// <param name="localOrdering"></param>
         /// <returns></returns>
-        public Task<JsonRpcResponse<List<ListStreamPublishers>>> ListStreamPublishersAsync(string streamName, List<string> address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
+        public Task<JsonRpcResponse<List<ListStreamResponse>>> ListStreamPublishersAsync(string streamName, List<string> address, bool verbose = false, int count = int.MaxValue, int start = 0, bool localOrdering = false)
         {
-            return _Client.ExecuteAsync<List<string>>("liststreampublishers", 0, streamName, address, verbose, count, start, localOrdering);
+            return _Client.ExecuteAsync<List<ListStreamResponse>>("liststreampublishers", 0, streamName, address, verbose, count, start, localOrdering);
         }
         
     }

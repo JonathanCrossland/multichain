@@ -1,9 +1,9 @@
 ﻿/*=====================================================================
-Authors: Lucid Ocean PTY (LTD)
-Copyright © 2017 Lucid Ocean PTY (LTD). All Rights Reserved.
+Authors: Jonathan Crossland et al. See github for contributors
+Copyright © 2024 Jonathan Crossland (trading as Lucid Ocean). All Rights Reserved.
 
 License: Dual MIT / Lucid Ocean Wave Business License v1.0
-Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
+
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
 using System;
@@ -18,6 +18,7 @@ namespace LucidOcean.MultiChain.Util
     {
         public static string StringifyValues(IEnumerable<string> values)
         {
+            if (values == null) return "";
             return string.Join(",", values);
         }
 
@@ -58,6 +59,8 @@ namespace LucidOcean.MultiChain.Util
 
             return result;
         }
+
+       
 
         internal static T[] EmptyArray<T>()
         {

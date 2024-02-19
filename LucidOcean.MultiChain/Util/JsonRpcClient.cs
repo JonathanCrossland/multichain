@@ -1,9 +1,9 @@
 ﻿/*=====================================================================
-Authors: Lucid Ocean PTY (LTD)
-Copyright © 2017 Lucid Ocean PTY (LTD). All Rights Reserved.
+Authors: Jonathan Crossland et al. See github for contributors
+Copyright © 2024 Jonathan Crossland (trading as Lucid Ocean). All Rights Reserved.
 
 License: Dual MIT / Lucid Ocean Wave Business License v1.0
-Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
+
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
 using LucidOcean.MultiChain.Exceptions;
@@ -78,7 +78,11 @@ namespace LucidOcean.MultiChain.Util
         /// <returns></returns>
         public async Task<JsonRpcResponse<T>> ExecuteAsync<T>(string method, int id, params object[] args)
         {
-            
+            Trace.WriteLine($"RPC: {method} {id}");
+            for (int i = 0; i < args.Length; i++)
+            {
+                Trace.WriteLine($"RPC Param {i + 1}: {args[i]}");
+            }
             var ps = new JsonRpcRequest()
             {
                 Method = method,
@@ -115,6 +119,7 @@ namespace LucidOcean.MultiChain.Util
                 }
                 catch (Exception jsonEx)
                 {
+                    Trace.WriteLine(jsonEx);
                     var errorResponse = JsonConvert.DeserializeObject<JsonRpcErrorResponse>(jsonRet);
                     throw new JsonRpcException(errorResponse.Error);
                 }

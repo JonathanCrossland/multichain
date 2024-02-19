@@ -1,9 +1,9 @@
 ﻿/*=====================================================================
-Authors: Lucid Ocean PTY (LTD)
-Copyright © 2017 Lucid Ocean PTY (LTD). All Rights Reserved.
+Authors: Jonathan Crossland et al. See github for contributors
+Copyright © 2024 Jonathan Crossland (trading as Lucid Ocean). All Rights Reserved.
 
 License: Dual MIT / Lucid Ocean Wave Business License v1.0
-Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
+
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
 using LucidOcean.MultiChain;
@@ -92,13 +92,13 @@ namespace MultiChainTests
         [TestMethod]
         public void ListLockUnspentAsync()
         {
-            JsonRpcResponse<List<string>> response = null;
+            JsonRpcResponse<List<UnspentResponse>> response = null;
             Task.Run(async () =>
             {
                 response = await _Client.Wallet.ListLockUnspentAsync();
             }).GetAwaiter().GetResult();
 
-            ResponseLogger<List<string>>.Log(response);
+            ResponseLogger<List<UnspentResponse>>.Log(response);
         }
 
 
@@ -108,7 +108,7 @@ namespace MultiChainTests
             JsonRpcResponse<List<UnspentResponse>> response = null;
             Task.Run(async () =>
             {
-                response = await _Client.Wallet.ListUnspentAsync();
+                response = await _Client.Wallet.ListUnspentAsync(1,20);
             }).GetAwaiter().GetResult();
 
             ResponseLogger<List<UnspentResponse>>.Log(response);
@@ -203,6 +203,8 @@ namespace MultiChainTests
             ResponseLogger<List<AddressResponse>>.Log(response);
         }
 
+
+        //First time error
         [TestMethod]
         public void ListAddressTransactionsAsync()
         {

@@ -1,15 +1,7 @@
-﻿/*=====================================================================
-Authors: Lucid Ocean PTY (LTD)
-Copyright © 2017 Lucid Ocean PTY (LTD). All Rights Reserved.
-
-License: Dual MIT / Lucid Ocean Wave Business License v1.0
-Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
-The full license will also be found on the root of the main source-code directory.
-=====================================================================*/
-using LucidOcean.MultiChain.Util;
+﻿using LucidOcean.MultiChain.Util;
 using System.Diagnostics;
 
-namespace LucidOcean.MultiChain
+namespace MultiChainTests
 {
     public static class ResponseLogger<T>
     {
@@ -30,7 +22,7 @@ namespace LucidOcean.MultiChain
 
             if (response.Result is System.Collections.IEnumerable)
             {
-                
+
                 foreach (var item in response.Result as System.Collections.IEnumerable)
                 {
                     if (item is char) break;
@@ -41,7 +33,7 @@ namespace LucidOcean.MultiChain
             {
                 Debug.WriteLine(response.Result);
             }
-            
+
             Debug.WriteLine(response.Raw);
             Debug.WriteLine("");
         }

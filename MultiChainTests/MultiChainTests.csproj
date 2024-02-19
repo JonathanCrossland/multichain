@@ -102,13 +102,13 @@
     <Compile Include="WalletTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\LucidOcean.MultiChain\LucidOcean.MultiChain.csproj">
       <Project>{2fcc5c6b-af3c-4bfb-a097-4697d8fdeb1a}</Project>
       <Name>LucidOcean.MultiChain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

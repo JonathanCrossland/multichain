@@ -1,9 +1,9 @@
 ﻿/*=====================================================================
-Authors: Lucid Ocean PTY (LTD)
-Copyright © 2017 Lucid Ocean PTY (LTD). All Rights Reserved.
+Authors: Jonathan Crossland et al. See github for contributors
+Copyright © 2024 Jonathan Crossland (trading as Lucid Ocean). All Rights Reserved.
 
 License: Dual MIT / Lucid Ocean Wave Business License v1.0
-Please refer to http://www.lucidocean.co.za/wbl-license.html for restrictions and freedoms.
+
 The full license will also be found on the root of the main source-code directory.
 =====================================================================*/
 using LucidOcean.MultiChain;
@@ -23,7 +23,7 @@ namespace MultiChainTests
 
         private MultiChainClient _Client = null;
 
-
+     
         [TestInitialize]
         public void Init()
         {
@@ -88,19 +88,20 @@ namespace MultiChainTests
         [TestMethod]
         public void ListStreams()
         {
-
             JsonRpcResponse<List<ListStreamResponse>> response = null;
             Task.Run(async () =>
             {
                 response = await _Client.Stream.ListStreamsAsync("*", true);
             }).GetAwaiter().GetResult();
 
+            
+
             ResponseLogger<List<ListStreamResponse>>.Log(response);
         }
         [TestMethod]
         public void ListStreamItems()
         {
-
+          
             JsonRpcResponse<List<ListStreamItemsResponse>> response = null;
             Task.Run(async () =>
             {
@@ -115,7 +116,7 @@ namespace MultiChainTests
         [TestMethod]
         public void ListStreamItemsVerbose()
         {
-
+           
             JsonRpcResponse<List<ListStreamItemsResponse>> response = null;
             Task.Run(async () =>
             {
@@ -129,7 +130,7 @@ namespace MultiChainTests
         [TestMethod]
         public void ListStreamKeyItems()
         {
-
+           
             JsonRpcResponse<List<ListStreamItemsResponse>> response = null;
             Task.Run(async () =>
             {
@@ -139,44 +140,49 @@ namespace MultiChainTests
             ResponseLogger<List<ListStreamItemsResponse>>.Log(response);
         }
 
+        //[TestMethod]
+        //public void GetTxOutSetInfoAsync()
+        //{
+
+        //    JsonRpcResponse<TxOutSetInfoResponse> response = null;
+        //    Task.Run(async () =>
+        //    {
+        //        response = await _Client.Block.GetTxOutSetInfoAsync();
+        //    }).GetAwaiter().GetResult();
+
+        //    ResponseLogger<TxOutSetInfoResponse>.Log(response);
+        //}
+
+        //[TestMethod]
+        //public void CreateFromAsync()
+        //{
+        //    JsonRpcResponse<string> response = null;
+        //    Task.Run(async () =>
+        //    {
+        //        response = await _Client.Stream.CreateFromAsync(TestSettings.Connection.RootNodeAddress, "Lucid Ocean", false, new { data = "custom data" });
+        //    }).GetAwaiter().GetResult();
+
+        //    ResponseLogger<string>.Log(response);
+        //}
+
         [TestMethod]
-        public void GetTxOutSetInfoAsync()
-        {
-
-            JsonRpcResponse<TxOutSetInfoResponse> response = null;
-            Task.Run(async () =>
-            {
-                response = await _Client.Block.GetTxOutSetInfoAsync();
-            }).GetAwaiter().GetResult();
-
-            ResponseLogger<TxOutSetInfoResponse>.Log(response);
-        }
-
-        [TestMethod]
-        public void CreateFromAsync()
-        {
-            JsonRpcResponse<string> response = null;
-            Task.Run(async () =>
-            {
-                response = await _Client.Stream.CreateFromAsync(TestSettings.Connection.RootNodeAddress, "Lucid Ocean", false, new { data = "custom data" });
-            }).GetAwaiter().GetResult();
-
-            ResponseLogger<string>.Log(response);
-        }
-
-        [TestMethod]
+        [ExpectedExceptionAttribute(typeof(JsonRpcException))]
         public void CreateFrom()
         {
+           
+            
             JsonRpcResponse<string> response = null;
 
-            response = _Client.Stream.CreateFrom(TestSettings.Connection.RootNodeAddress, "TestStream", false, new { data = "custom data" });
-
+            response = _Client.Stream.CreateFrom(TestSettings.Connection.RootNodeAddress, "Lucid Ocean", false, new { data = "custom data" });
+          
             ResponseLogger<string>.Log(response);
+            
         }
 
         [TestMethod]
         public void ListStreamKeys()
         {
+           
             JsonRpcResponse<List<ListStreamKeyResponse>> response = null;
 
             List<string> list = new List<string>();
@@ -190,9 +196,12 @@ namespace MultiChainTests
         [TestMethod]
         public void GetStreamItem()
         {
+
             JsonRpcResponse<ListStreamItemsResponse> response = null;
 
-            response = _Client.Stream.GetStreamItem("Lucid Ocean", "[sometxid]", true);
+            JsonRpcResponse<List<ListStreamResponse>> list = ListStreamPublisherItems();
+            var txId = list.Result[0].CreateTxID;
+            response = _Client.Stream.GetStreamItem("Lucid Ocean", txId, true);
 
             ResponseLogger<ListStreamItemsResponse>.Log(response);
         }
@@ -200,6 +209,7 @@ namespace MultiChainTests
         [TestMethod]
         public void ListStreamKeysAsync()
         {
+           
             JsonRpcResponse<List<ListStreamKeyResponse>> response = null;
             Task.Run(async () =>
             {
@@ -213,42 +223,46 @@ namespace MultiChainTests
         }
 
         [TestMethod]
-        public void ListStreamPublisherItems()
+        public JsonRpcResponse<List<ListStreamResponse>> ListStreamPublisherItems()
         {
-            JsonRpcResponse<List<string>> response = null;
+          
+            JsonRpcResponse<List<ListStreamResponse>> response = null;
 
             response = _Client.Stream.ListStreamPublisherItems("Lucid Ocean", TestSettings.Connection.RootNodeAddress, true, 10, 1, true);
-
-            ResponseLogger<List<string>>.Log(response);
+            ResponseLogger<List<ListStreamResponse>>.Log(response);
+            return response;
+            
         }
 
         [TestMethod]
         public void ListStreamPublisherItemsAsync()
         {
-            JsonRpcResponse<List<string>> response = null;
+           
+            JsonRpcResponse<List<ListStreamResponse>> response = null;
             Task.Run(async () =>
             {
                 response = await _Client.Stream.ListStreamPublisherItemsAsync("Lucid Ocean", TestSettings.Connection.RootNodeAddress, true, 10, 1, true);
             }).GetAwaiter().GetResult();
 
-            ResponseLogger<List<string>>.Log(response);
+            ResponseLogger<List<ListStreamResponse>>.Log(response);
         }
 
         [TestMethod]
         public void ListStreamPublishers()
         {
-            JsonRpcResponse<List<string>> response = null;
+            JsonRpcResponse<List<ListStreamResponse>> response = null;
             List<string> addresses = new List<string>();
             addresses.Add(TestSettings.Connection.RootNodeAddress);
             response = _Client.Stream.ListStreamPublishers("Lucid Ocean", addresses, true, 10, 1, true);
 
-            ResponseLogger<List<string>>.Log(response);
+            ResponseLogger<List<ListStreamResponse>>.Log(response);
         }
 
         [TestMethod]
         public void ListStreamPublishersAsync()
         {
-            JsonRpcResponse<List<string>> response = null;
+          
+            JsonRpcResponse<List<ListStreamResponse>> response = null;
             Task.Run(async () =>
             {
                 List<string> addresses = new List<string>();
@@ -257,7 +271,7 @@ namespace MultiChainTests
                 response = await _Client.Stream.ListStreamPublishersAsync("Lucid Ocean", addresses, true, 10, 1, true);
             }).GetAwaiter().GetResult();
 
-            ResponseLogger<List<string>>.Log(response);
+            ResponseLogger<List<ListStreamResponse>>.Log(response);
         }
     }
 }
