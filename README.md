@@ -12,7 +12,7 @@ The library is an unofficial wrapper for multichain_cli JSON RPC.
 
 The Source is in Visual Studio 2022 Community Edition. 
 
-The compiled Assemblies is targeting 4.8 and Core 6.0
+The compiled Assemblies are targeting 4.8 and Core 6.0
 
 
 This library divides the calls into 
