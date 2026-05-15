@@ -1,4 +1,19 @@
 
+ANNOUNCEMENT:
+
+Are you using this library in production?
+
+I am wondering whether I should maintain this library or abandon it.
+
+Your silence means 'We dont use it', else leave me some details in the comment below.
+
+Kindly Jonathan
+
+## Your Comment
+
+
+
+
 # LucidOcean.MultiChain Assembly
 
 The library is an unofficial wrapper for multichain_cli JSON RPC. 
