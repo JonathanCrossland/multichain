@@ -1,16 +1,5 @@
 
-ANNOUNCEMENT:
-
-Are you using this library in production?
-
-I am wondering whether I should maintain this library or abandon it.
-
-Your silence means 'We dont use it', else leave me some details in the comment below.
-
-Kindly Jonathan
-
-## Your Comment
-
+ANNOUNCEMENT: This project is no longer active.
 
 
 
